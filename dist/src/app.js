@@ -8,6 +8,8 @@ var _greeter = require('./greeter.js');
 
 var _greeter2 = _interopRequireDefault(_greeter);
 
+require('handlebars');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
