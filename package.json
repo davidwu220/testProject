@@ -2,15 +2,15 @@
   "name": "testProject",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./app/app.js",
   "engines": {
     "node": "7.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel",
-    "build": "babel *.js -d dist",
-    "start": "node ./dist/app.js"
+    "build": "babel ./app/*.js -d dist",
+    "start": "node ./dist/app/app.js"
   },
   "repository": {
     "type": "git",
