@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    // eventually have to transpile all the code before pushing for production
+    "__comment": "eventually have to transpile all the code before pushing for production",
     "start": "babel-node server.js"
   },
   "repository": {
