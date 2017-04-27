@@ -11,7 +11,7 @@
     "babel": "babel",
     "babel-node": "babel-node",
     "build": "babel src/*.js server.js -d dist",
-    "start": "node server.js"
+    "start": "babel-node server.js"
   },
   "repository": {
     "type": "git",
