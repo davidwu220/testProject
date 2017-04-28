@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "__comment": "Eventually will have to transpile all the code before pushing for production",
-    "start": "babel-node server.js",
+    "start": "nodemon --exec babel-node server.js --ignore public/",
     "bundle": "webpack -wd"
   },
   "repository": {
