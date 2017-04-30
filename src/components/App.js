@@ -1,15 +1,39 @@
 import React from 'react';
+import axios from 'axios';
 import Header from './Header';
+import ContestPreview from './ContestPreview';
+import data from '../testData';
 
-const App = () => {
-    return (
-        <div className='App'>
-            <Header message='Naming Contests' />
-            <div>
-                ...
+class App extends React.Component {
+    state = {
+        pageHeader: 'Naming Contests',
+        contests: []
+    };
+
+    // Making sure the DOM is ready
+    componentDidMount() {
+        // ajax calls, set timers, listeners
+        this.setState({
+            contests: data.contests
+        });
+    }
+
+    componentWillUnmount() {
+        // clear timers, listeners
+    }
+
+    render() {
+        return (
+            <div className='App'>
+                <Header message={this.state.pageHeader} />
+                <div>
+                    {this.state.contests.map(contest =>
+                        <ContestPreview key={contest.id} {...contest} />
+                    )}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default App;
