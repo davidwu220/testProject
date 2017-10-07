@@ -1,17 +1,22 @@
+import config from './config';
+import apiRouter from './api';
+
 import express from 'express';
-import exphbs from 'express-handlebars';
-var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-app.set('port', process.env.PORT || 5000);
+const server = express();
 
-app.get('/', function (req, res) {
-    res.render('home');
+server.set('view engine', 'ejs');
+
+server.get('/', function (req, res) {
+    res.render('index', {
+        content: '...'
+      });
 });
 
-app.use(express.static('public'));
+server.use('/api', apiRouter);
 
-app.listen(app.get('port'), () => {
-    console.log('Node app is running on port', app.get('port'));
+server.use(express.static('public'));
+
+server.listen(config.port, () => {
+    console.info('Node server is running on port', config.port);
 });
