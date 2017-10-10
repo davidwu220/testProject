@@ -4,4 +4,6 @@ import ReactDOM from 'react-dom';
 import App from "./components/App";
 
 ReactDOM.render(
-    <App headerMessage="Hello props!"/>, document.getElementById('root'));
+    <App headerMessage="Hello props!"/>, 
+    document.getElementById('root')
+);
