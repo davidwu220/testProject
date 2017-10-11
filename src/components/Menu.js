@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 const Menu = () => (
-    <div className="Menu">
+    <div className="Menu sticky">
         <nav id="non-mob-menu" className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
@@ -19,13 +19,13 @@ const Menu = () => (
                 </div>
                 <div className="collapse navbar-collapse navbar-menubuilder">
                     <ul className="nav navbar-nav navbar-left">
-                        <li><a href="/">Home</a>
+                        <li><a href="/">星島廣告首頁</a>
                         </li>
-                        <li><a href="/products">Products</a>
+                        <li><a href="/products">星島分類廣告</a>
                         </li>
-                        <li><a href="/about-us">About Us</a>
+                        <li><a href="/about-us">星島商業廣告</a>
                         </li>
-                        <li><a href="/contact">Contact Us</a>
+                        <li><a href="/contact">星島新聞首頁</a>
                         </li>
                     </ul>
                 </div>

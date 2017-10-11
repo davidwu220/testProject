@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Footer from "./Footer"
 import Header from "./Header";
 import Home from "./Home/Home";
 import RightSide from './RightSide';
@@ -25,6 +26,7 @@ class App extends Component {
                 <Menu />
                 <Home />
                 <RightSide />
+                <Footer />
             </div>
         );
     }

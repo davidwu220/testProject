@@ -8,15 +8,9 @@
     margin: 0px !important;
 }
 
-@media (max-width: 768px) { 
-    .Main {
-        padding-top: 70px;
-    }
-}
-
 @media (min-width: 768px) {
     .navbar-nav {
-      margin-left: -30px;
+        margin-left: -30px;
     } 
 }
 
@@ -55,6 +49,17 @@
         background-color: whitesmoke;
         border-top: 1px solid #d5d5d5;
         text-align: left;
+        
+        .follow .qr-wrapper {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            justify-content: space-around;
+        }
     }
     .copyright {
         padding: 6px 12px;
@@ -79,6 +84,10 @@
     background: hotpink;
 }
 
+.qr-image {
+    height: 150px;
+}
+
 @media all and (min-width: 600px) {
     .aside {
         flex: 1 auto;
@@ -94,7 +103,7 @@
 }
 
 .contact {
-    width: 350px;
+    width: 300px;
     margin: auto;
     .title {
         color: #6a6c6f;
@@ -102,22 +111,23 @@
         font-weight: 700;
         margin-bottom: 8px;
     }
-    dd {
-        padding: 0px 5px 15px 0px;
+    .media {
+        padding-right: 10px;
+    }
+
+    .media:last-child {
+        margin-bottom: 25px;
     }
 }
 
 .follow {
-    width: 350px;
-    margin: auto;
+    width: 300px;
+    margin: 0 auto;
     .title {
         color: #6a6c6f;
         font-size: 16px;
         font-weight: 700;
         margin-bottom: 8px;
-    }
-    dd {
-        padding: 0px 5px 15px 0px;
     }
 }
 
@@ -125,7 +135,6 @@ span {
     display: inline-block;
     white-space: pre-wrap;
     &.fa {
-        margin-right: 10px;
         width: 30px;
         height: 30px;
         line-height: 31px;
@@ -146,7 +155,8 @@ span {
 ///////////// BS desktop nav styling /////////////
 
 #non-mob-menu.navbar {
-    min-height:37px !important
+    min-height: 37px !important;
+    margin-bottom: 17px;
 }
 
 #non-mob-menu.navbar-default {
@@ -167,7 +177,7 @@ span {
 }
 
 #non-mob-menu.navbar-default .navbar-nav>li {
-    min-width: 120px;
+    padding: 0 37px;
     border-right: 1px solid #231815;
 }
 
