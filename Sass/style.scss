@@ -4,8 +4,200 @@
     top: 0px;
 }
 
-.Header {
-    background-color:#F44336;
-    color:#fff;
-    height:200px;
+.Menu {
+    margin: 0px !important;
 }
+
+@media (max-width: 768px) { 
+    .Main {
+        padding-top: 70px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+      margin-left: -30px;
+    } 
+}
+
+
+.Header {
+    margin: 0px !important;
+    background: tomato;
+    color: #fff;
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.wrapper>* {
+    flex: 1 100%;
+}
+
+.Footer {
+    .info {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: row wrap;
+        flex-flow: row wrap;
+        padding: 25px 20px 15px 20px;
+        color: #333;
+        background-color: whitesmoke;
+        border-top: 1px solid #d5d5d5;
+        text-align: left;
+    }
+    .copyright {
+        padding: 6px 12px;
+        background-color: #b60f15;
+        color: #fff;
+        text-align: center;
+    }
+}
+
+.Main {
+    text-align: left;
+    background: deepskyblue;
+    flex-grow: 2;
+    height: 1000px;
+}
+
+.left-side {
+    background: gold;
+}
+
+.right-side {
+    background: hotpink;
+}
+
+@media all and (min-width: 600px) {
+    .aside {
+        flex: 1 auto;
+    }
+}
+
+@media all and (min-width: 992px) {
+    .Main           {flex: 3 0px;}
+    .left-side      {order: 1; margin-right: 5px;}
+    .Main           {order: 2;}
+    .right-side     {order: 3; margin-left: 5px;}
+    .Footer         {order: 4;}
+}
+
+.contact {
+    width: 350px;
+    margin: auto;
+    .title {
+        color: #6a6c6f;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    dd {
+        padding: 0px 5px 15px 0px;
+    }
+}
+
+.follow {
+    width: 350px;
+    margin: auto;
+    .title {
+        color: #6a6c6f;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    dd {
+        padding: 0px 5px 15px 0px;
+    }
+}
+
+span {
+    display: inline-block;
+    white-space: pre-wrap;
+    &.fa {
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+        line-height: 31px;
+        border-radius: 30px;
+        text-align: center;
+        color: rgb(80, 80, 80);
+        background-color: white;
+    }
+    > a {
+        color: #333;
+        text-decoration: underline;
+        &:hover {
+            color: inherit;
+        }
+    }
+}
+
+///////////// BS desktop nav styling /////////////
+
+#non-mob-menu.navbar {
+    min-height:37px !important
+}
+
+#non-mob-menu.navbar-default {
+    font-size: 14px;
+    background-color: white;
+    border-width: 0 0 4px 0;
+    border-color: #231815;
+    border-radius: 0;
+}
+#non-mob-menu.navbar-default .navbar-nav>li>a {
+    height: 37px;
+    padding: 5px 0 !important;
+    line-height: 26px;
+    font-size: 15px;
+    text-align: center;
+    color: rgba(35, 24, 21, 1);
+    background-color: white;
+}
+
+#non-mob-menu.navbar-default .navbar-nav>li {
+    min-width: 120px;
+    border-right: 1px solid #231815;
+}
+
+#non-mob-menu.navbar-default .navbar-nav>li:last-child {
+    border-right: none;
+}
+#non-mob-menu.navbar-default .navbar-nav>li>a:hover,
+#non-mob-menu.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(182, 15, 21, 1);
+    background-color: rgba(238, 238, 238, 1);
+}
+#non-mob-menu.navbar-default .navbar-nav>.active>a,
+#non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
+#non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(182, 15, 21, 1);
+    background-color: #ddd;
+}
+#non-mob-menu.navbar-default .navbar-toggle {
+    border-color: #ddd;
+}
+#non-mob-menu.navbar-default .navbar-toggle:hover,
+#non-mob-menu.navbar-default .navbar-toggle:focus {
+    background-color: white;
+}
+#non-mob-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+#non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #888;
+}
+
+///////////// End of BS desktop nav styling /////////////

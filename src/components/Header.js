@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 const Header = ({message}) => (
-    <div>
-        <div className="Header container-fluid">
-            <h2>{message}</h2>
-            <h4>Fixed (sticky) navbar on scroll</h4>
-            <p>Scroll this page to see how the navbar behaves with data-spy="affix".</p>
-            <p>The navbar is attached to the top of the page after you have scrolled a specified amount of pixels.</p>
-        </div>
-    </div>
+    <header className="Header page-header hidden-xs">
+        <h1>{message}</h1>
+        <h2>
+            Fixed (sticky) navbar on scroll <br />
+            <small>Scroll this page to see how the navbar behaves. The navbar is attached to the top of the page after you have scrolled a specified amount of pixels.</small>
+        </h2>
+        
+    </header>
 );
 
 Header.propTypes = {

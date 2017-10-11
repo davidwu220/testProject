@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Header from "./Header";
-import Main from "./Main";
-import Menu from "./Menu";
+import Home from "./Home/Home";
+import RightSide from './RightSide';
+import Menu from './Menu';
 
-class App extends React.Component {
+class App extends Component {
     state = { 
         pageHeader: "Sing Tao Daily icon here"
     };
@@ -19,10 +20,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App wrapper">
                 <Header message={ this.state.pageHeader } />
                 <Menu />
-                <Main />
+                <Home />
+                <RightSide />
             </div>
         );
     }
