@@ -7,13 +7,17 @@
 .Menu {
     margin: 0px !important;
 }
+@media (max-width: 629px) {
+    .commercial-ad-item {
+        margin: auto;
+    }
+}
 
 @media (min-width: 768px) {
     .navbar-nav {
         margin-left: -30px;
-    } 
+    }
 }
-
 
 .Header {
     margin: 0px !important;
@@ -35,6 +39,21 @@
     flex: 1 100%;
 }
 
+.ad-wrapper {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.commercial-ad-item {
+    margin-bottom: 20px;
+}
+
 .Footer {
     .info {
         display: -webkit-box;
@@ -49,7 +68,6 @@
         background-color: whitesmoke;
         border-top: 1px solid #d5d5d5;
         text-align: left;
-        
         .follow .qr-wrapper {
             display: -webkit-box;
             display: -moz-box;
@@ -71,9 +89,6 @@
 
 .Main {
     text-align: left;
-    background: deepskyblue;
-    flex-grow: 2;
-    height: 1000px;
 }
 
 .left-side {
@@ -86,6 +101,7 @@
 
 .qr-image {
     height: 150px;
+    margin-bottom: 25px;
 }
 
 @media all and (min-width: 600px) {
@@ -95,11 +111,29 @@
 }
 
 @media all and (min-width: 992px) {
-    .Main           {flex: 3 0px;}
-    .left-side      {order: 1; margin-right: 5px;}
-    .Main           {order: 2;}
-    .right-side     {order: 3; margin-left: 5px;}
-    .Footer         {order: 4;}
+    .Main {
+        flex: 3 0px;
+    }
+    .left-side {
+        order: 1;
+        margin-right: 5px;
+        &.aside {
+            max-width: 300px;
+        }
+    }
+    .Main {
+        order: 2;
+    }
+    .right-side {
+        order: 3;
+        margin-left: 5px;
+        &.aside {
+            max-width: 300px;
+        }
+    }
+    .Footer {
+        order: 4;
+    }
 }
 
 .contact {
@@ -114,7 +148,6 @@
     .media {
         padding-right: 10px;
     }
-
     .media:last-child {
         margin-bottom: 25px;
     }
@@ -143,7 +176,7 @@ span {
         color: rgb(80, 80, 80);
         background-color: white;
     }
-    > a {
+    >a {
         color: #333;
         text-decoration: underline;
         &:hover {
@@ -152,8 +185,25 @@ span {
     }
 }
 
-///////////// BS desktop nav styling /////////////
+.media-left {
+    padding: 0;
+}
 
+.classified-ad-menu .media-body {
+    padding-top: 3px;
+    white-space: pre-wrap;
+    font-size: 18px;
+    a {
+        color: #333;
+        text-decoration: none;
+        padding: 0 5px 0 5px;
+        &:hover {
+            color: inherit;
+        }
+    }
+}
+
+///////////// BS desktop nav styling /////////////
 #non-mob-menu.navbar {
     min-height: 37px !important;
     margin-bottom: 17px;
@@ -166,6 +216,7 @@ span {
     border-color: #231815;
     border-radius: 0;
 }
+
 #non-mob-menu.navbar-default .navbar-nav>li>a {
     height: 37px;
     padding: 5px 0 !important;
@@ -184,27 +235,33 @@ span {
 #non-mob-menu.navbar-default .navbar-nav>li:last-child {
     border-right: none;
 }
+
 #non-mob-menu.navbar-default .navbar-nav>li>a:hover,
 #non-mob-menu.navbar-default .navbar-nav>li>a:focus {
     color: rgba(182, 15, 21, 1);
     background-color: rgba(238, 238, 238, 1);
 }
+
 #non-mob-menu.navbar-default .navbar-nav>.active>a,
 #non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
 #non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
     color: rgba(182, 15, 21, 1);
     background-color: #ddd;
 }
+
 #non-mob-menu.navbar-default .navbar-toggle {
     border-color: #ddd;
 }
+
 #non-mob-menu.navbar-default .navbar-toggle:hover,
 #non-mob-menu.navbar-default .navbar-toggle:focus {
     background-color: white;
 }
+
 #non-mob-menu.navbar-default .navbar-toggle .icon-bar {
     background-color: #888;
 }
+
 #non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
 #non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
     background-color: #888;
