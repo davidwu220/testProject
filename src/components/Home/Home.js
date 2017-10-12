@@ -3,12 +3,12 @@ import React from 'react';
 const Home = () => (
     <div className="Main" style={{width: 1 + "px"}}>
         <div id="classified-ad" style={{overflow:"hidden", marginBottom: 20 + "px"}}>
-            <img src="./img/page_icons/classified_ad_bar.jpg" alt="Classified AD Menu Bar"/>
+            <img src="./image/page_icons/classified_ad_bar.jpg" alt="Classified AD Menu Bar"/>
         </div>
         <div className="classified-ad-menu">
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class1.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class1.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -20,7 +20,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class2.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class2.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -30,7 +30,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class3.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class3.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -40,7 +40,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class4.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class4.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -52,7 +52,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class5.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class5.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -63,7 +63,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class6.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class6.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -76,7 +76,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class7.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class7.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -87,7 +87,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class8.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class8.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -96,7 +96,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class9.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class9.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -107,7 +107,7 @@ const Home = () => (
             </div>
             <div className="media">
                 <div className="media-left">
-                    <img src="./img/page_icons/class10.png" alt="Classified AD Menu Icon"/>
+                    <img src="./image/page_icons/class10.png" alt="Classified AD Menu Icon"/>
                 </div>
                 <div className="media-body">
                     <span> // </span>
@@ -119,21 +119,21 @@ const Home = () => (
             </div>
         </div>
         <div id="commercial-ad" style={{overflow:"hidden", marginBottom: 20 + "px", marginTop: 25 + "px"}}>
-            <img src="./img/page_icons/commercial_ad_bar.jpg" alt="Commercial AD Menu Bar"/>
+            <img src="./image/page_icons/commercial_ad_bar.jpg" alt="Commercial AD Menu Bar"/>
         </div>
         <div className="commercial-ad-menu ad-wrapper">
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_realty.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_home.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_health.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_restaurant.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_auto.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_finance.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_legal.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_technology.png" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_travel.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_fashion.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_business.jpg" alt="Commercial AD Menu Bar"/>
-            <img className="commercial-ad-item" src="./img/page_icons/webIcon_others.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_realty.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_home.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_health.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_restaurant.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_auto.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_finance.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_legal.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_technology.png" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_travel.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_fashion.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_business.jpg" alt="Commercial AD Menu Bar"/>
+            <img className="commercial-ad-item" src="./image/page_icons/webIcon_others.jpg" alt="Commercial AD Menu Bar"/>
         </div>
     </div>
 );

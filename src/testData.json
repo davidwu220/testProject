@@ -1,24 +1,47 @@
 {
-  "contests": [
+  "classified-ads": [
     {
       "id": 1,
-      "categoryName": "Business/Company",
-      "contestName": "Cognitive Building Bricks"
+      "title": "Business/Company",
+      "class": "",
+      "image": "",
+      "discription": "Cognitive Building Bricks",
+      "tag": ""
     },
     {
       "id": 2,
-      "categoryName": "Magazine/Newsletter",
-      "contestName": "Educating people about sustainable food production"
+      "title": "Magazine/Newsletter",
+      "class": "",
+      "image": "",
+      "discription": "Educating people about sustainable food production",
+      "tag": ""
     },
     {
       "id": 3,
-      "categoryName": "Software Component",
-      "contestName": "Big Data Analytics for Cash Circulation"
+      "title": "Software Component",
+      "class": "",
+      "image": "",
+      "discription": "Big Data Analytics for Cash Circulation",
+      "tag": ""
+      
     },
     {
       "id": 4,
-      "categoryName": "Website",
-      "contestName": "Free programming books"
+      "title": "Website",
+      "class": "",
+      "image": "",
+      "discription": "Free programming books",
+      "tag": ""
+    }
+  ], 
+  "commercial-ads": [
+    {
+      "id": 1,
+      "title": "Some commercial ad name",
+      "class": "",
+      "image": "",
+      "discription": "This is a commercial ad",
+      "tag": ""
     }
   ]
 }
