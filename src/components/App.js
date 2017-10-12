@@ -5,10 +5,12 @@ import Header from "./Header";
 import Home from "./Home/Home";
 import RightSide from './RightSide';
 import Menu from './Menu';
+import Classified from './AdPage/Classified';
 
 class App extends Component {
     state = { 
-        pageHeader: "Sing Tao Daily icon here"
+        pageHeader: "Sing Tao Daily icon here",
+        classifiedAds: this.props.initialData
     };
 
     componentDidMount() {
@@ -25,6 +27,11 @@ class App extends Component {
                 <Header message={ this.state.pageHeader } />
                 <Menu />
                 <Home />
+                <div>
+                    {this.state.classifiedAds.map(classified => 
+                        <Classified key={classified.id} {...classified} />
+                    )}
+                </div>
                 <RightSide />
                 <Footer />
             </div>

@@ -1,5 +1,5 @@
 {
-  "classified-ads": [
+  "classifiedAds": [
     {
       "id": 1,
       "title": "Business/Company",
@@ -31,16 +31,6 @@
       "class": "",
       "image": "",
       "discription": "Free programming books",
-      "tag": ""
-    }
-  ], 
-  "commercial-ads": [
-    {
-      "id": 1,
-      "title": "Some commercial ad name",
-      "class": "",
-      "image": "",
-      "discription": "This is a commercial ad",
       "tag": ""
     }
   ]
