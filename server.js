@@ -22,7 +22,8 @@ server.get('/', (req, res) => {
                 content
             });
         })
-        .catch(console.error);
+        .catch((error) => 
+        console.error(error));
 });
 
 server.use('/api', apiRouter);

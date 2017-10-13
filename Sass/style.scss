@@ -189,13 +189,11 @@ span {
     padding-top: 3px;
     white-space: pre-wrap;
     font-size: 18px;
-    a {
+    .menu-item {
         color: #333;
         text-decoration: none;
-        padding: 0 5px 0 5px;
-        &:hover {
-            color: inherit;
-        }
+        padding: 0 0.1em 0 0.2em;
+        cursor: pointer;
     }
 }
 

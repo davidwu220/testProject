@@ -151,12 +151,11 @@ span {
   padding-top: 3px;
   white-space: pre-wrap;
   font-size: 18px; }
-  .classified-ad-menu .media-body a {
+  .classified-ad-menu .media-body .menu-item {
     color: #333;
     text-decoration: none;
-    padding: 0 5px 0 5px; }
-    .classified-ad-menu .media-body a:hover {
-      color: inherit; }
+    padding: 0 0.1em 0 0.2em;
+    cursor: pointer; }
 
 #non-mob-menu.navbar {
   min-height: 37px !important;

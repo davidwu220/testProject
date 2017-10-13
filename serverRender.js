@@ -12,7 +12,7 @@ const serverRender = () => (
                 <App initialData={res.data.classifiedAds} />
             );
         })
-        .catch(console.error)
+        .catch((err) => console.error(err))
 )
 
 export default serverRender;

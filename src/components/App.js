@@ -8,10 +8,15 @@ import Menu from './Menu';
 import ClassifiedList from './AdPage/ClassifiedList';
 import ClassifiedMenu from './AdPage/ClassifiedMenu';
 
+const pushState = (obj, url) => 
+    window.history.pushState(obj, '', url);
+
 class App extends Component {
     state = { 
         pageHeader: "Sing Tao Daily icon here",
-        classifiedAds: this.props.initialData
+        classifiedAds: this.props.initialData,
+        view: "home",
+        currentClass: ""
     };
 
     componentDidMount() {
@@ -22,13 +27,28 @@ class App extends Component {
         // clean timers, listeners
     }
 
+    fetchAds = (adClass) => {
+        pushState(
+            { currentClass: adClass },
+            `/classifiedAds/${adClass}`
+        );
+        this.setState({
+            pageHeader: adClass,
+            view: "classified",
+            currentClass: adClass
+        });
+    }
+
     render() {
         return (
             <div className="App wrapper">
                 <Header message={ this.state.pageHeader } />
                 <Menu />
-                <ClassifiedList classifiedAds={ this.state.classifiedAds } />
-                <Home classifiedAds={ this.state.classifiedAds }/>
+                <Home 
+                    view={ this.state.view }
+                    onMenuClick={ this.fetchAds }
+                    classifiedAds={ this.state.classifiedAds }
+                />
                 <RightSide />
                 <Footer />
             </div>
