@@ -3,7 +3,8 @@
     {
       "id": 1,
       "title": "Business/Company",
-      "class": "",
+      "class": "101",
+      "className": "公司",
       "image": "",
       "discription": "Cognitive Building Bricks",
       "tag": ""
@@ -11,7 +12,8 @@
     {
       "id": 2,
       "title": "Magazine/Newsletter",
-      "class": "",
+      "class": "103_104",
+      "className": "管家保母托兒",
       "image": "",
       "discription": "Educating people about sustainable food production",
       "tag": ""
@@ -19,16 +21,27 @@
     {
       "id": 3,
       "title": "Software Component",
-      "class": "",
+      "class": "103_104",
+      "className": "管家保母托兒",
       "image": "",
       "discription": "Big Data Analytics for Cash Circulation",
       "tag": ""
-      
+
     },
     {
       "id": 4,
       "title": "Website",
-      "class": "",
+      "class": "300",
+      "className": "住宅出租",
+      "image": "",
+      "discription": "Free programming books",
+      "tag": ""
+    },
+    {
+      "id": 5,
+      "title": "Website",
+      "class": "500",
+      "className": "住宅出租",
       "image": "",
       "discription": "Free programming books",
       "tag": ""

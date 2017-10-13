@@ -31,7 +31,6 @@ const Menu = () => (
                 </div>
             </div>
         </nav>
-        
     </div>
 );
 

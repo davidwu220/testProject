@@ -5,7 +5,8 @@ import Header from "./Header";
 import Home from "./Home/Home";
 import RightSide from './RightSide';
 import Menu from './Menu';
-import Classified from './AdPage/Classified';
+import ClassifiedList from './AdPage/ClassifiedList';
+import ClassifiedMenu from './AdPage/ClassifiedMenu';
 
 class App extends Component {
     state = { 
@@ -26,12 +27,8 @@ class App extends Component {
             <div className="App wrapper">
                 <Header message={ this.state.pageHeader } />
                 <Menu />
-                <Home />
-                <div>
-                    {this.state.classifiedAds.map(classified => 
-                        <Classified key={classified.id} {...classified} />
-                    )}
-                </div>
+                <ClassifiedList classifiedAds={ this.state.classifiedAds } />
+                <Home classifiedAds={ this.state.classifiedAds }/>
                 <RightSide />
                 <Footer />
             </div>
