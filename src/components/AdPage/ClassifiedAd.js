@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 class ClassifiedAd extends Component {
     constructor(props) {
         super(props);
-        console.log("I'm here!", props.ad);
+        console.log("I'm here!", props.data);
     }
     
 
     handleClick = () => {
-        console.log(this.props.ad);
+        console.log(this.props.data);
     }
 
     render() {
         return (
             <div onClick={this.handleClick}>
                 <div>
-                    {this.props.id}
+                    {this.props.data.id}
                 </div>
                 <div>
-                    {this.props.title}
+                    {this.props.data.title}
                 </div>
                 <div>
-                    {this.props.discription}
+                    {this.props.data.discription}
                 </div>
             </div>
         );

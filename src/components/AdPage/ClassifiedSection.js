@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 
-import ClassifiedMenu from '../AdPage/ClassifiedMenu';
+import ClassifiedAd from './ClassifiedAd';
+import ClassifiedMenu from './ClassifiedMenu';
 
 class ClassifiedSection extends Component {
     // TODO: create chare button for each ad
 
     PrintList = () => {
         if (this.props.adList) {
-            for (let ad of this.props.adList) {
-                console.log(ad.id);
-                return (<div>{ad.id}</div>);
-            }
+            // for (let ad of this.props.adList) {
+            //     console.log(ad.id);
+            //     return (<div>{ad.id}</div>);
+            // }
+            return (
+                <div>
+                    {this.props.adList.map((ad) => 
+                        <ClassifiedAd key={ad.id} data={ad}/>
+                    )}
+                </div>
+            );
             
         } else {
             return <div>
@@ -27,7 +35,7 @@ class ClassifiedSection extends Component {
         
                 <ClassifiedMenu onMenuClick={ this.props.onMenuClick } classifiedAds={ this.props.classifiedAds }/>
 
-                    <this.PrintList />
+                <this.PrintList />
 
             </div>
         );
