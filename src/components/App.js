@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import * as api from '../api';
 import Footer from "./Footer"
 import Header from "./Header";
 import Home from "./Home/Home";
@@ -16,7 +17,8 @@ class App extends Component {
         pageHeader: "Sing Tao Daily icon here",
         classifiedAds: this.props.initialData,
         view: "home",
-        currentClass: ""
+        currentClass: "",
+        adsInClass: []
     };
 
     componentDidMount() {
@@ -32,11 +34,16 @@ class App extends Component {
             { currentClass: adClass },
             `/classifiedAds/${adClass}`
         );
-        this.setState({
-            pageHeader: adClass,
-            view: "classified",
-            currentClass: adClass
-        });
+
+        api.fetchClasAdByClass(adClass)
+            .then(adsInClass => {
+                this.setState({
+                    pageHeader: adsInClass[0].className,
+                    view: "classified",
+                    currentClass: adClass,
+                    adList: adsInClass
+                });
+            });
     }
 
     render() {
@@ -48,6 +55,7 @@ class App extends Component {
                     view={ this.state.view }
                     onMenuClick={ this.fetchAds }
                     classifiedAds={ this.state.classifiedAds }
+                    adList={ this.state.adList }
                 />
                 <RightSide />
                 <Footer />

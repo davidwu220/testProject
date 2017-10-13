@@ -29,7 +29,8 @@ class Home extends Component {
                     viewState={ this.props.view }
                     currentClassState={ this.props.currentClass }
                     onMenuClick={ this.props.onMenuClick }
-                    classifiedAds={ this.props.classifiedAds }/>
+                    classifiedAds={ this.props.classifiedAds }
+                    adList={ this.props.adList } />
             );
         } else if (this.props.view == "commercial") {
             return (

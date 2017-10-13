@@ -9,7 +9,6 @@ router.get('/classifiedAds', (req, res) => {
 });
 
 router.get('/classifiedAds/:class/:id?', (req, res) => {
-    console.log(findAdById(req.params.id, data.classifiedAds));
     if (req.params.id) {
         let itemInCat = findAdById(req.params.id, data.classifiedAds);
         res.send(itemInCat);
