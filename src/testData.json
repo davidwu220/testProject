@@ -1,7 +1,7 @@
 {
   "classifiedAds": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Business/Company",
       "class": "101",
       "className": "公司",
@@ -10,7 +10,7 @@
       "tag": ""
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Magazine/Newsletter",
       "class": "103_104",
       "className": "管家保母托兒",
@@ -19,7 +19,7 @@
       "tag": ""
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Software Component",
       "class": "103_104",
       "className": "管家保母托兒",
@@ -29,7 +29,7 @@
 
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Website",
       "class": "300",
       "className": "住宅出租",
@@ -38,7 +38,7 @@
       "tag": ""
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Website",
       "class": "500",
       "className": "住宅出租",

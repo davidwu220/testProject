@@ -96,6 +96,14 @@ function compareClass(ad) {
     return ad.class === this;
 }
 
+function compareid(ad) {
+    return ad.id === this;
+}
+
 export const findObjsByClass = (cls, arrayOfObjs) => {
     return arrayOfObjs.filter(compareClass, cls);
+}
+
+export const findAdById = (id, arrayOfObjs) => {
+    return arrayOfObjs.find(compareid, id);
 }

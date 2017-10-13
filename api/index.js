@@ -1,6 +1,6 @@
 import express from 'express';
 import data from '../src/testData';
-import { findObjsByClass } from "./extractClass";
+import { findObjsByClass, findAdById } from "./extractClass";
 
 const router = express.Router();
 
@@ -8,9 +8,15 @@ router.get('/classifiedAds', (req, res) => {
     res.send({ classifiedAds: data.classifiedAds });
 });
 
-router.get('/classifiedAds/:class', (req, res) => {
-    let listInCat = findObjsByClass(req.params.class, data.classifiedAds);
-    res.send(listInCat);
+router.get('/classifiedAds/:class/:id?', (req, res) => {
+    console.log(findAdById(req.params.id, data.classifiedAds));
+    if (req.params.id) {
+        let itemInCat = findAdById(req.params.id, data.classifiedAds);
+        res.send(itemInCat);
+    } else {
+        let listInCat = findObjsByClass(req.params.class, data.classifiedAds);
+        res.send(listInCat);
+    }
 });
 
 export default router;
