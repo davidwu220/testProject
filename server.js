@@ -16,10 +16,17 @@ server.use(sassMiddleware({
 server.set('view engine', 'ejs');
 
 server.get(['/', '/classifiedAds/:cat/:id?'] , (req, res) => {
-    serverRender()
-        .then(content => {
+    // TODO: might need to validate category in the future
+    let path = req.params.cat;
+    if (req.params.id) {
+        path = req.params.cat + '/' + req.params.id
+    }
+    serverRender(path)
+        .then(({initialMarkup, initialData}) => {
+            console.log("what's this initial data: ", initialData);
             res.render('index', {
-                content
+                initialMarkup,
+                initialData
             });
         })
         .catch((error) => 

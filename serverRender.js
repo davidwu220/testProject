@@ -5,14 +5,15 @@ import App from './src/components/App';
 import axios from 'axios';
 import config from './config';
 
-const serverRender = () => (
-    axios.get(`${config.serverUrl}/api/classifiedAds`)
+const serverRender = (path) => (
+    axios.get(`${config.serverUrl}/api/classifiedAds/${path}`)
         .then(res => {
-            return ReactDOMServer.renderToString(
-                <App initialData={res.data} />
-            );
+            return { 
+                initialMarkup: ReactDOMServer.renderToString( <App initialData={res.data} /> ),
+                initialData: res.data
+            };
         })
-        .catch((err) => console.error(err))
+        .catch((err) => {})
 )
 
 export default serverRender;
