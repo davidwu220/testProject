@@ -15,7 +15,7 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
-server.get('/', (req, res) => {
+server.get(['/', '/classifiedAds/:cat/:id?'] , (req, res) => {
     serverRender()
         .then(content => {
             res.render('index', {

@@ -13,6 +13,12 @@ const pushState = (obj, url) =>
     window.history.pushState(obj, '', url);
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        
+        console.log(this.props.initialData);
+    }
+    
     state = { 
         pageHeader: "Sing Tao Daily icon here",
         classifiedAds: this.props.initialData,

@@ -7,7 +7,7 @@ import App from "./components/App";
 axios.get('/api/classifiedAds')
     .then(res => {
         ReactDOM.render(
-            <App initialData={res.data.classifiedAds} />, 
+            <App initialData={res.data} />, 
             document.getElementById('root')
         );
     })
