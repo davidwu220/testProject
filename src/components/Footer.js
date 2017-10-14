@@ -72,9 +72,9 @@ const Footer = () => (
             <div className="aside follow">
                 <div className="title">關注我們</div>
                 <div className="qr-wrapper">
-                    <img className="qr-image" src="./images/QR/qr_facebook.png" alt="facebook @SingTaoLA" />
-                    <img className="qr-image" src="./images/QR/qr_weibo.png" alt="weibo @SingTaoDaily" />
-                    <img className="qr-image" src="./images/QR/qr_wechat.png" alt="wechat @SingTaoLosAngeles" />
+                    <img className="qr-image" src="/images/QR/qr_facebook.png" alt="facebook @SingTaoLA" />
+                    <img className="qr-image" src="/images/QR/qr_weibo.png" alt="weibo @SingTaoDaily" />
+                    <img className="qr-image" src="/images/QR/qr_wechat.png" alt="wechat @SingTaoLosAngeles" />
                 </div>
             </div>
         </div>
