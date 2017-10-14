@@ -1,6 +1,21 @@
 import express from 'express';
 import data from '../src/testData';
-import { findObjsByClass, findAdById } from "./extractClass";
+
+function compareClass(ad) {
+    return ad.class === this;
+}
+
+function compareid(ad) {
+    return ad.id === this;
+}
+
+const findObjsByClass = (cls, arrayOfObjs) => {
+    return arrayOfObjs.filter(compareClass, cls);
+}
+
+const findAdById = (id, arrayOfObjs) => {
+    return arrayOfObjs.find(compareid, id);
+}
 
 const router = express.Router();
 

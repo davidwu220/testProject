@@ -8,10 +8,6 @@ class ClassifiedSection extends Component {
 
     PrintList = () => {
         if (this.props.adList) {
-            // for (let ad of this.props.adList) {
-            //     console.log(ad.id);
-            //     return (<div>{ad.id}</div>);
-            // }
             return (
                 <div>
                     {this.props.adList.map((ad) => 
@@ -33,7 +29,11 @@ class ClassifiedSection extends Component {
                     <img src="/images/page_icons/classified_ad_bar.jpg" alt="Classified AD Menu Bar"/>
                 </div>
         
-                <ClassifiedMenu onMenuClick={ this.props.onMenuClick } classifiedAds={ this.props.classifiedAds }/>
+                <ClassifiedMenu 
+                    clasCat={ this.props.clasCat }
+                    catTitle={ this.props.catTitle }
+                    onMenuClick={ this.props.onMenuClick }
+                    classifiedAds={ this.props.classifiedAds }/>
 
                 <this.PrintList />
 

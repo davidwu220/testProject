@@ -18,11 +18,21 @@ class App extends Component {
         classifiedAds: this.props.initialData,
         view: "home",
         currentClass: "",
-        adsInClass: []
+        catTitle: [],
+        clasCat: []
     };
 
     componentDidMount() {
         // timers, listeners
+        
+        // update classified menu at 5 am
+        api.fetchClasMenu()
+            .then(({ clasCat, catTitle }) => {
+                this.setState({
+                    clasCat,
+                    catTitle
+                });
+            });
     }
 
     componentWillUnmount() {
@@ -56,6 +66,8 @@ class App extends Component {
                     onMenuClick={ this.fetchAds }
                     classifiedAds={ this.state.classifiedAds }
                     adList={ this.state.adList }
+                    clasCat={ this.state.clasCat }
+                    catTitle={ this.state.catTitle }
                 />
                 <RightSide />
                 <Footer />
