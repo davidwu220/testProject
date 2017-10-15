@@ -15,23 +15,62 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
-server.get(['/', '/classifiedAds/:cat/:id?'] , (req, res) => {
-    // TODO: might need to validate category in the future
-    let path = req.params.cat;
-    if (req.params.id) {
-        path = req.params.cat + '/' + req.params.id
-    }
-    serverRender(path)
-        .then(({initialMarkup, initialData}) => {
-            console.log("what's this initial data: ", initialData);
+server.get('/' , (req, res) => {
+    // TODO: Put classifiedAds for now before figuring out more data
+    let type = "classifiedAds";
+    serverRender({type, path})
+        .then((initialData) => {
             res.render('index', {
-                initialMarkup,
+                type: "home",
                 initialData
             });
         })
         .catch((error) => 
         console.error(error));
 });
+
+server.get('/classifiedAds/:cat/:id?' , (req, res) => {
+    // TODO: might need to validate category in the future
+    let type = "classifiedAds";
+
+    let path = req.params.cat;
+    if (req.params.id) {
+        path = req.params.cat + '/' + req.params.id
+    }
+    serverRender({type, path})
+        .then((initialData) => {
+            res.render('index', {
+                type,
+                initialData
+            });
+        })
+        .catch((error) => 
+        console.error(error));
+});
+
+server.get('/commercialAds/:cat/:id?' , (req, res) => {
+    // TODO: might need to validate category in the future
+    let type = "commercialAds";
+
+    let path = req.params.cat;
+    if (req.params.id) {
+        path = req.params.cat + '/' + req.params.id
+    }
+    serverRender({type, path})
+        .then((initialData) => {
+            res.render('index', {
+                type,
+                initialData
+            });
+        })
+        .catch((error) => 
+        console.error(error));
+});
+
+// server.use(function (err, req, res, next) {
+//     console.error(err.stack);
+//     res.status(404).send('Something broke!');
+// });
 
 server.use('/api', apiRouter);
 

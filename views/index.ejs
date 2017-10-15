@@ -1,7 +1,15 @@
-<script type="text/javascript">
-    window.initialData =  <%- initialData ? JSON.stringify(initialData) : '"<div></div>"' %>;
-</script>
-
 <%- include('header') -%>
-    <div id="root"><%- initialMarkup -%></div>
+    <div id="root">
+        <h1>
+            Sorry :(
+        </h1>
+        <h1>
+            <small>The page is either still loading or JavaScript is disabled.</small>
+        </h1>
+    </div>
+
+<script type="text/javascript">
+    window.initialData =  <%- JSON.stringify(initialData) %>;
+    window.initialView =  <%- JSON.stringify(type) %>;
+</script>
 <%- include('footer') -%>

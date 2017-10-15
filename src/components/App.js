@@ -3,29 +3,17 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import Footer from "./Footer"
 import Header from "./Header";
-import Home from "./Home/Home";
 import RightSide from './RightSide';
+import Main from "./Home/Main";
 import Menu from './Menu';
-import ClassifiedList from './AdPage/ClassifiedList';
-import ClassifiedMenu from './AdPage/ClassifiedMenu';
 
 const pushState = (obj, url) => 
     window.history.pushState(obj, '', url);
 
 class App extends Component {
-    // constructor(props) {
-    //     super(props);
-        
-    //     console.log(this.props.initialData);
-    // }
-    
     state = { 
-        pageHeader: "Sing Tao Daily icon here",
-        classifiedAds: this.props.initialData,
-        view: "home",
-        currentClass: "",
-        catTitle: [],
-        clasCat: []
+        clasCat: [],
+        catTitle: []
     };
 
     componentDidMount() {
@@ -45,45 +33,19 @@ class App extends Component {
         // clean timers, listeners
     }
 
-    fetchAds = (adClass) => {
-        pushState(
-            { currentClass: adClass },
-            `/classifiedAds/${adClass}`
-        );
-
-        api.fetchClasAdByClass(adClass)
-            .then(adsInClass => {
-                this.setState({
-                    pageHeader: adsInClass[0].className,
-                    view: "classified",
-                    currentClass: adClass,
-                    adList: adsInClass
-                });
-            });
-    }
-
     render() {
         return (
             <div className="App wrapper">
-                <Header message={ this.state.pageHeader } />
+                <Header />
                 <Menu />
-                <Home 
-                    view={ this.state.view }
-                    onMenuClick={ this.fetchAds }
-                    classifiedAds={ this.state.classifiedAds }
-                    adList={ this.state.adList }
-                    clasCat={ this.state.clasCat }
-                    catTitle={ this.state.catTitle }
-                />
+                <Main clasCat={this.state.clasCat}
+                    catTitle={this.state.catTitle}
+                    initialData={this.props.initialData} />
                 <RightSide />
                 <Footer />
             </div>
         );
     }
 };
-
-// App.defaultProps = {
-//     headerMessage: 'Default message here!'
-// }
 
 export default App;

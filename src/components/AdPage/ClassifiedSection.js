@@ -4,23 +4,7 @@ import ClassifiedAd from './ClassifiedAd';
 import ClassifiedMenu from './ClassifiedMenu';
 
 class ClassifiedSection extends Component {
-    // TODO: create chare button for each ad
-
-    PrintList = () => {
-        if (this.props.adList) {
-            return (
-                <div>
-                    {this.props.adList.map((ad) => 
-                        <ClassifiedAd key={ad.id} data={ad}/>
-                    )}
-                </div>
-            );
-            
-        } else {
-            return <div>
-            </div>;
-        }
-    }
+    // TODO: create share button for each ad
 
     render() {
         return (
@@ -32,10 +16,11 @@ class ClassifiedSection extends Component {
                 <ClassifiedMenu 
                     clasCat={ this.props.clasCat }
                     catTitle={ this.props.catTitle }
-                    onMenuClick={ this.props.onMenuClick }
-                    classifiedAds={ this.props.classifiedAds }/>
+                    onMenuClick={ this.props.onMenuClick } />
 
-                <this.PrintList />
+                {this.props.adList.map((ad) => 
+                    <ClassifiedAd key={ad.id} data={ad}/>
+                )}
 
             </div>
         );

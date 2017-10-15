@@ -11,9 +11,7 @@ class Home extends Component {
                     clasCat={ this.props.clasCat }
                     catTitle={ this.props.catTitle }
                     viewState={ this.props.view }
-                    currentClassState={ this.props.currentClass }
                     onMenuClick={ this.props.onMenuClick }
-                    classifiedAds={ this.props.classifiedAds }
                     adList={ this.props.adList } />
             );
         } else if (this.props.view == "commercial") {
@@ -27,9 +25,7 @@ class Home extends Component {
                         clasCat={ this.props.clasCat }
                         catTitle={ this.props.catTitle }
                         viewState={ this.props.view }
-                        currentClassState={ this.props.currentClass }
                         onMenuClick={ this.props.onMenuClick }
-                        classifiedAds={ this.props.classifiedAds }
                         adList={ this.props.adList }/>
                     <CommercialSection viewState={ this.props.view } />
                 </div>
