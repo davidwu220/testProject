@@ -29,13 +29,15 @@ server.get('/' , (req, res) => {
         console.error(error));
 });
 
-server.get('/classifiedAds/:cat/:id?' , (req, res) => {
+server.get('/classifiedAds/:cat?/:id?' , (req, res) => {
     // TODO: might need to validate category in the future
     let type = "classifiedAds";
-
-    let path = req.params.cat;
-    if (req.params.id) {
-        path = req.params.cat + '/' + req.params.id
+    let path = "";
+    if (req.params.cat) {
+        path = req.params.cat;
+        if (req.params.id) {
+            path = req.params.cat + '/' + req.params.id
+        }
     }
     serverRender({type, path})
         .then((initialData) => {
@@ -48,13 +50,16 @@ server.get('/classifiedAds/:cat/:id?' , (req, res) => {
         console.error(error));
 });
 
-server.get('/commercialAds/:cat/:id?' , (req, res) => {
+server.get('/commercialAds/:cat?/:id?' , (req, res) => {
     // TODO: might need to validate category in the future
     let type = "commercialAds";
+    let path = "";
 
-    let path = req.params.cat;
-    if (req.params.id) {
-        path = req.params.cat + '/' + req.params.id
+    if (req.params.cat) {
+        path = req.params.cat;
+        if (req.params.id) {
+            path = req.params.cat + '/' + req.params.id
+        }
     }
     serverRender({type, path})
         .then((initialData) => {

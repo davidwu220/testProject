@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class ClassifiedAd extends Component {
     handleClick = () => {
+        // show larger view
         console.log(this.props.data);
     }
 

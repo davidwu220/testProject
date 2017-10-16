@@ -5,6 +5,24 @@ import ClassifiedMenu from './ClassifiedMenu';
 
 class ClassifiedSection extends Component {
     // TODO: create share button for each ad
+    RenderList = () => {
+        let list;
+        console.log("ClassifiedSection rendering list, thie.props.adList is:", this.props.adList);
+        if (Array.isArray(this.props.adList)) {
+            list = this.props.adList.map((ad) => 
+                <ClassifiedAd key={ad.id} data={ad}/>
+            );
+        } else {
+            list = <ClassifiedAd data={this.props.adList}/>
+        } 
+
+        
+        return (
+            <div>
+                {list}
+            </div>
+        );
+    }
 
     render() {
         return (
@@ -18,10 +36,8 @@ class ClassifiedSection extends Component {
                     catTitle={ this.props.catTitle }
                     onMenuClick={ this.props.onMenuClick } />
 
-                {this.props.adList.map((ad) => 
-                    <ClassifiedAd key={ad.id} data={ad}/>
-                )}
 
+                <this.RenderList />
             </div>
         );
     }

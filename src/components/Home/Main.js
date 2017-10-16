@@ -6,7 +6,11 @@ import ClassifiedSection from '../AdPage/ClassifiedSection';
 import CommercialSection from '../AdPage/CommercialSection';
 
 const pushState = (obj, url) => 
-window.history.pushState(obj, '', url);
+    window.history.pushState(obj, '', url);
+
+const onPopState = handler => {
+    window.onpopstate = handler;
+}
 
 class Main extends Component {
     state = {
@@ -15,12 +19,47 @@ class Main extends Component {
         view: window.initialView
     }
 
-    fetchClasAds = (adClass) => {
-        pushState(
-            { currentClass: adClass },
-            `/classifiedAds/${adClass}`
-        );
+    componentDidMount() {
+        // timers, listeners
+        if (this.state.view == "classifiedAds") {
+            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: classifiedAds", "adList", this.state.adList )
+            pushState(
+                {   currentClass: this.state.currentClass,
+                    view: "classifiedAds",
+                    adList: this.state.adList },
+                `/classifiedAds/${this.state.currentClass}`
+            );
+        } else if (this.state.view == "commercialAds") {
+            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: commercialAds", "adList", this.state.adList )
+            pushState(
+                {   currentClass: this.state.currentClass,
+                    view: "commercialAds",
+                    adList: this.state.adList },
+                `/commercialAds/${this.state.currentClass}`
+            );
+        } else {
+            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: home", "adList", this.state.adList )
+            pushState(
+                {   currentClass: this.state.currentClass,
+                    view: "home",
+                    adList: this.state.adList },
+                `/`
+            );
+        }
 
+        onPopState((event) => {
+            console.log("onPopState event triggered");
+            console.log("event.state || {} is:", event.state || {});
+            this.setState({
+                currentClass: event.state.currentClass,
+                view: event.state.view,
+                adList: (event.state || {}).adList
+            });
+        });
+    }
+
+    fetchClasAds = (adClass) => {
+        
         api.fetchClasAdByClass(adClass)
             .then(adsInClass => {
                 this.setState({
@@ -28,22 +67,30 @@ class Main extends Component {
                     currentClass: adClass,
                     adList: adsInClass
                 });
+                console.log("pushing state: currentClass:", adClass, "view: classifiedAds", "adList", this.state.adList )
+                pushState(
+                    {   currentClass: adClass,
+                        view: "classifiedAds",
+                        adList: this.state.adList },
+                    `/classifiedAds/${adClass}`
+                );
             });
     }
 
     fetchComAds = (adClass) => {
-        pushState(
-            { currentClass: adClass },
-            `/commercialAds/${adClass}`
-        );
-
-        api.fetchClasAdByClass(adClass)
+        api.fetchComAdByClass(adClass)
             .then(adsInClass => {
                 this.setState({
                     view: "commercialAds",
                     currentClass: adClass,
                     adList: adsInClass
                 });
+                pushState(
+                    {   currentClass: adClass,
+                        view: "commercialAds",
+                        adList: this.state.adList },
+                    `/commercialAds/${adClass}`
+                );
             });
     }
 

@@ -10,6 +10,11 @@ export const fetchClasAdByClass = classifiedClass => {
     .then(res => res.data);
 }
 
+export const fetchComAdByClass = commercialClass => {
+    return axios.get(`/api/commercialAds/${commercialClass}`)
+    .then(res => res.data);
+}
+
 const exctractClassifiedCats = (arrayOfObjs) =>  {
     let tempCatList = [];
     let clasCat = [];

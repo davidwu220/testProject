@@ -7,9 +7,6 @@ import RightSide from './RightSide';
 import Main from "./Home/Main";
 import Menu from './Menu';
 
-const pushState = (obj, url) => 
-    window.history.pushState(obj, '', url);
-
 class App extends Component {
     state = { 
         clasCat: [],
