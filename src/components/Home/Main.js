@@ -53,6 +53,10 @@ class Main extends Component {
         });
     }
 
+    componentWillUnmount() {
+        onPopState(null);
+    }
+
     fetchClasAds = (adClass) => {
         
         api.fetchClasAdByClass(adClass)

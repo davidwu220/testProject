@@ -7,7 +7,7 @@ class ClassifiedSection extends Component {
     // TODO: create share button for each ad
     RenderList = () => {
         let list;
-        console.log("ClassifiedSection rendering list, thie.props.adList is:", this.props.adList);
+
         if (Array.isArray(this.props.adList)) {
             list = this.props.adList.map((ad) => 
                 <ClassifiedAd key={ad.id} data={ad}/>
@@ -18,7 +18,7 @@ class ClassifiedSection extends Component {
 
         
         return (
-            <div>
+            <div className="adList">
                 {list}
             </div>
         );

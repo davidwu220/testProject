@@ -9,15 +9,17 @@ class ClassifiedAd extends Component {
 
     render() {
         return (
-            <div onClick={this.handleClick}>
-                <div>
-                    {this.props.data.id}
+            <div className="ad-item ad-wrapper box-shadow" onClick={this.handleClick}>
+                <div className="ad-text">
+                    <div className="ad-header">
+                        Example library
+                    </div>
+                    <div className="ad-desc">
+                        Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
+                    </div>
                 </div>
-                <div>
-                    {this.props.data.title}
-                </div>
-                <div>
-                    {this.props.data.discription}
+                <div className="ad-img">
+                    <img src="/images/ads/classifiedAds/0000663000.jpg" alt=""/>
                 </div>
             </div>
         );

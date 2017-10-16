@@ -1,3 +1,8 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7;
+}
+
 .sticky {
     position: sticky;
     position: -webkit-sticky;
@@ -9,6 +14,11 @@
 }
 @media (max-width: 629px) {
     .commercial-ad-item {
+        margin: auto;
+    }
+    .ad-text {
+        display: block;
+        width: 100px;
         margin: auto;
     }
 }
@@ -65,7 +75,7 @@
         flex-flow: row wrap;
         padding: 25px 20px 15px 20px;
         color: #333;
-        background-color: whitesmoke;
+        background-color: #d2d2d2;
         border-top: 1px solid #d5d5d5;
         text-align: left;
         .follow .qr-wrapper {
@@ -113,6 +123,7 @@
 @media all and (min-width: 992px) {
     .Main {
         flex: 3 0px;
+        order: 2;
     }
     .left-side {
         order: 1;
@@ -120,9 +131,6 @@
         &.aside {
             max-width: 300px;
         }
-    }
-    .Main {
-        order: 2;
     }
     .right-side {
         order: 3;
@@ -185,15 +193,53 @@ span {
     }
 }
 
-.classified-ad-menu .media-body {
-    padding-top: 3px;
-    white-space: pre-wrap;
-    font-size: 18px;
-    .menu-item {
-        color: #333;
-        text-decoration: none;
-        padding: 0 0.1em 0 0.2em;
-        cursor: pointer;
+.classified-ad-menu {
+    .media-body {
+        padding-top: 3px;
+        white-space: pre-wrap;
+        font-size: 18px;
+        .menu-item {
+            color: #333;
+            text-decoration: none;
+            padding: 0 0.1em 0 0.2em;
+            cursor: pointer;
+        }
+    }
+    .media:last-child {
+        margin-bottom: 25px;
+    }
+}
+
+.adList {
+    cursor: pointer;
+    .ad-item {
+        background-color: #FFFFFF;
+        margin-bottom: 20px;
+    }
+    .ad-header {
+        font-size: 20px;
+    }
+    .ad-disc {
+
+    }
+    .ad-text {
+        flex: 1 0 auto;
+        width: 1px;
+    }
+    .ad-img {
+        flex: 0 0 auto;
+        margin: auto;
+        img {
+            background-color: transparent;
+            border: 1px solid #d9d9d9;
+            height: 250px;
+            width: auto;
+        }
+    }
+    .box-shadow {
+        -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+        -mox-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
     }
 }
 
@@ -217,7 +263,7 @@ span {
     line-height: 26px;
     font-size: 15px;
     text-align: center;
-    color: rgba(35, 24, 21, 1);
+    color: #231815;
     background-color: white;
 }
 
@@ -231,14 +277,14 @@ span {
 
 #non-mob-menu.navbar-default .navbar-nav>li>a:hover,
 #non-mob-menu.navbar-default .navbar-nav>li>a:focus {
-    color: rgba(182, 15, 21, 1);
+    color: #b60f15;
     background-color: rgba(238, 238, 238, 1);
 }
 
 #non-mob-menu.navbar-default .navbar-nav>.active>a,
 #non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
 #non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
-    color: rgba(182, 15, 21, 1);
+    color: #b60f15;
     background-color: #ddd;
 }
 
