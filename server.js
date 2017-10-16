@@ -18,10 +18,13 @@ server.set('view engine', 'ejs');
 server.get('/' , (req, res) => {
     // TODO: Put classifiedAds for now before figuring out more data
     let type = "classifiedAds";
+
+    let initialCat;
     serverRender({type, path})
         .then((initialData) => {
             res.render('index', {
                 type: "home",
+                initialCat,
                 initialData
             });
         })
@@ -33,6 +36,7 @@ server.get('/classifiedAds/:cat?/:id?' , (req, res) => {
     // TODO: might need to validate category in the future
     let type = "classifiedAds";
     let path = "";
+    
     if (req.params.cat) {
         path = req.params.cat;
         if (req.params.id) {
@@ -43,6 +47,7 @@ server.get('/classifiedAds/:cat?/:id?' , (req, res) => {
         .then((initialData) => {
             res.render('index', {
                 type,
+                initialCat: req.params.cat,
                 initialData
             });
         })
@@ -65,6 +70,7 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
         .then((initialData) => {
             res.render('index', {
                 type,
+                initialCat: req.params.cat,
                 initialData
             });
         })

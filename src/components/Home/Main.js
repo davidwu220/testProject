@@ -15,32 +15,32 @@ const onPopState = handler => {
 class Main extends Component {
     state = {
         adList: this.props.initialData,
-        currentClass: "",
+        catetory: window.initialCat || "",
         view: window.initialView
     }
 
     componentDidMount() {
         // timers, listeners
         if (this.state.view == "classifiedAds") {
-            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: classifiedAds", "adList", this.state.adList )
+            console.log("CDM pushing state: catetory:", this.state.catetory, "view: classifiedAds", "adList", this.state.adList )
             pushState(
-                {   currentClass: this.state.currentClass,
+                {   catetory: this.state.catetory,
                     view: "classifiedAds",
                     adList: this.state.adList },
-                `/classifiedAds/${this.state.currentClass}`
+                `/classifiedAds/${this.state.catetory}`
             );
         } else if (this.state.view == "commercialAds") {
-            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: commercialAds", "adList", this.state.adList )
+            console.log("CDM pushing state: catetory:", this.state.catetory, "view: commercialAds", "adList", this.state.adList )
             pushState(
-                {   currentClass: this.state.currentClass,
+                {   catetory: this.state.catetory,
                     view: "commercialAds",
                     adList: this.state.adList },
-                `/commercialAds/${this.state.currentClass}`
+                `/commercialAds/${this.state.catetory}`
             );
         } else {
-            console.log("CDM pushing state: currentClass:", this.state.currentClass, "view: home", "adList", this.state.adList )
+            console.log("CDM pushing state: catetory:", this.state.catetory, "view: home", "adList", this.state.adList )
             pushState(
-                {   currentClass: this.state.currentClass,
+                {   catetory: this.state.catetory,
                     view: "home",
                     adList: this.state.adList },
                 `/`
@@ -51,7 +51,7 @@ class Main extends Component {
             console.log("onPopState event triggered");
             console.log("event.state || {} is:", event.state || {});
             this.setState({
-                currentClass: event.state.currentClass,
+                catetory: event.state.catetory,
                 view: event.state.view,
                 adList: (event.state || {}).adList
             });
@@ -64,12 +64,12 @@ class Main extends Component {
             .then(adsInClass => {
                 this.setState({
                     view: "classifiedAds",
-                    currentClass: adClass,
+                    catetory: adClass,
                     adList: adsInClass
                 });
-                console.log("pushing state: currentClass:", adClass, "view: classifiedAds", "adList", this.state.adList )
+                console.log("pushing state: catetory:", adClass, "view: classifiedAds", "adList", this.state.adList )
                 pushState(
-                    {   currentClass: adClass,
+                    {   catetory: adClass,
                         view: "classifiedAds",
                         adList: this.state.adList },
                     `/classifiedAds/${adClass}`
@@ -82,11 +82,11 @@ class Main extends Component {
             .then(adsInClass => {
                 this.setState({
                     view: "commercialAds",
-                    currentClass: adClass,
+                    catetory: adClass,
                     adList: adsInClass
                 });
                 pushState(
-                    {   currentClass: adClass,
+                    {   catetory: adClass,
                         view: "commercialAds",
                         adList: this.state.adList },
                     `/commercialAds/${adClass}`
