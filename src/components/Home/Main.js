@@ -22,7 +22,6 @@ class Main extends Component {
     componentDidMount() {
         // timers, listeners
         if (this.state.view == "classifiedAds") {
-            console.log("CDM pushing state: catetory:", this.state.catetory, "view: classifiedAds", "adList", this.state.adList )
             pushState(
                 {   catetory: this.state.catetory,
                     view: "classifiedAds",
@@ -30,7 +29,6 @@ class Main extends Component {
                 `/classifiedAds/${this.state.catetory}`
             );
         } else if (this.state.view == "commercialAds") {
-            console.log("CDM pushing state: catetory:", this.state.catetory, "view: commercialAds", "adList", this.state.adList )
             pushState(
                 {   catetory: this.state.catetory,
                     view: "commercialAds",
@@ -38,7 +36,6 @@ class Main extends Component {
                 `/commercialAds/${this.state.catetory}`
             );
         } else {
-            console.log("CDM pushing state: catetory:", this.state.catetory, "view: home", "adList", this.state.adList )
             pushState(
                 {   catetory: this.state.catetory,
                     view: "home",
@@ -48,8 +45,6 @@ class Main extends Component {
         }
 
         onPopState((event) => {
-            console.log("onPopState event triggered");
-            console.log("event.state || {} is:", event.state || {});
             this.setState({
                 catetory: event.state.catetory,
                 view: event.state.view,
