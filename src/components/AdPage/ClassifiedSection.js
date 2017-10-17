@@ -40,7 +40,7 @@ class ClassifiedSection extends Component {
                 <ClassifiedMenu 
                     clasCat={ this.props.clasCat }
                     catTitle={ this.props.catTitle }
-                    onMenuClick={ this.props.onMenuClick } />
+                    onClasMenuClick={ this.props.onClasMenuClick } />
 
 
                 <this.RenderList />

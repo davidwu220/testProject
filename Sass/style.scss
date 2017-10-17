@@ -12,6 +12,23 @@ body {
 .Menu {
     margin: 0px !important;
 }
+
+@media (min-width: 768px){
+	.container {
+		width: 758px
+	}    
+}
+@media (min-width: 992px){
+	.container {
+		width: 966px
+	}    
+}
+@media (min-width: 1260px){
+	.container {
+		width: 1230px;
+	}    
+}
+
 @media (max-width: 629px) {
     .commercial-ad-item {
         margin: auto;

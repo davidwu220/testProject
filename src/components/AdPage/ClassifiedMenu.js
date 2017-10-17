@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+
 class ClassifiedMenu extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleClick = (cls) => {
-            props.onMenuClick(cls);
-            // // need to search for specific content
-            // if (cls == "103_104") {
-            //     //return 103 and 104 ads
-            //     props.onMenuClick(cls);
-            //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
-
-            // } else if (cls == "802_803") {
-            //     // return 802 and 803 ads
-
-            // } else {
-            //     // just search for class match
-            //     props.onMenuClick(cls);
-            //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
-            // }
-        }
+    
+    handleClick = (cls) => {
+        this.props.onClasMenuClick(cls);
+        // // need to search for specific content
+        // if (cls == "103_104") {
+        //     //return 103 and 104 ads
+        //     props.onMenuClick(cls);
+        //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
+    
+        // } else if (cls == "802_803") {
+        //     // return 802 and 803 ads
+    
+        // } else {
+        //     // just search for class match
+        //     props.onMenuClick(cls);
+        //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
+        // }
     }
-
     render() {
         return (
             <div className="classified-ad-menu">

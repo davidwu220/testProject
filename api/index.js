@@ -33,4 +33,8 @@ router.get('/classifiedAds/:class/:id?', (req, res) => {
     }
 });
 
+router.get('/commercialAds', (req, res) => {
+    res.send({ commercialAds: data.commercialAds || [] });
+});
+
 export default router;
