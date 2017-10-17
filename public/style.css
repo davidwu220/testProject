@@ -14,7 +14,7 @@ body {
   .commercial-ad-item {
     margin: auto; } }
 
-@media (max-width: 629px) {
+@media (max-width: 767px) {
   .ad-item.ad-wrapper {
     display: block; }
     .ad-item.ad-wrapper .ad-text {
