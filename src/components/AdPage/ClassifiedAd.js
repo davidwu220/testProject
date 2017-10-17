@@ -7,19 +7,21 @@ class ClassifiedAd extends Component {
         console.log(this.props.data);
     }
 
+    imgLocation = "";
+
     render() {
         return (
             <div className="ad-item ad-wrapper box-shadow" onClick={this.handleClick}>
                 <div className="ad-text">
-                    <div className="ad-header">
-                        Example library
-                    </div>
-                    <div className="ad-desc">
-                        Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor
-                    </div>
+                    <h2 className="ad-header">
+                        {this.props.data.title}
+                    </h2>
+                    <h4 className="ad-desc">
+                        <p>{this.props.data.discription}</p>
+                    </h4>
                 </div>
                 <div className="ad-img">
-                    <img src="/images/ads/classifiedAds/0000663000.jpg" alt=""/>
+                    <img src={this.props.data.image} alt=""/>
                 </div>
             </div>
         );

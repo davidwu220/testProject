@@ -16,10 +16,22 @@ body {
     .commercial-ad-item {
         margin: auto;
     }
-    .ad-text {
-        display: block;
-        width: 100px;
-        margin: auto;
+}
+
+@media (max-width: 767px) {
+    .ad-item {
+        &.ad-wrapper {
+            display: block;
+            .ad-text {
+                margin-bottom: 20px;
+            }
+            .ad-img {
+                text-align: center;
+                img {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
@@ -215,25 +227,22 @@ span {
     .ad-item {
         background-color: #FFFFFF;
         margin-bottom: 20px;
+        padding: 10px;
     }
     .ad-header {
-        font-size: 20px;
+        text-align: center;
     }
     .ad-disc {
 
     }
     .ad-text {
-        flex: 1 0 auto;
-        width: 1px;
+        flex: 1 0 1px;
     }
     .ad-img {
         flex: 0 0 auto;
-        margin: auto;
         img {
             background-color: transparent;
             border: 1px solid #d9d9d9;
-            height: 250px;
-            width: auto;
         }
     }
     .box-shadow {
