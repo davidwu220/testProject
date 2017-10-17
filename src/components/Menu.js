@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class Menu extends Component {
+
     handleClick = (button) => {
+        $(".navbar-collapse").collapse('hide');
         if (button == "#classified-ad") {
             this.props.onClasMenuClick("");
         } else if (button == "#commercial-ad") {
@@ -13,8 +15,8 @@ class Menu extends Component {
         setTimeout(() => {
             $('html, body').animate({
                 scrollTop: $(button).offset().top - 65
-            }, 800);
-        }, 100);
+            }, 1500);
+        }, 300);
     }
 
     render() {
