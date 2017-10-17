@@ -18,7 +18,8 @@ body {
   .ad-item.ad-wrapper {
     display: block; }
     .ad-item.ad-wrapper .ad-text {
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      padding-right: 0px; }
     .ad-item.ad-wrapper .ad-img {
       text-align: center; }
       .ad-item.ad-wrapper .ad-img img {
@@ -87,9 +88,6 @@ body {
   color: #fff;
   text-align: center; }
 
-.Main {
-  text-align: left; }
-
 .left-side {
   background: gold; }
 
@@ -126,7 +124,7 @@ body {
   margin: auto; }
   .contact .title {
     color: #6a6c6f;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 8px; }
   .contact .media {
@@ -139,7 +137,7 @@ body {
   margin: 0 auto; }
   .follow .title {
     color: #6a6c6f;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 8px; }
 
@@ -163,7 +161,7 @@ span {
 .classified-ad-menu .media-body {
   padding-top: 3px;
   white-space: pre-wrap;
-  font-size: 18px; }
+  font-size: 1.8rem; }
   .classified-ad-menu .media-body .menu-item {
     color: #333;
     text-decoration: none;
@@ -179,10 +177,32 @@ span {
     background-color: #FFFFFF;
     margin-bottom: 20px;
     padding: 10px; }
-  .adList .ad-header {
-    text-align: center; }
+  .adList .ad-bar {
+    direction: rtl;
+    overflow: hidden;
+    position: relative; }
+    .adList .ad-bar .ad-id {
+      position: absolute;
+      top: 1px;
+      right: 5px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: whitesmoke; }
   .adList .ad-text {
-    flex: 1 0 1px; }
+    flex: 1 0 1px;
+    padding-right: 10px; }
+  .adList .ad-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 4px solid #888;
+    border-bottom: 4px solid #888;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold; }
+  .adList .ad-desc {
+    font-size: 2rem; }
   .adList .ad-img {
     flex: 0 0 auto; }
     .adList .ad-img img {
@@ -198,7 +218,7 @@ span {
   margin-bottom: 17px; }
 
 #non-mob-menu.navbar-default {
-  font-size: 14px;
+  font-size: 1.4rem;
   background-color: white;
   border-width: 0 0 4px 0;
   border-color: #231815;
@@ -208,7 +228,7 @@ span {
   height: 37px;
   padding: 5px 37px;
   line-height: 26px;
-  font-size: 15px;
+  font-size: 1.6rem;
   text-align: center;
   color: #231815;
   background-color: white; }

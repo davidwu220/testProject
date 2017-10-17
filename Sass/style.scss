@@ -24,6 +24,7 @@ body {
             display: block;
             .ad-text {
                 margin-bottom: 20px;
+                padding-right: 0px;
             }
             .ad-img {
                 text-align: center;
@@ -110,7 +111,7 @@ body {
 }
 
 .Main {
-    text-align: left;
+    //text-align: left;
 }
 
 .left-side {
@@ -161,7 +162,7 @@ body {
     margin: auto;
     .title {
         color: #6a6c6f;
-        font-size: 16px;
+        font-size: 1.6rem;
         font-weight: 700;
         margin-bottom: 8px;
     }
@@ -178,7 +179,7 @@ body {
     margin: 0 auto;
     .title {
         color: #6a6c6f;
-        font-size: 16px;
+        font-size: 1.6rem;
         font-weight: 700;
         margin-bottom: 8px;
     }
@@ -209,7 +210,7 @@ span {
     .media-body {
         padding-top: 3px;
         white-space: pre-wrap;
-        font-size: 18px;
+        font-size: 1.8rem;
         .menu-item {
             color: #333;
             text-decoration: none;
@@ -229,14 +230,36 @@ span {
         margin-bottom: 20px;
         padding: 10px;
     }
-    .ad-header {
-        text-align: center;
-    }
-    .ad-disc {
-
+    .ad-bar {
+        direction: rtl;
+        overflow: hidden;
+        position: relative;
+        .ad-id {
+            position: absolute;
+            top: 1px;
+            right: 5px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: whitesmoke;
+        }
     }
     .ad-text {
         flex: 1 0 1px;
+        padding-right: 10px;
+    }
+    .ad-header {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-top: 4px solid #888;
+        border-bottom: 4px solid #888;
+        padding-top: 6px;
+        padding-bottom: 4px;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    .ad-desc {
+        font-size: 2rem;
     }
     .ad-img {
         flex: 0 0 auto;
@@ -259,7 +282,7 @@ span {
 }
 
 #non-mob-menu.navbar-default {
-    font-size: 14px;
+    font-size: 1.4rem;
     background-color: white;
     border-width: 0 0 4px 0;
     border-color: #231815;
@@ -270,7 +293,7 @@ span {
     height: 37px;
     padding: 5px 37px;
     line-height: 26px;
-    font-size: 15px;
+    font-size: 1.6rem;
     text-align: center;
     color: #231815;
     background-color: white;
