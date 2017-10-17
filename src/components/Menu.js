@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 class Menu extends Component {
 
     handleClick = (button) => {
-        $(".navbar-collapse").collapse('hide');
         if (button == "#classified-ad") {
             this.props.onClasMenuClick("");
         } else if (button == "#commercial-ad") {
@@ -12,10 +11,22 @@ class Menu extends Component {
         } else {
             this.props.onHomeMenuClick("");
         }
+
+        let timeingOffset;
+        let marginOffset;
+        
+        if ( $(window).width() < 768) {
+            $(".navbar-collapse").collapse('hide');
+            timeingOffset = 1500;
+            marginOffset = 65;
+        } else {
+            timeingOffset = 800;
+            marginOffset = 50;
+        }
         setTimeout(() => {
             $('html, body').animate({
-                scrollTop: $(button).offset().top - 65
-            }, 1500);
+                scrollTop: $(button).offset().top - marginOffset
+            }, timeingOffset);
         }, 300);
     }
 

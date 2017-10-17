@@ -8,7 +8,8 @@ body {
   top: 0px; }
 
 .Menu {
-  margin: 0px !important; }
+  margin: 0px !important;
+  z-index: 100; }
 
 @media (min-width: 768px) {
   .container {
@@ -188,6 +189,7 @@ span {
   margin-bottom: 25px; }
 
 .adList {
+  max-width: 867px;
   cursor: pointer; }
   .adList .ad-item {
     background-color: #FFFFFF;
@@ -250,6 +252,7 @@ span {
   background-color: white; }
 
 #non-mob-menu.navbar-default .navbar-nav > li {
+  cursor: pointer;
   border-right: 1px solid #231815; }
 
 #non-mob-menu.navbar-default .navbar-nav > li:last-child {

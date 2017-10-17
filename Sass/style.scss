@@ -11,6 +11,7 @@ body {
 
 .Menu {
     margin: 0px !important;
+    z-index: 100;
 }
 
 @media (min-width: 768px){
@@ -246,6 +247,7 @@ span {
 }
 
 .adList {
+    max-width: 867px;
     cursor: pointer;
     .ad-item {
         background-color: #FFFFFF;
@@ -322,6 +324,7 @@ span {
 }
 
 #non-mob-menu.navbar-default .navbar-nav>li {
+    cursor: pointer;
     border-right: 1px solid #231815;
 }
 
