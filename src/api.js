@@ -93,6 +93,9 @@ export const fetchClasMenu = () => {
         .then(res => {
             console.log(res.data.classifiedAds);
             //console.log('fatching class menu and got response: ', exctractClassifiedCats(res.data));
-            return exctractClassifiedCats(res.data.classifiedAds);
+            return {
+                allAds: res.data.classifiedAds,
+                ...exctractClassifiedCats(res.data.classifiedAds)
+            };
         });
 }

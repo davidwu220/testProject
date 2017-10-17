@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: #f7f7f7; }
 
 .sticky {
@@ -55,6 +55,10 @@ body {
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   justify-content: space-between; }
+
+.commercial-ad-bar {
+  overflow: hidden;
+  margin-bottom: 20px; }
 
 .commercial-ad-item {
   margin-bottom: 20px; }

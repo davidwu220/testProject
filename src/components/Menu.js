@@ -17,9 +17,9 @@ const Menu = () => (
                     <ul className="nav navbar-nav navbar-left">
                         <li><a href="/">星島廣告首頁</a>
                         </li>
-                        <li><a href="#classified-ad">星島分類廣告</a>
+                        <li><a href="/classifiedAds">星島分類廣告</a>
                         </li>
-                        <li><a href="#">星島商業廣告</a>
+                        <li><a href="/commercialAds">星島商業廣告</a>
                         </li>
                         <li><a href="https://www.singtaousa.com/la/">星島新聞首頁</a>
                         </li>
