@@ -17,13 +17,13 @@ server.set('view engine', 'ejs');
 
 server.get('/' , (req, res) => {
     // TODO: Put classifiedAds for now before figuring out more data
-    let type = "classifiedAds";
+    let type = "home";
 
     let initialCat;
     serverRender({type, path})
         .then((initialData) => {
             res.render('index', {
-                type: "home",
+                type,
                 initialCat,
                 initialData
             });

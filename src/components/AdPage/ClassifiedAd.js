@@ -21,7 +21,9 @@ class ClassifiedAd extends Component {
                         {this.props.data.title}
                     </div>
                     <div className="ad-desc">
-                        {this.props.data.discription}
+                        {this.props.data.description.map((desc,id) => 
+                            <div key={id}>{desc}</div>
+                        )}
                     </div>
                 </div>
                 <div className="ad-img">

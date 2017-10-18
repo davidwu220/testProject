@@ -287,9 +287,11 @@ span {
     }
     .ad-img {
         flex: 0 0 auto;
+        margin: auto;
         img {
             background-color: transparent;
             border: 1px solid #d9d9d9;
+            height: 250px;
         }
     }
     .box-shadow {

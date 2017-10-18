@@ -62,11 +62,13 @@ class App extends Component {
 
         // handle browser back/forward buttons
         onPopState((event) => {
-            this.setState({
-                category: event.state.category,
-                view: event.state.view,
-                adList: (event.state || {}).adList
-            });
+            if (event.state) {
+                this.setState({
+                    category: event.state.category,
+                    view: event.state.view,
+                    adList: event.state.adList
+                });
+            }
         });
     }
 

@@ -1,20 +1,5 @@
 import axios from "axios";
 
-export const fetchClasAdById = classifiedId => {
-    return axios.get(`/api/classifiedAds/*/${classifiedId}`)
-        .then(res => res.data);
-}
-
-export const fetchClasAdByClass = classifiedClass => {
-    return axios.get(`/api/classifiedAds/${classifiedClass}`)
-    .then(res => res.data);
-}
-
-export const fetchComAdByClass = commercialClass => {
-    return axios.get(`/api/commercialAds/${commercialClass}`)
-    .then(res => res.data);
-}
-
 const exctractClassifiedCats = (arrayOfObjs) =>  {
     let tempCatList = [];
     let clasCat = [];
@@ -29,14 +14,8 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
     // trim duplicate categories
     for (let uniqCat of tempCatList) {
         if (clasCat.includes(uniqCat) == false) {
-            // WIll do this when importing the data
-            // if (uniqCat == "103" || uniqCat == "104") {
-            //     uniqCat = "103_104";
-            // } else if (uniqCat == "802" || uniqCat == "803") {
-            //     uniqCat = "802_803";
-            // }
             switch (uniqCat) {
-                case "101": case "106": case "103_104": case "105":
+                case "101_102": case "106": case "103_104": case "105":
                     catTitle.push(1);
                     break;
 
@@ -91,11 +70,26 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
 export const fetchClasMenu = () => {
     return axios.get(`/api/classifiedAds`)
         .then(res => {
-            console.log(res.data.classifiedAds);
+            console.log(res.data);
             //console.log('fatching class menu and got response: ', exctractClassifiedCats(res.data));
             return {
-                allAds: res.data.classifiedAds,
-                ...exctractClassifiedCats(res.data.classifiedAds)
+                allAds: res.data,
+                ...exctractClassifiedCats(res.data)
             };
         });
+}
+
+export const fetchClasAdById = classifiedId => {
+    return axios.get(`/api/classifiedAds/*/${classifiedId}`)
+        .then(res => res.data);
+}
+
+export const fetchClasAdByClass = classifiedClass => {
+    return axios.get(`/api/classifiedAds/${classifiedClass}`)
+    .then(res => res.data);
+}
+
+export const fetchComAdByClass = commercialClass => {
+    return axios.get(`/api/commercialAds/${commercialClass}`)
+    .then(res => res.data);
 }
