@@ -48,6 +48,7 @@ body {
                 text-align: center;
                 img {
                     width: 100%;
+                    height: auto;
                 }
             }
         }
@@ -211,6 +212,7 @@ body {
 span {
     display: inline-block;
     white-space: pre-wrap;
+    
     &.fa {
         width: 30px;
         height: 30px;
@@ -223,22 +225,25 @@ span {
     >a {
         color: #333;
         text-decoration: underline;
+        cursor: pointer;
         &:hover {
             color: inherit;
         }
+        &:focus {
+            color: #b60f15;
+            background-color: #ddd;
+        }
     }
+    
 }
 
 .classified-ad-menu {
     .media-body {
-        padding-top: 3px;
         white-space: pre-wrap;
         font-size: 1.8rem;
-        .menu-item {
-            color: #333;
+        a.menu-item {
+            padding: 0 1rem 0 1rem;
             text-decoration: none;
-            padding: 0 0.1em 0 0.2em;
-            cursor: pointer;
         }
     }
     .media:last-child {
@@ -248,7 +253,6 @@ span {
 
 .adList {
     max-width: 867px;
-    cursor: pointer;
     .ad-item {
         background-color: #FFFFFF;
         margin-bottom: 20px;
@@ -337,7 +341,7 @@ span {
 #non-mob-menu.navbar-default .navbar-nav>li>a:hover,
 #non-mob-menu.navbar-default .navbar-nav>li>a:focus {
     color: #b60f15;
-    background-color: rgba(238, 238, 238, 1);
+    background-color: #eeeeee;
 }
 
 #non-mob-menu.navbar-default .navbar-nav>.active>a,

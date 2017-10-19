@@ -70,8 +70,6 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
 export const fetchClasMenu = () => {
     return axios.get(`/api/classifiedAds`)
         .then(res => {
-            console.log(res.data);
-            //console.log('fatching class menu and got response: ', exctractClassifiedCats(res.data));
             return {
                 allAds: res.data,
                 ...exctractClassifiedCats(res.data)

@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-
 class ClassifiedMenu extends Component {
-    
+    previousClass = "";
+
     handleClick = (cls) => {
         this.props.onClasMenuClick(cls);
-        // // need to search for specific content
-        // if (cls == "103_104") {
-        //     //return 103 and 104 ads
-        //     props.onMenuClick(cls);
-        //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
-    
-        // } else if (cls == "802_803") {
-        //     // return 802 and 803 ads
-    
-        // } else {
-        //     // just search for class match
-        //     props.onMenuClick(cls);
-        //     console.log(props.classifiedAds.filter(this.findAdsByClass, cls));
-        // }
+        $('#'+cls).addClass("active");
+        if(this.previousClass != "") {
+            $('#'+this.previousClass).removeClass("active");
+        }
+        this.previousClass = cls;
     }
     render() {
         return (
@@ -30,14 +21,18 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("101_102") &&
-                            <span className="menu-item" onClick={() => this.handleClick("101_102")}>公司  // </span>}
+                            <span><a id="101_102" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("101_102")}>公司</a> // </span>}
+
                         {this.props.clasCat.includes("106") &&
-                        <span className="menu-item" onClick={() => this.handleClick("106")}>餐館  // </span>}
+                            <span><a id="106" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("106")}>餐館</a> // </span>}
+
                         {this.props.clasCat.includes("103_104") &&
-                        <span className="menu-item" onClick={() => this.handleClick("103_104")}>管家保母托兒  // </span>}
+                            <span><a id="103_104" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("103_104")}>管家保母托兒</a> // </span>}
+
                         {this.props.clasCat.includes("105") &&
-                        <span className="menu-item" onClick={() => this.handleClick("105")}>衣廠  // </span>}
+                            <span><a id="105" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("105")}>衣廠</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(2) && <div className="media">
@@ -46,10 +41,12 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("300") &&
-                            <span className="menu-item" onClick={() => this.handleClick("300")}>住宅出租  // </span>}
+                            <span><a id="300" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("300")}>住宅出租</a> // </span>}
+
                         {this.props.clasCat.includes("500") &&
-                            <span className="menu-item" onClick={() => this.handleClick("500")}>住宅出售  // </span>}
+                            <span><a id="500" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("500")}>住宅出售</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(3) && <div className="media">
@@ -58,10 +55,12 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("200") &&
-                            <span className="menu-item" onClick={() => this.handleClick("200")}>商業招租  // </span>}
+                            <span><a id="200" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("200")}>商業招租</a> // </span>}
+
                         {this.props.clasCat.includes("700") &&
-                            <span className="menu-item" onClick={() => this.handleClick("700")}>商業出讓 // </span>}
+                            <span><a id="700" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("700")}>商業出讓</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(4) && <div className="media">
@@ -70,14 +69,18 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("400") &&
-                        <span className="menu-item" onClick={() => this.handleClick("400")}>地產  // </span>}
+                            <span><a id="400" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("400")}>地產</a> // </span>}
+
                         {this.props.clasCat.includes("600") &&
-                        <span className="menu-item" onClick={() => this.handleClick("600")}>貸款  // </span>}
+                            <span><a id="600" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("600")}>貸款</a> // </span>}
+
                         {this.props.clasCat.includes("818") &&
-                        <span className="menu-item" onClick={() => this.handleClick("818")}>保險  // </span>}
+                            <span><a id="818" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("818")}>保險</a> // </span>}
+                        
                         {this.props.clasCat.includes("801") &&
-                        <span className="menu-item" onClick={() => this.handleClick("801")}>福地  // </span>}
+                            <span><a id="801" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("801")}>福地</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(5) && <div className="media">
@@ -86,12 +89,15 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("804") &&
-                            <span className="menu-item" onClick={() => this.handleClick("804")}>水電  // </span>}
+                            <span><a id="804" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("804")}>水電</a> // </span>}
+
                         {this.props.clasCat.includes("805") &&
-                            <span className="menu-item" onClick={() => this.handleClick("805")}>裝修油漆  // </span>}
+                            <span><a id="805" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("805")}>裝修油漆</a> // </span>}
+
                         {this.props.clasCat.includes("802_803") &&
-                            <span className="menu-item" onClick={() => this.handleClick("802_803")}>清潔殺蟲  // </span>}
+                            <span><a id="802_803" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("802_803")}>清潔殺蟲</a> // </span>}
                     </div>
                 </div>}
                {this.props.catTitle.includes(6) && <div className="media">
@@ -100,16 +106,21 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("810") &&
-                            <span className="menu-item" onClick={() => this.handleClick("810")}>商業  // </span>}
+                            <span><a id="810" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("810")}>電腦監控</a> // </span>}
+
                         {this.props.clasCat.includes("808") &&
-                            <span className="menu-item" onClick={() => this.handleClick("808")}>法律  // </span>}
+                            <span><a id="808" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("808")}>商業</a> // </span>}
+
                         {this.props.clasCat.includes("816") &&
-                            <span className="menu-item" onClick={() => this.handleClick("816")}>會計稅務  // </span>}
+                            <span><a id="816" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("816")}>會計稅務</a> // </span>}
+
                         {this.props.clasCat.includes("809") &&
-                            <span className="menu-item" onClick={() => this.handleClick("809")}>電腦監控  // </span>}
+                            <span><a id="809" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("809")}>法律</a> // </span>}
+
                         {this.props.clasCat.includes("814") &&
-                            <span className="menu-item" onClick={() => this.handleClick("814")}>命相  // </span>}
+                            <span><a id="814" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("814")}>命相</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(7) && <div className="media">
@@ -118,14 +129,18 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("813") &&
-                            <span className="menu-item" onClick={() => this.handleClick("813")}>按摩推拿  // </span>}
+                            <span><a id="813" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("813")}>按摩推拿</a> // </span>}
+
                         {this.props.clasCat.includes("812") &&
-                            <span className="menu-item" onClick={() => this.handleClick("812")}>醫藥  // </span>}
+                            <span><a id="812" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("812")}>醫藥</a> // </span>}
+
                         {this.props.clasCat.includes("817") &&
-                            <span className="menu-item" onClick={() => this.handleClick("817")}>醫生  // </span>}
+                            <span><a id="817" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("817")}>醫生</a> // </span>}
+
                         {this.props.clasCat.includes("815") &&
-                            <span className="menu-item" onClick={() => this.handleClick("815")}>美容  // </span>}
+                            <span><a id="815" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("815")}>美容</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(8) && <div className="media">
@@ -134,8 +149,9 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("811") &&
-                            <span className="menu-item" onClick={() => this.handleClick("811")}>招生  // </span>}
+                            <span><a id="811" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("811")}>招生</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(9) && <div className="media">
@@ -144,12 +160,15 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("900") &&
-                            <span className="menu-item" onClick={() => this.handleClick("900")}>二手車  // </span>}
+                            <span><a id="900" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("900")}>二手車</a> // </span>}
+
                         {this.props.clasCat.includes("807") &&
-                            <span className="menu-item" onClick={() => this.handleClick("807")}>專車接送  // </span>}
+                            <span><a id="807" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("807")}>專車接送</a> // </span>}
+
                         {this.props.clasCat.includes("806") &&
-                            <span className="menu-item" onClick={() => this.handleClick("806")}>搬運  // </span>}
+                            <span><a id="806" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("806")}>搬運</a> // </span>}
                     </div>
                 </div>}
                 {this.props.catTitle.includes(10) && <div className="media">
@@ -158,14 +177,18 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
+
                         {this.props.clasCat.includes("1000") &&
-                            <span className="menu-item" onClick={() => this.handleClick("1000")}>姻緣  // </span>}
+                            <span><a id="1000" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("1000")}>姻緣</a> // </span>}
+
                         {this.props.clasCat.includes("1201") &&
-                            <span className="menu-item" onClick={() => this.handleClick("1201")}>尋人  // </span>}
+                            <span><a id="1201" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("1201")}>尋人</a> // </span>}
+
                         {this.props.clasCat.includes("1200") &&
-                            <span className="menu-item" onClick={() => this.handleClick("1200")}>遺失  // </span>}
+                            <span><a id="1200" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("1200")}>遺失</a> // </span>}
+
                         {this.props.clasCat.includes("1300") &&
-                            <span className="menu-item" onClick={() => this.handleClick("1300")}>啟事  // </span>}
+                            <span><a id="1300" className="btn btn-default btn-lg menu-item" role="button" onClick={() => this.handleClick("1300")}>啟事</a> // </span>}
                     </div>
                 </div>}
             </div>

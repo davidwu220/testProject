@@ -8,7 +8,6 @@ import config from './config';
 const serverRender = ({type, path}) => (
     axios.get(`${config.serverUrl}/api/${type}/${path}`)
         .then(res => {
-            console.log("res.data is: ", res.data);
             return res.data;
         })
         .catch((err) => {})

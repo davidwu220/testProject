@@ -36,7 +36,8 @@ body {
     .ad-item.ad-wrapper .ad-img {
       text-align: center; }
       .ad-item.ad-wrapper .ad-img img {
-        width: 100%; } }
+        width: 100%;
+        height: auto; } }
 
 @media (min-width: 768px) {
   .navbar-nav {
@@ -171,26 +172,26 @@ span {
     background-color: white; }
   span > a {
     color: #333;
-    text-decoration: underline; }
+    text-decoration: underline;
+    cursor: pointer; }
     span > a:hover {
       color: inherit; }
+    span > a:focus {
+      color: #b60f15;
+      background-color: #ddd; }
 
 .classified-ad-menu .media-body {
-  padding-top: 3px;
   white-space: pre-wrap;
   font-size: 1.8rem; }
-  .classified-ad-menu .media-body .menu-item {
-    color: #333;
-    text-decoration: none;
-    padding: 0 0.1em 0 0.2em;
-    cursor: pointer; }
+  .classified-ad-menu .media-body a.menu-item {
+    padding: 0 1rem 0 1rem;
+    text-decoration: none; }
 
 .classified-ad-menu .media:last-child {
   margin-bottom: 25px; }
 
 .adList {
-  max-width: 867px;
-  cursor: pointer; }
+  max-width: 867px; }
   .adList .ad-item {
     background-color: #FFFFFF;
     margin-bottom: 20px;

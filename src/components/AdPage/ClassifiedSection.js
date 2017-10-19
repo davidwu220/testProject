@@ -42,7 +42,6 @@ class ClassifiedSection extends Component {
                     catTitle={ this.props.catTitle }
                     onClasMenuClick={ this.props.onClasMenuClick } />
 
-
                 <this.RenderList />
             </div>
         );

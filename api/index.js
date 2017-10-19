@@ -44,8 +44,6 @@ router.get('/classifiedAds', (req, res) => {
         )
         .toArray((err, docs) => {
             assert.equal(null, err);
-
-            console.log("Found the following records:", docs);
             res.send(docs);
     });
 });
@@ -67,8 +65,6 @@ router.get('/classifiedAds/:class/:id?', (req, res) => {
         })
         .toArray((err, docs) => {
             assert.equal(null, err);
-
-            console.log("Found the following records:", docs);
             res.send(docs);
         });
 });
