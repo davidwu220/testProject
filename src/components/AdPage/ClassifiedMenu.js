@@ -4,8 +4,46 @@ import PropTypes from 'prop-types';
 class ClassifiedMenu extends Component {
     previousClass = "";
 
+    check300 = (is300) => {
+        return parseInt(is300/100) == 3;
+    }
+
+    check500 = (is500) => {
+        return parseInt(is500/100) == 5;
+    }
+
+    Case300 = () => {
+        let isTrue = false;
+        this.props.clasCat.forEach(cat => {
+            if (this.check300(cat) && !isTrue) {
+                console.log("in this.check(300), cat matched: ", cat);
+                isTrue = true;
+            }
+        });
+        return isTrue;
+    }
+
+    Case500 = () => {
+        let isTrue = false;
+        this.props.clasCat.forEach(cat => {
+            if (this.check500(cat) && !isTrue) {
+                console.log("in this.check(500), cat matched: ", cat);
+                isTrue = true;
+            }
+        });
+        return isTrue;
+    }
+
     handleClick = (cls) => {
-        this.props.onClasMenuClick(cls);
+        if (cls == "300") {
+            this.props.onClasMenuClick("");
+        } else if (cls == "500") {
+            this.props.onClasMenuClick("");
+        } else {
+            this.props.onClasMenuClick(cls);
+        }
+
+        // set current viewing class active
         $('#'+cls).addClass("is-active");
         if(this.previousClass != "") {
             $('#'+this.previousClass).removeClass("is-active");
@@ -41,11 +79,10 @@ class ClassifiedMenu extends Component {
                     </div>
                     <div className="media-body">
                         <span> // </span>
-
-                        {this.props.clasCat.includes("300") &&
+                        {this.Case300() &&
                             <span><a id="300" className="menu-item" onClick={() => this.handleClick("300")}>住宅出租</a> // </span>}
-
-                        {this.props.clasCat.includes("500") &&
+                        
+                        {this.Case500() && 
                             <span><a id="500" className="menu-item" onClick={() => this.handleClick("500")}>住宅出售</a> // </span>}
                     </div>
                 </div>}

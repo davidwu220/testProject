@@ -19,7 +19,8 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
                     catTitle.push(1);
                     break;
 
-                case "300": case "500":
+                case "301": case "302": case "303": case "304": case "305": case "306" :case "307":
+                case "501": case "502": case "503": case "504": case "505": case "506": case "507":
                     catTitle.push(2);
                     break;
 
