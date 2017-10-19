@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 class Menu extends Component {
 
     handleClick = (button) => {
-        $(".menu-item").removeClass("active");
+        $(".menu-item").removeClass("is-active");
+        
         if (button == "#classified-ad") {
             this.props.onClasMenuClick("");
         } else if (button == "#commercial-ad") {

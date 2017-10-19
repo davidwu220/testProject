@@ -181,11 +181,18 @@ span {
       background-color: #ddd; }
 
 .classified-ad-menu .media-body {
+  padding-top: 3px;
   white-space: pre-wrap;
   font-size: 1.8rem; }
   .classified-ad-menu .media-body a.menu-item {
-    padding: 0 1rem 0 1rem;
-    text-decoration: none; }
+    padding: 3px 10px;
+    text-decoration: none;
+    transition: all 0.8s cubic-bezier(0, 0, 0.2, 1); }
+    .classified-ad-menu .media-body a.menu-item.is-active {
+      color: #b60f15;
+      background-color: #ddd;
+      border-radius: 3px;
+      text-decoration: underline; }
 
 .classified-ad-menu .media:last-child {
   margin-bottom: 25px; }
