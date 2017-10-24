@@ -2,6 +2,12 @@ body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: #f7f7f7; }
 
+.aside * {
+  margin-bottom: 10px; }
+
+.aside .static-aside-ad {
+  border-radius: 18px; }
+
 .sticky {
   position: sticky;
   position: -webkit-sticky;
@@ -10,6 +16,16 @@ body {
 .Menu {
   margin: 0px !important;
   z-index: 100; }
+  .Menu .is-active {
+    color: #b60f15;
+    background-color: #ddd;
+    border-radius: 3px;
+    text-decoration: underline; }
+
+@media (max-width: 429px) {
+  .commercial-ad-item {
+    width: 100%;
+    height: 100%; } }
 
 @media (min-width: 768px) {
   .container {
@@ -27,6 +43,12 @@ body {
   .commercial-ad-item {
     margin: auto; } }
 
+@media (max-width: 1259px) {
+  .page-header img.singtao-logo {
+    height: auto;
+    padding-top: 7px;
+    width: 206px; } }
+
 @media (max-width: 767px) {
   .ad-item.ad-wrapper {
     display: block; }
@@ -43,10 +65,15 @@ body {
   .navbar-nav {
     margin-left: -30px; } }
 
-.Header {
-  margin: 0px !important;
-  background: tomato;
-  color: #fff; }
+.Header .singtao-logo {
+  height: 90px;
+  width: auto; }
+
+.Header .ad-posting-link {
+  float: right; }
+
+.Header .singtao-life {
+  float: left; }
 
 .wrapper {
   display: -webkit-box;
@@ -109,9 +136,6 @@ body {
 .left-side {
   background: gold; }
 
-.right-side {
-  background: hotpink; }
-
 .qr-image {
   height: 150px;
   margin-bottom: 25px; }
@@ -120,7 +144,7 @@ body {
   .aside {
     flex: 1 auto; } }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
   .Main {
     flex: 3 0px;
     order: 2; }
@@ -260,6 +284,11 @@ span {
   text-align: center;
   color: #231815;
   background-color: white; }
+  #non-mob-menu.navbar-default .navbar-nav > li > a.is-active {
+    color: #b60f15;
+    background-color: #ddd;
+    border-radius: 3px;
+    text-decoration: underline; }
 
 #non-mob-menu.navbar-default .navbar-nav > li {
   cursor: pointer;

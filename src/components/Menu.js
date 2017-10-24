@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class Menu extends Component {
+    previousSelection = "";
 
     handleClick = (button) => {
         $(".menu-item").removeClass("is-active");
+
+        let menuButton = "";
         
         if (button == "#classified-ad") {
+            menuButton = button+"-btn";
             this.props.onClasMenuClick("");
         } else if (button == "#commercial-ad") {
+            menuButton = button+"-btn";
             this.props.onComMenuClick("");
         } else {
+            menuButton = "#home-btn";
             this.props.onHomeMenuClick("");
         }
+
+        $(menuButton).addClass("is-active");
+        if(this.previousSelection != "" && button != this.previousSelection) {
+            $(this.previousSelection).removeClass("is-active");
+        }
+        this.previousSelection = menuButton;
 
         let timeingOffset;
         let marginOffset;
@@ -47,13 +59,13 @@ class Menu extends Component {
                         </div>
                         <div className="collapse navbar-collapse navbar-menubuilder">
                             <ul className="nav navbar-nav navbar-left">
-                                <li><a onClick={() => this.handleClick("body")}>星島廣告首頁</a>
+                                <li><a id="home-btn" onClick={() => this.handleClick("body")}>星島廣告首頁</a>
                                 </li>
-                                <li><a onClick={() => this.handleClick("#classified-ad")}>星島分類廣告</a>
+                                <li><a id="classified-ad-btn" onClick={() => this.handleClick("#classified-ad")}>星島分類廣告</a>
                                 </li>
-                                <li><a onClick={() => this.handleClick("#commercial-ad")}>星島商業廣告</a>
+                                <li><a id="commercial-ad-btn" onClick={() => this.handleClick("#commercial-ad")}>星島商業廣告</a>
                                 </li>
-                                <li><a href="https://www.singtaousa.com/la/">星島新聞首頁</a>
+                                <li><a href="https://www.singtaousa.com/la/" target="_blank">星島新聞首頁</a>
                                 </li>
                             </ul>
                         </div>

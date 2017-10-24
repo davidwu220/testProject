@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 const Header = () => (
     <header className="Header page-header hidden-xs">
-        <h1>Sing Tao Daily icon here</h1>
-        <h2>
-            Fixed (sticky) navbar on scroll <br />
-            <small>Scroll this page to see how the navbar behaves. The navbar is attached to the top of the page after you have scrolled a specified amount of pixels.</small>
-        </h2>
+        <div>
+            <img className="singtao-logo" src="/images/page_icons/ST_logo.png" alt="Singtao Logo"/>
+            <img className="ad-posting-link" src="/images/page_icons/ad_posting_icon.jpg" alt="Ad posting link"/>
+        </div>
+        <div><img className="singtao-life" src="/images/page_icons/Singtao_Life.jpg" alt="Singtao life logo"/></div>
         
     </header>
 );

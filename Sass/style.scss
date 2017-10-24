@@ -3,6 +3,16 @@ body {
     background-color: #f7f7f7;
 }
 
+.aside {
+    * {
+        margin-bottom: 10px;
+    }
+    .static-aside-ad {
+        border-radius: 18px;
+    }
+
+}
+
 .sticky {
     position: sticky;
     position: -webkit-sticky;
@@ -12,22 +22,35 @@ body {
 .Menu {
     margin: 0px !important;
     z-index: 100;
+    .is-active {
+        color: #b60f15;
+        background-color: #ddd;
+        border-radius: 3px;
+        text-decoration: underline;
+    }
 }
 
-@media (min-width: 768px){
+@media (max-width: 429px) {
+    .commercial-ad-item {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
 	.container {
-		width: 758px
+		width: 758px;
 	}    
 }
-@media (min-width: 992px){
+@media (min-width: 992px) {
 	.container {
-		width: 966px
-	}    
+		width: 966px;
+    }    
 }
-@media (min-width: 1260px){
+@media (min-width: 1260px) {
 	.container {
 		width: 1230px;
-	}    
+    }
 }
 
 @media (max-width: 629px) {
@@ -35,6 +58,15 @@ body {
         margin: auto;
     }
 }
+
+@media (max-width: 1259px) {
+    .page-header img.singtao-logo {
+        height: auto;
+        padding-top: 7px;
+        width: 206px;
+    }
+}
+
 
 @media (max-width: 767px) {
     .ad-item {
@@ -62,9 +94,19 @@ body {
 }
 
 .Header {
-    margin: 0px !important;
-    background: tomato;
-    color: #fff;
+    .singtao-logo {
+        height: 90px;
+        width: auto;
+    }
+    .ad-posting-link {
+        float: right;
+    }
+    .singtao-life {
+        float: left;
+    }
+    // margin: 0px !important;
+    // background: tomato;
+    // color: #fff;
 }
 
 .wrapper {
@@ -142,10 +184,6 @@ body {
     background: gold;
 }
 
-.right-side {
-    background: hotpink;
-}
-
 .qr-image {
     height: 150px;
     margin-bottom: 25px;
@@ -157,7 +195,7 @@ body {
     }
 }
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 768px) {
     .Main {
         flex: 3 0px;
         order: 2;
@@ -328,6 +366,12 @@ span {
 }
 
 #non-mob-menu.navbar-default .navbar-nav>li>a {
+    &.is-active {
+        color: #b60f15;
+        background-color: #ddd;
+        border-radius: 3px;
+        text-decoration: underline;
+    }
     height: 37px;
     padding: 5px 37px;
     line-height: 26px;

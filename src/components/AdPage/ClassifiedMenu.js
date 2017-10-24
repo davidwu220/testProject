@@ -36,16 +36,16 @@ class ClassifiedMenu extends Component {
 
     handleClick = (cls) => {
         if (cls == "300") {
-            this.props.onClasMenuClick("");
+            // this.props.onClasMenuClick("");
         } else if (cls == "500") {
-            this.props.onClasMenuClick("");
+            // this.props.onClasMenuClick("");
         } else {
             this.props.onClasMenuClick(cls);
         }
 
         // set current viewing class active
         $('#'+cls).addClass("is-active");
-        if(this.previousClass != "") {
+        if(this.previousClass != "" && cls != this.previousClass) {
             $('#'+this.previousClass).removeClass("is-active");
         }
         this.previousClass = cls;
