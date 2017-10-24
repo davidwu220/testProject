@@ -11,6 +11,7 @@ class Main extends Component {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
                     <ClassifiedSection 
+                        currentCat={this.props.currentCat}
                         clasCat={ this.props.clasCat }
                         catTitle={ this.props.catTitle }
                         viewState={ this.props.viewState }
@@ -31,6 +32,7 @@ class Main extends Component {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
                     <ClassifiedSection 
+                        currentCat={this.props.currentCat}
                         clasCat={ this.props.clasCat }
                         catTitle={ this.props.catTitle }
                         viewState={ this.props.viewState }

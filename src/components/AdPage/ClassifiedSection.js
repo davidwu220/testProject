@@ -8,18 +8,16 @@ class ClassifiedSection extends Component {
     RenderList = () => {
         let list = null;
 
-        console.log(this.props.adList);
-
         if (Array.isArray(this.props.adList)) {
             list = this.props.adList.map((ad) => 
-                <ClassifiedAd key={ad.id} data={ad}/>
+                <ClassifiedAd key={ad.id} data={ad} />
             );
         } else if (this.props.adList.hasOwnProperty("classifiedAds")) {
             list = this.props.adList.classifiedAds.map((ad) => 
-            <ClassifiedAd key={ad.id} data={ad}/>
+                <ClassifiedAd key={ad.id} data={ad} />
         );
         } else {
-            list = <ClassifiedAd data={this.props.adList}/>
+            list = <ClassifiedAd data={this.props.adList} />
         } 
 
         
@@ -38,6 +36,7 @@ class ClassifiedSection extends Component {
                 </div>
         
                 <ClassifiedMenu 
+                    currentCat={this.props.currentCat}
                     clasCat={ this.props.clasCat }
                     catTitle={ this.props.catTitle }
                     onClasMenuClick={ this.props.onClasMenuClick } />

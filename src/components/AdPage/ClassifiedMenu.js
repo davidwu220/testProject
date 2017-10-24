@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 
 class ClassifiedMenu extends Component {
     previousClass = "";
+    in300 = [];
+    in500 = [];
+    first300;
+    first500;
+    state = {
+        showPicker300: parseInt(this.props.currentCat/100) == 3,
+        showPicker500: parseInt(this.props.currentCat/100) == 5
+    }
+
+    
 
     check300 = (is300) => {
         return parseInt(is300/100) == 3;
@@ -14,32 +24,89 @@ class ClassifiedMenu extends Component {
 
     Case300 = () => {
         let isTrue = false;
+        this.in300 = [];
+
         this.props.clasCat.forEach(cat => {
-            if (this.check300(cat) && !isTrue) {
-                console.log("in this.check(300), cat matched: ", cat);
-                isTrue = true;
+            if (this.check300(cat)) {
+                this.in300.push(cat);
+                if (!isTrue) {
+                    this.first300 = cat;
+                    isTrue = true;
+                }
             }
         });
+
         return isTrue;
     }
 
     Case500 = () => {
         let isTrue = false;
+        this.in500 = [];
+
         this.props.clasCat.forEach(cat => {
-            if (this.check500(cat) && !isTrue) {
-                console.log("in this.check(500), cat matched: ", cat);
-                isTrue = true;
+            if (this.check500(cat)) {
+                this.in500.push(cat);
+                if (!isTrue) {
+                    this.first500 = cat;
+                    isTrue = true;
+                }
             }
         });
+
         return isTrue;
+    }
+
+    getCity = (cat) => {
+        let city;
+
+        if (cat < 500) {
+            city = cat % 300;
+        } else if (cat > 500) {
+            city = cat % 500;
+        }
+        switch (city) {
+            case 1:
+                return "城市 A-C";
+            case 2:
+                return "城市 D-H";
+            case 3:
+                return "城市 I-M";
+            case 4:
+                return "城市 N-R";
+            case 5:
+                return "城市 S";
+            case 6:
+                return "城市 T-W";
+            case 7:
+                return "城市 X-Z";
+        
+            default:
+                console.log("city case not matched:", city);
+                break;
+        }
     }
 
     handleClick = (cls) => {
         if (cls == "300") {
-            // this.props.onClasMenuClick("");
+            this.setState({
+                showPicker300: true,
+                showPicker500: false
+            })
+
+            this.props.onClasMenuClick(this.first300);
         } else if (cls == "500") {
-            // this.props.onClasMenuClick("");
+            this.setState({
+                showPicker300: false,
+                showPicker500: true
+
+            })
+
+            this.props.onClasMenuClick(this.first500);
         } else {
+            this.setState({
+                showPicker300: false,
+                showPicker500: false
+            })
             this.props.onClasMenuClick(cls);
         }
 
@@ -50,6 +117,32 @@ class ClassifiedMenu extends Component {
         }
         this.previousClass = cls;
     }
+
+    Picker300 = () => {
+        return (
+            <select id="picker" className="form-control" onChange={this.onPickerChange}>
+                {this.in300.map(cat => 
+                    <option key={cat} value={cat}>{this.getCity(cat)}</option>
+                )}
+            </select>
+        );
+    }
+
+    Picker500 = () => {
+        return (
+            <select id="picker" className="form-control" onChange={this.onPickerChange}>
+                {this.in500.map(cat => 
+                    <option key={cat} value={cat}>{this.getCity(cat)}</option>
+                )}
+            </select>
+        );
+    }
+
+    onPickerChange = () => {
+        this.props.onClasMenuClick($("#picker").val());
+    }
+
+
     render() {
         return (
             <div className="classified-ad-menu">
@@ -137,7 +230,7 @@ class ClassifiedMenu extends Component {
                             <span><a id="802_803" className="menu-item" onClick={() => this.handleClick("802_803")}>清潔殺蟲</a> // </span>}
                     </div>
                 </div>}
-               {this.props.catTitle.includes(6) && <div className="media">
+                {this.props.catTitle.includes(6) && <div className="media">
                     <div className="media-left">
                         <img src="/images/page_icons/class6.png" alt="Classified AD Menu Icon"/>
                     </div>
@@ -228,6 +321,13 @@ class ClassifiedMenu extends Component {
                             <span><a id="1300" className="menu-item" onClick={() => this.handleClick("1300")}>啟事</a> // </span>}
                     </div>
                 </div>}
+
+                {this.state.showPicker300 && 
+                    <this.Picker300 />
+                }
+                {this.state.showPicker500 && 
+                    <this.Picker500 />
+                }
             </div>
         );
     }

@@ -30,69 +30,6 @@ body {
     }
 }
 
-@media (max-width: 429px) {
-    .commercial-ad-item {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-@media (min-width: 768px) {
-	.container {
-		width: 758px;
-	}    
-}
-@media (min-width: 992px) {
-	.container {
-		width: 966px;
-    }    
-}
-@media (min-width: 1260px) {
-	.container {
-		width: 1230px;
-    }
-}
-
-@media (max-width: 629px) {
-    .commercial-ad-item {
-        margin: auto;
-    }
-}
-
-@media (max-width: 1259px) {
-    .page-header img.singtao-logo {
-        height: auto;
-        padding-top: 7px;
-        width: 206px;
-    }
-}
-
-
-@media (max-width: 767px) {
-    .ad-item {
-        &.ad-wrapper {
-            display: block;
-            .ad-text {
-                margin-bottom: 20px;
-                padding-right: 0px;
-            }
-            .ad-img {
-                text-align: center;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    .navbar-nav {
-        margin-left: -30px;
-    }
-}
-
 .Header {
     .singtao-logo {
         height: 90px;
@@ -189,35 +126,6 @@ body {
     margin-bottom: 25px;
 }
 
-@media all and (min-width: 600px) {
-    .aside {
-        flex: 1 auto;
-    }
-}
-
-@media all and (min-width: 768px) {
-    .Main {
-        flex: 3 0px;
-        order: 2;
-    }
-    .left-side {
-        order: 1;
-        margin-right: 5px;
-        &.aside {
-            max-width: 300px;
-        }
-    }
-    .right-side {
-        order: 3;
-        margin-left: 5px;
-        &.aside {
-            max-width: 300px;
-        }
-    }
-    .Footer {
-        order: 4;
-    }
-}
 
 .contact {
     width: 300px;
@@ -294,6 +202,10 @@ span {
     }
     .media:last-child {
         margin-bottom: 25px;
+    }
+    #picker {
+        max-width: 867px;
+        margin: 40px 0 20px 0;
     }
 }
 
@@ -422,3 +334,95 @@ span {
 }
 
 ///////////// End of BS desktop nav styling /////////////
+
+@media all and (max-width: 429px) {
+    .commercial-ad-item {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media all and (min-width: 768px) {
+	.container {
+		width: 758px;
+	}    
+}
+@media all and (min-width: 992px) {
+	.container {
+		width: 966px;
+    }    
+}
+@media all and (min-width: 1260px) {
+	.container {
+		width: 1230px;
+    }
+}
+
+@media all and (max-width: 629px) {
+    .commercial-ad-item {
+        margin: auto;
+    }
+}
+
+@media all and (max-width: 1259px) {
+    .page-header img.singtao-logo {
+        height: auto;
+        padding-top: 7px;
+        width: 206px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .ad-item {
+        &.ad-wrapper {
+            display: block;
+            .ad-text {
+                margin-bottom: 20px;
+                padding-right: 0px;
+            }
+            .ad-img {
+                text-align: center;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 768px) {
+    .navbar-nav {
+        margin-left: -30px;
+    }
+}
+
+@media all and (min-width: 600px) {
+    .aside {
+        flex: 1 auto;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .Main {
+        flex: 3 0px;
+        order: 2;
+    }
+    .left-side {
+        order: 1;
+        margin-right: 5px;
+        &.aside {
+            max-width: 300px;
+        }
+    }
+    .right-side {
+        order: 3;
+        margin-left: 5px;
+        &.aside {
+            max-width: 300px;
+        }
+    }
+    .Footer {
+        order: 4;
+    }
+}

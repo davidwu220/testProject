@@ -141,6 +141,7 @@ class App extends Component {
                     onClasMenuClick={this.fetchClasAds}
                     onComMenuClick={this.fetchComAds} />
                 <Main 
+                    currentCat={this.state.category}
                     clasCat={this.state.clasCat}
                     catTitle={this.state.catTitle}
                     initialData={this.props.initialData}
