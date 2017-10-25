@@ -5,12 +5,12 @@ import App from './src/components/App';
 import axios from 'axios';
 import config from './config';
 
-const serverRender = ({type, path}) => (
-    axios.get(`${config.serverUrl}/api/${type}/${path}`)
+const serverRender = ({type, path, query}) => (
+    axios.get(`${config.serverUrl}/api/${type}/${path}${query}`)
         .then(res => {
             return res.data;
         })
-        .catch((err) => {})
+        .catch((err) => console.error(err))
 )
 
 export default serverRender;

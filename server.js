@@ -16,47 +16,42 @@ server.use(sassMiddleware({
 server.set('view engine', 'ejs');
 
 server.get('/' , (req, res) => {
-    // TODO: Put classifiedAds for now before figuring out more data
-    let type = "home";
+    res.render('index', {
+        type: "home",
+        initialCat: null,
+        initialData: []
+    });
 
-    let initialCat;
-    serverRender({type, path})
-        .then((initialData) => {
-            res.render('index', {
-                type,
-                initialCat,
-                initialData
-            });
-        })
-        .catch((error) => 
-        console.error(error));
 });
 
-server.get('/classifiedAds/:cat?/:id?' , (req, res) => {
-    // TODO: might need to validate category in the future
-    let type = "classifiedAds";
-    let path = "";
-    
-    if (req.params.cat) {
-        path = req.params.cat;
-        if (req.params.id) {
-            path = req.params.cat + '/' + req.params.id
-        }
+server.get('/classifiedAds/:cat?' , (req, res) => {
+    let request = "";
+    if (req.query.id) {
+        request = "?id=" + req.query.id;
+    } else if (req.query.page) {
+        request = "?page=" + req.query.page;
     }
-    serverRender({type, path})
-        .then((initialData) => {
-            res.render('index', {
-                type,
-                initialCat: req.params.cat,
-                initialData
-            });
-        })
-        .catch((error) => 
+    serverRender(
+        {
+            type: "classifiedAds", 
+            path: req.params.cat ? req.params.cat : "",
+            query: request
+        }
+    )
+    .then((initialData) => {
+        res.render('index', {
+            type: "classifiedAds",
+            initialCat: req.params.cat,
+            initialData
+        });
+    })
+    .catch((error) => 
         console.error(error));
 });
+
+
 
 server.get('/commercialAds/:cat?/:id?' , (req, res) => {
-    // TODO: might need to validate category in the future
     let type = "commercialAds";
     let path = "";
 

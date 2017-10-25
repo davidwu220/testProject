@@ -14,7 +14,7 @@ class ClassifiedSection extends Component {
             );
         } else if (this.props.adList.hasOwnProperty("classifiedAds")) {
             list = this.props.adList.classifiedAds.map((ad) => 
-                <ClassifiedAd key={ad.id} data={ad} />
+                <ClassifiedAd key={ad._id} data={ad} />
         );
         } else {
             list = <ClassifiedAd data={this.props.adList} />

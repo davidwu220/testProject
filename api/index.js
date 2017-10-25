@@ -37,7 +37,8 @@ router.get('/classifiedAds', (req, res) => {
     //res.send({ classifiedAds: data.classifiedAds });
     // finds documents with 4hr time offset
     mdb.collection('ads')
-        .find({
+        .find(
+            {
                 "type": "classifiedAds",
                 "date": formatDate(dayWithOffset(-4))
             }
@@ -48,25 +49,51 @@ router.get('/classifiedAds', (req, res) => {
     });
 });
 
-router.get('/classifiedAds/:class/:id?', (req, res) => {
-    // if (req.params.id) {
-    //     let itemInCat = findAdById(req.params.id, data.classifiedAds);
-    //     res.send(itemInCat);
-    // } else {
-    //     let listInCat = findObjsByClass(req.params.class, data.classifiedAds);
-    //     res.send(listInCat);
-    // }
+router.get('/classifiedAds/:class', (req, res) => {
 
-    mdb.collection('ads')
-        .find({
-            "type": "classifiedAds",
-            "date": formatDate(dayWithOffset(-4)), 
-            "class": req.params.class
-        })
-        .toArray((err, docs) => {
-            assert.equal(null, err);
-            res.send(docs);
-        });
+    if (req.query.id) {
+        mdb.collection('ads')
+            .find(
+                {
+                    "id": req.query.id,
+                    "type": "classifiedAds",
+                    "date": formatDate(dayWithOffset(-4)), 
+                    "class": req.params.class
+                }
+            )
+            .toArray((err, docs) => {
+                assert.equal(null, err);
+                res.send(docs);
+            });
+    } else if (req.query.page) {
+        // need fixing
+        mdb.collection('ads')
+            .find(
+                {
+                    "type": "classifiedAds",
+                    "date": formatDate(dayWithOffset(-4)), 
+                    "class": req.params.class
+                }
+            )
+            .toArray((err, docs) => {
+                assert.equal(null, err);
+                res.send(docs);
+            });
+    } else {
+        mdb.collection('ads')
+            .find(
+                {
+                    "type": "classifiedAds",
+                    "date": formatDate(dayWithOffset(-4)), 
+                    "class": req.params.class
+                }
+            )
+            .toArray((err, docs) => {
+                assert.equal(null, err);
+                res.send(docs);
+            });
+    }
+
 });
 
 router.get('/commercialAds', (req, res) => {
