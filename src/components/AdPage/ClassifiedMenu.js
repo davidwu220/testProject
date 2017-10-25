@@ -7,12 +7,6 @@ class ClassifiedMenu extends Component {
     in500 = [];
     first300;
     first500;
-    state = {
-        showPicker300: parseInt(this.props.currentCat/100) == 3,
-        showPicker500: parseInt(this.props.currentCat/100) == 5
-    }
-
-    
 
     check300 = (is300) => {
         return parseInt(is300/100) == 3;
@@ -88,25 +82,16 @@ class ClassifiedMenu extends Component {
 
     handleClick = (cls) => {
         if (cls == "300") {
-            this.setState({
-                showPicker300: true,
-                showPicker500: false
-            })
+            this.props.setPicker(cls);
 
             this.props.onClasMenuClick(this.first300);
         } else if (cls == "500") {
-            this.setState({
-                showPicker300: false,
-                showPicker500: true
-
-            })
+            this.props.setPicker(cls);
 
             this.props.onClasMenuClick(this.first500);
         } else {
-            this.setState({
-                showPicker300: false,
-                showPicker500: false
-            })
+            this.props.setPicker(cls);
+
             this.props.onClasMenuClick(cls);
         }
 
@@ -120,9 +105,9 @@ class ClassifiedMenu extends Component {
 
     Picker300 = () => {
         return (
-            <select id="picker" className="form-control" onChange={this.onPickerChange}>
+            <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
                 {this.in300.map(cat => 
-                    <option key={cat} value={cat}>{this.getCity(cat)}</option>
+                    <option key={cat} value={cat}>住宅出租 {this.getCity(cat)}</option>
                 )}
             </select>
         );
@@ -130,9 +115,9 @@ class ClassifiedMenu extends Component {
 
     Picker500 = () => {
         return (
-            <select id="picker" className="form-control" onChange={this.onPickerChange}>
+            <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
                 {this.in500.map(cat => 
-                    <option key={cat} value={cat}>{this.getCity(cat)}</option>
+                    <option key={cat} value={cat}>住宅出售 {this.getCity(cat)}</option>
                 )}
             </select>
         );
@@ -322,10 +307,10 @@ class ClassifiedMenu extends Component {
                     </div>
                 </div>}
 
-                {this.state.showPicker300 && 
+                {this.props.show300Picker && 
                     <this.Picker300 />
                 }
-                {this.state.showPicker500 && 
+                {this.props.show500Picker && 
                     <this.Picker500 />
                 }
             </div>

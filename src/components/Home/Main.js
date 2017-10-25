@@ -11,6 +11,9 @@ class Main extends Component {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
                     <ClassifiedSection 
+                        setPicker={this.props.setPicker}
+                        show300Picker={this.props.show300Picker}
+                        show500Picker={this.props.show500Picker}
                         currentCat={this.props.currentCat}
                         clasCat={ this.props.clasCat }
                         catTitle={ this.props.catTitle }
@@ -32,6 +35,9 @@ class Main extends Component {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
                     <ClassifiedSection 
+                        setPicker={this.props.setPicker}
+                        show300Picker={this.props.show300Picker}
+                        show500Picker={this.props.show500Picker}
                         currentCat={this.props.currentCat}
                         clasCat={ this.props.clasCat }
                         catTitle={ this.props.catTitle }

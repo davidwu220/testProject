@@ -16,6 +16,8 @@ window.onpopstate = handler;
 
 class App extends Component {
     state = { 
+        show300Picker: false,
+        show500Picker: false,
         clasCat: [],
         catTitle: [],
         adList: this.props.initialData,
@@ -79,6 +81,25 @@ class App extends Component {
         // !!!!remember to unmount timer!!!!
     }
 
+    setPicker = (cat) => {
+        if (cat == 300) {
+            this.setState({
+                show300Picker: true,
+                show500Picker: false
+            });
+        } else if (cat == 500) {
+            this.setState({
+                show300Picker: false,
+                show500Picker: true
+            });
+        } else {
+            this.setState({
+                show300Picker: false,
+                show500Picker: false
+            });
+        }
+    }
+
     fetchHome = () => {
         
         this.setState({
@@ -137,10 +158,14 @@ class App extends Component {
             <div className="App wrapper">
                 <Header />
                 <Menu
+                    setPicker={this.setPicker}
                     onHomeMenuClick={this.fetchHome}
                     onClasMenuClick={this.fetchClasAds}
                     onComMenuClick={this.fetchComAds} />
                 <Main 
+                    show300Picker={this.state.show300Picker}
+                    show500Picker={this.state.show500Picker}
+                    setPicker={this.setPicker}
                     currentCat={this.state.category}
                     clasCat={this.state.clasCat}
                     catTitle={this.state.catTitle}

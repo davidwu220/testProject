@@ -36,6 +36,9 @@ class ClassifiedSection extends Component {
                 </div>
         
                 <ClassifiedMenu 
+                    setPicker={this.props.setPicker}
+                    show300Picker={this.props.show300Picker}
+                    show500Picker={this.props.show500Picker}
                     currentCat={this.props.currentCat}
                     clasCat={ this.props.clasCat }
                     catTitle={ this.props.catTitle }

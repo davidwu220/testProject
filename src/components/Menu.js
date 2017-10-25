@@ -6,6 +6,7 @@ class Menu extends Component {
 
     handleClick = (button) => {
         $(".menu-item").removeClass("is-active");
+        this.props.setPicker(null);
 
         let menuButton = "";
         
