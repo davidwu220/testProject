@@ -19,9 +19,6 @@ let formatDate = (date) => {
 
 let today = formatDate(Date.now());
 
-
-
-
 MongoClient.connect(config.mongodbUri, (err, db) => {
     assert.equal(null, err);
 
