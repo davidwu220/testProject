@@ -13,7 +13,7 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
 
     // trim duplicate categories
     for (let uniqCat of tempCatList) {
-        if (clasCat.includes(uniqCat) == false) {
+        if (clasCat.indexOf(uniqCat) === -1) {
             switch (uniqCat) {
                 case "101_102": case "106": case "103_104": case "105":
                     catTitle.push(1);
