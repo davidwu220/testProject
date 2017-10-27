@@ -20,6 +20,7 @@ class App extends Component {
         show500Picker: false,
         clasCat: [],
         catTitle: [],
+        initialData: this.props.initialData,
         adList: this.props.initialData,
         category: window.initialCat || "",
         view: window.initialView
@@ -153,11 +154,38 @@ class App extends Component {
             });
     }
 
+    charInEachStr = (arr, char) => {
+        let yesno = false;
+        arr.forEach(function(element) {
+            if (element.search(char) !== -1) {
+                return yesno = true;
+            }
+        }, this);
+
+        return yesno;
+    }
+
+    onSearchChange = (event) => {
+        event.preventDefault();
+        let updatedList = this.state.initialData;
+
+        let searchStr = event.target.value;
+        // filter adlist
+        updatedList = updatedList.filter(item => {
+            if (item.title.search(searchStr) !== -1 || this.charInEachStr(item.description, searchStr)) {
+                return true;
+            } else return false;
+        });
+        // setState
+        this.setState({adList: updatedList});
+    }
+
     render() {
         return (
             <div className="App">
                 <Header />
                 <Menu
+                    onSearchChange={this.onSearchChange}
                     setPicker={this.setPicker}
                     onHomeMenuClick={this.fetchHome}
                     onClasMenuClick={this.fetchClasAds}

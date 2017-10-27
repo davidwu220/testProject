@@ -23,7 +23,7 @@ class ClassifiedAd extends Component {
                     </div>
                     <div className="ad-desc">
                         {this.props.data.description.map((desc,id) => 
-                            <div key={id}>{desc}</div>
+                            <div key={this.props.data._id + id + "description"}>{desc}</div>
                         )}
                     </div>
                 </div>
