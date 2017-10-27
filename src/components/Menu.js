@@ -21,55 +21,58 @@ class Menu extends Component {
             this.props.onHomeMenuClick("");
         }
 
-        $(menuButton).addClass("is-active");
+        $(menuButton).addClass("active");
         if(this.previousSelection != "" && button != this.previousSelection) {
-            $(this.previousSelection).removeClass("is-active");
+            $(this.previousSelection).removeClass("active");
         }
         this.previousSelection = menuButton;
 
-        let timeingOffset;
-        let marginOffset;
+        // let timeingOffset;
+        // let marginOffset;
         
-        if ( $(window).width() < 768) {
+        if ( $(window).width() < 992) {
             $(".navbar-collapse").collapse('hide');
-            timeingOffset = 1500;
-            marginOffset = 65;
-        } else {
-            timeingOffset = 800;
-            marginOffset = 50;
+        //     timeingOffset = 1500;
+        //     marginOffset = 70;
+        // } else {
+        //     timeingOffset = 800;
+        //     marginOffset = 70;
         }
-        setTimeout(() => {
-            $('html, body').animate({
-                scrollTop: $(button).offset().top - marginOffset
-            }, timeingOffset);
-        }, 300);
+        // setTimeout(() => {
+        //     $('html, body').animate({
+        //         scrollTop: $(button).offset().top - marginOffset
+        //     }, timeingOffset);
+        // }, 300);
     }
 
     render() {
         return (
-            <div className="Menu sticky">
-                <nav id="non-mob-menu" className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-menubuilder">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div className="collapse navbar-collapse navbar-menubuilder">
-                            <ul className="nav navbar-nav navbar-left">
-                                <li><a id="home-btn" onClick={() => this.handleClick("body")}>星島廣告首頁</a>
-                                </li>
-                                <li><a id="classified-ad-btn" onClick={() => this.handleClick("#classified-ad")}>星島分類廣告</a>
-                                </li>
-                                <li><a id="commercial-ad-btn" onClick={() => this.handleClick("#commercial-ad")}>星島商業廣告</a>
-                                </li>
-                                <li><a href="https://www.singtaousa.com/la/" target="_blank">星島新聞首頁</a>
-                                </li>
-                            </ul>
-                        </div>
+            <div className="Menu sticky-top">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <a className="navbar-brand" href="/">星島日報</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                    </button>
+                
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" id="home-btn" onClick={() => this.handleClick("body")}>星島廣告首頁 <span className="sr-only">(current)</span></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="classified-ad-btn" onClick={() => this.handleClick("#classified-ad")}>星島分類廣告</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="commercial-ad-btn" onClick={() => this.handleClick("#commercial-ad")}>星島商業廣告</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="https://www.singtaousa.com/la/" target="_blank">星島新聞首頁</a>
+                        </li>
+                    </ul>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                     </div>
                 </nav>
             </div>

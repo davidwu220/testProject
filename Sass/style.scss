@@ -1,9 +1,9 @@
 body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    background-color: #f7f7f7;
 }
 
 .aside {
+    margin-top: 20px;
     * {
         margin-bottom: 10px;
     }
@@ -34,13 +34,14 @@ body {
     .singtao-logo {
         height: 90px;
         width: auto;
+        transition: all 0.5s;
     }
-    .ad-posting-link {
-        float: right;
-    }
-    .singtao-life {
-        float: left;
-    }
+    // .ad-posting-link {
+    //     float: right;
+    // }
+    // .singtao-life {
+    //     float: left;
+    // }
     // margin: 0px !important;
     // background: tomato;
     // color: #fff;
@@ -73,7 +74,7 @@ body {
 
 .commercial-ad-bar {
     overflow: hidden;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .commercial-ad-item {
@@ -162,7 +163,7 @@ span {
     &.fa {
         width: 30px;
         height: 30px;
-        line-height: 31px;
+        line-height: 30px;
         border-radius: 30px;
         text-align: center;
         color: rgb(80, 80, 80);
@@ -183,15 +184,23 @@ span {
     
 }
 
+.classified-ad-bar {
+    overflow: hidden;
+    margin: 20px 0;
+}
+
 .classified-ad-menu {
+    .media {
+        margin: 15px 0;
+    }
     .media-body {
-        padding-top: 3px;
+        padding-top: 2px;
         white-space: pre-wrap;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         a.menu-item {
             padding: 3px 10px;
             text-decoration: none;
-            transition: all 0.8s cubic-bezier(0, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
             &.is-active {
                 color: #b60f15;
                 background-color: #ddd;
@@ -200,9 +209,9 @@ span {
             }
         }
     }
-    .media:last-child {
-        margin-bottom: 25px;
-    }
+    // .media:last-child {
+    //     margin-bottom: 25px;
+    // }
     #picker {
         max-width: 867px;
         margin: 40px 0 20px 0;
@@ -241,11 +250,11 @@ span {
         padding-top: 6px;
         padding-bottom: 4px;
         text-align: center;
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: bold;
     }
     .ad-desc {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .ad-img {
         flex: 0 0 auto;
@@ -263,97 +272,112 @@ span {
     }
 }
 
-///////////// BS desktop nav styling /////////////
-#non-mob-menu.navbar {
-    min-height: 37px !important;
-    margin-bottom: 17px;
-}
-
-#non-mob-menu.navbar-default {
-    font-size: 1.4rem;
-    background-color: white;
-    border-width: 0 0 4px 0;
-    border-color: #231815;
-    border-radius: 0;
-}
-
-#non-mob-menu.navbar-default .navbar-nav>li>a {
-    &.is-active {
-        color: #b60f15;
-        background-color: #ddd;
-        border-radius: 3px;
-        text-decoration: underline;
+nav {
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,.3);
+    a {
+        cursor: pointer;
     }
-    height: 37px;
-    padding: 5px 37px;
-    line-height: 26px;
-    font-size: 1.6rem;
-    text-align: center;
-    color: #231815;
-    background-color: white;
 }
 
-#non-mob-menu.navbar-default .navbar-nav>li {
-    cursor: pointer;
-    border-right: 1px solid #231815;
-}
+///////////// BS desktop nav styling /////////////
+// #non-mob-menu.navbar {
+//     min-height: 37px !important;
+//     margin-bottom: 17px;
+// }
 
-#non-mob-menu.navbar-default .navbar-nav>li:last-child {
-    border-right: none;
-}
+// #non-mob-menu.navbar-default {
+//     font-size: 1.4rem;
+//     background-color: white;
+//     border-width: 0 0 4px 0;
+//     border-color: #231815;
+//     border-radius: 0;
+// }
 
-#non-mob-menu.navbar-default .navbar-nav>li>a:hover,
-#non-mob-menu.navbar-default .navbar-nav>li>a:focus {
-    color: #b60f15;
-    background-color: #eeeeee;
-}
+// #non-mob-menu.navbar-default .navbar-nav>li>a {
+//     &.is-active {
+//         color: #b60f15;
+//         background-color: #ddd;
+//         border-radius: 3px;
+//         text-decoration: underline;
+//     }
+//     height: 37px;
+//     padding: 5px 37px;
+//     line-height: 26px;
+//     font-size: 1.6rem;
+//     text-align: center;
+//     color: #231815;
+//     background-color: white;
+// }
 
-#non-mob-menu.navbar-default .navbar-nav>.active>a,
-#non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
-#non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
-    color: #b60f15;
-    background-color: #ddd;
-}
+// #non-mob-menu.navbar-default .navbar-nav>li {
+//     cursor: pointer;
+//     border-right: 1px solid #231815;
+// }
 
-#non-mob-menu.navbar-default .navbar-toggle {
-    border-color: #ddd;
-}
+// #non-mob-menu.navbar-default .navbar-nav>li:last-child {
+//     border-right: none;
+// }
 
-#non-mob-menu.navbar-default .navbar-toggle:hover,
-#non-mob-menu.navbar-default .navbar-toggle:focus {
-    background-color: white;
-}
+// #non-mob-menu.navbar-default .navbar-nav>li>a:hover,
+// #non-mob-menu.navbar-default .navbar-nav>li>a:focus {
+//     color: #b60f15;
+//     background-color: #eeeeee;
+// }
 
-#non-mob-menu.navbar-default .navbar-toggle .icon-bar {
-    background-color: #888;
-}
+// #non-mob-menu.navbar-default .navbar-nav>.active>a,
+// #non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
+// #non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
+//     color: #b60f15;
+//     background-color: #ddd;
+// }
 
-#non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
-#non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
-    background-color: #888;
-}
+// #non-mob-menu.navbar-default .navbar-toggle {
+//     border-color: #ddd;
+// }
 
-///////////// End of BS desktop nav styling /////////////
+// #non-mob-menu.navbar-default .navbar-toggle:hover,
+// #non-mob-menu.navbar-default .navbar-toggle:focus {
+//     background-color: white;
+// }
+
+// #non-mob-menu.navbar-default .navbar-toggle .icon-bar {
+//     background-color: #888;
+// }
+
+// #non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
+// #non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
+//     background-color: #888;
+// }
+
+///////////// End of BS desktop  styling /////////////
+.my-container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 @media all and (max-width: 429px) {
     .commercial-ad-item {
         width: 100%;
         height: 100%;
+        margin: 10px;
     }
 }
 
 @media all and (min-width: 768px) {
-	.container {
+	.my-container {
 		width: 758px;
 	}    
 }
 @media all and (min-width: 992px) {
-	.container {
+	.my-container {
 		width: 966px;
     }    
 }
 @media all and (min-width: 1260px) {
-	.container {
+	.my-container {
 		width: 1230px;
     }
 }
@@ -366,9 +390,8 @@ span {
 
 @media all and (max-width: 1259px) {
     .page-header img.singtao-logo {
-        height: auto;
+        height: 120px;
         padding-top: 7px;
-        width: 206px;
     }
 }
 
@@ -382,20 +405,17 @@ span {
             }
             .ad-img {
                 text-align: center;
-                img {
-                    width: 100%;
-                    height: auto;
-                }
+                
             }
         }
     }
 }
 
-@media all and (min-width: 768px) {
-    .navbar-nav {
-        margin-left: -30px;
-    }
-}
+// @media all and (min-width: 768px) {
+//     .navbar-nav {
+//         margin-left: -30px;
+//     }
+// }
 
 @media all and (min-width: 600px) {
     .aside {

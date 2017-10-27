@@ -155,26 +155,28 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App wrapper">
+            <div className="App">
                 <Header />
                 <Menu
                     setPicker={this.setPicker}
                     onHomeMenuClick={this.fetchHome}
                     onClasMenuClick={this.fetchClasAds}
                     onComMenuClick={this.fetchComAds} />
-                <Main 
-                    show300Picker={this.state.show300Picker}
-                    show500Picker={this.state.show500Picker}
-                    setPicker={this.setPicker}
-                    currentCat={this.state.category}
-                    clasCat={this.state.clasCat}
-                    catTitle={this.state.catTitle}
-                    initialData={this.props.initialData}
-                    viewState={this.state.view}
-                    onClasMenuClick={this.fetchClasAds}
-                    onComMenuClick={this.fetchComAds}
-                    adList={this.state.adList} />
-                <RightSide />
+                <div className="wrapper">
+                    <Main 
+                        show300Picker={this.state.show300Picker}
+                        show500Picker={this.state.show500Picker}
+                        setPicker={this.setPicker}
+                        currentCat={this.state.category}
+                        clasCat={this.state.clasCat}
+                        catTitle={this.state.catTitle}
+                        initialData={this.props.initialData}
+                        viewState={this.state.view}
+                        onClasMenuClick={this.fetchClasAds}
+                        onComMenuClick={this.fetchComAds}
+                        adList={this.state.adList} />
+                    <RightSide />
+                </div>
                 <Footer />
             </div>
         );

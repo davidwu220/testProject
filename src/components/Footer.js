@@ -7,9 +7,7 @@ const Footer = () => (
                 <div>
                     <div className="title">聯絡我們</div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-phone"></span>
-                        </div>
+                        <span className="fa fa-phone mr-3"></span>
                         <div className="media-body">
                             <span>總機 Main：</span>
                             <span><a href="tel:6269568200">(626) 956-8200</a> (電話), </span>
@@ -18,9 +16,7 @@ const Footer = () => (
                         </div>
                     </div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-phone"></span>
-                        </div>
+                        <span className="fa fa-phone mr-3"></span>
                         <div className="media-body">
                             <span>廣告/市場部 Advertising & Marketing：</span>
                             <span><a href="tel:6269568200">(626) 956-8200</a> (電話), </span>
@@ -29,9 +25,7 @@ const Footer = () => (
                         </div>
                     </div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-phone"></span>
-                        </div>
+                        <span className="fa fa-phone mr-3"></span>
                         <div className="media-body">
                             <span>訂閱部 Circulation Department：</span>
                             <span><a href="tel:6269568227">(626) 956-8227</a> (電話), </span>
@@ -40,9 +34,7 @@ const Footer = () => (
                         </div>
                     </div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-envelope"></span>
-                        </div>
+                        <span className="fa fa-envelope mr-3"></span>
                         <div className="media-body">
                             <span>會計部 Accounting Department：</span>
                             <span>(626) 956-8138 (傳真), </span>
@@ -50,18 +42,14 @@ const Footer = () => (
                         </div>
                     </div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-envelope"></span>
-                        </div>
+                        <span className="fa fa-envelope mr-3"></span>
                         <div className="media-body">
                             <span>新聞採訪部 News Department：</span>
                             <span><a href="mailto:reporter@singtaola.com">reporter@singtaola.com</a></span>
                         </div>
                     </div>
                     <div className="media">
-                        <div className="media-left">
-                            <span className="fa fa-envelope"></span>
-                        </div>
+                        <span className="fa fa-envelope mr-3"></span>
                         <div className="media-body">
                             <span>編輯部 Editorial  Department：</span>
                             <span><a href="mailto:editor@singtaola.com">editor@singtaola.com</a></span>

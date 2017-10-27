@@ -1,12 +1,12 @@
 body {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #f7f7f7; }
+  font-family: "Open Sans", Helvetica, Arial, sans-serif; }
 
-.aside * {
-  margin-bottom: 10px; }
-
-.aside .static-aside-ad {
-  border-radius: 18px; }
+.aside {
+  margin-top: 20px; }
+  .aside * {
+    margin-bottom: 10px; }
+  .aside .static-aside-ad {
+    border-radius: 18px; }
 
 .sticky {
   position: sticky;
@@ -24,13 +24,8 @@ body {
 
 .Header .singtao-logo {
   height: 90px;
-  width: auto; }
-
-.Header .ad-posting-link {
-  float: right; }
-
-.Header .singtao-life {
-  float: left; }
+  width: auto;
+  transition: all 0.5s; }
 
 .wrapper {
   display: -webkit-box;
@@ -56,7 +51,7 @@ body {
 
 .commercial-ad-bar {
   overflow: hidden;
-  margin-bottom: 20px; }
+  margin: 20px 0; }
 
 .commercial-ad-item {
   margin-bottom: 20px; }
@@ -125,7 +120,7 @@ span {
   span.fa {
     width: 30px;
     height: 30px;
-    line-height: 31px;
+    line-height: 30px;
     border-radius: 30px;
     text-align: center;
     color: #505050;
@@ -140,22 +135,26 @@ span {
       color: #b60f15;
       background-color: #ddd; }
 
+.classified-ad-bar {
+  overflow: hidden;
+  margin: 20px 0; }
+
+.classified-ad-menu .media {
+  margin: 15px 0; }
+
 .classified-ad-menu .media-body {
-  padding-top: 3px;
+  padding-top: 2px;
   white-space: pre-wrap;
-  font-size: 1.8rem; }
+  font-size: 1.2rem; }
   .classified-ad-menu .media-body a.menu-item {
     padding: 3px 10px;
     text-decoration: none;
-    transition: all 0.8s cubic-bezier(0, 0, 0.2, 1); }
+    transition: all 0.5s cubic-bezier(0, 0, 0.2, 1); }
     .classified-ad-menu .media-body a.menu-item.is-active {
       color: #b60f15;
       background-color: #ddd;
       border-radius: 3px;
       text-decoration: underline; }
-
-.classified-ad-menu .media:last-child {
-  margin-bottom: 25px; }
 
 .classified-ad-menu #picker {
   max-width: 867px;
@@ -189,10 +188,10 @@ span {
     padding-top: 6px;
     padding-bottom: 4px;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold; }
   .adList .ad-desc {
-    font-size: 2rem; }
+    font-size: 1.5rem; }
   .adList .ad-img {
     flex: 0 0 auto;
     margin: auto; }
@@ -205,78 +204,34 @@ span {
     -mox-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
 
-#non-mob-menu.navbar {
-  min-height: 37px !important;
-  margin-bottom: 17px; }
+nav {
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3); }
+  nav a {
+    cursor: pointer; }
 
-#non-mob-menu.navbar-default {
-  font-size: 1.4rem;
-  background-color: white;
-  border-width: 0 0 4px 0;
-  border-color: #231815;
-  border-radius: 0; }
-
-#non-mob-menu.navbar-default .navbar-nav > li > a {
-  height: 37px;
-  padding: 5px 37px;
-  line-height: 26px;
-  font-size: 1.6rem;
-  text-align: center;
-  color: #231815;
-  background-color: white; }
-  #non-mob-menu.navbar-default .navbar-nav > li > a.is-active {
-    color: #b60f15;
-    background-color: #ddd;
-    border-radius: 3px;
-    text-decoration: underline; }
-
-#non-mob-menu.navbar-default .navbar-nav > li {
-  cursor: pointer;
-  border-right: 1px solid #231815; }
-
-#non-mob-menu.navbar-default .navbar-nav > li:last-child {
-  border-right: none; }
-
-#non-mob-menu.navbar-default .navbar-nav > li > a:hover,
-#non-mob-menu.navbar-default .navbar-nav > li > a:focus {
-  color: #b60f15;
-  background-color: #eeeeee; }
-
-#non-mob-menu.navbar-default .navbar-nav > .active > a,
-#non-mob-menu.navbar-default .navbar-nav > .active > a:hover,
-#non-mob-menu.navbar-default .navbar-nav > .active > a:focus {
-  color: #b60f15;
-  background-color: #ddd; }
-
-#non-mob-menu.navbar-default .navbar-toggle {
-  border-color: #ddd; }
-
-#non-mob-menu.navbar-default .navbar-toggle:hover,
-#non-mob-menu.navbar-default .navbar-toggle:focus {
-  background-color: white; }
-
-#non-mob-menu.navbar-default .navbar-toggle .icon-bar {
-  background-color: #888; }
-
-#non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
-#non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
-  background-color: #888; }
+.my-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
 
 @media all and (max-width: 429px) {
   .commercial-ad-item {
     width: 100%;
-    height: 100%; } }
+    height: 100%;
+    margin: 10px; } }
 
 @media all and (min-width: 768px) {
-  .container {
+  .my-container {
     width: 758px; } }
 
 @media all and (min-width: 992px) {
-  .container {
+  .my-container {
     width: 966px; } }
 
 @media all and (min-width: 1260px) {
-  .container {
+  .my-container {
     width: 1230px; } }
 
 @media all and (max-width: 629px) {
@@ -285,9 +240,8 @@ span {
 
 @media all and (max-width: 1259px) {
   .page-header img.singtao-logo {
-    height: auto;
-    padding-top: 7px;
-    width: 206px; } }
+    height: 120px;
+    padding-top: 7px; } }
 
 @media all and (max-width: 767px) {
   .ad-item.ad-wrapper {
@@ -296,14 +250,7 @@ span {
       margin-bottom: 20px;
       padding-right: 0px; }
     .ad-item.ad-wrapper .ad-img {
-      text-align: center; }
-      .ad-item.ad-wrapper .ad-img img {
-        width: 100%;
-        height: auto; } }
-
-@media all and (min-width: 768px) {
-  .navbar-nav {
-    margin-left: -30px; } }
+      text-align: center; } }
 
 @media all and (min-width: 600px) {
   .aside {
