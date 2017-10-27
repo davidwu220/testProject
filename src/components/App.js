@@ -125,6 +125,7 @@ class App extends Component {
                 this.setState({
                     view: "classifiedAds",
                     category: adClass,
+                    initialData: adsInClass,
                     adList: adsInClass
                 });
                 console.log("pushing state: category:", adClass, "view: classifiedAds", "adList", this.state.adList )
