@@ -22,11 +22,16 @@ body {
 .Menu {
     margin: 0px !important;
     z-index: 100;
-    .is-active {
-        color: #b60f15;
-        background-color: #ddd;
-        border-radius: 3px;
-        text-decoration: underline;
+    font-size: 1.1rem;
+    .nav-link {
+        transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
+        &.is-active {
+            color: white !important;
+            font-weight: bold;
+            background-color: #06c8b8;
+            border-radius: 3px;
+            text-decoration: underline !important;
+        }
     }
 }
 
@@ -202,8 +207,8 @@ span {
             text-decoration: none;
             transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
             &.is-active {
-                color: #b60f15;
-                background-color: #ddd;
+                color: white;
+                background-color: #06c8b8;
                 border-radius: 3px;
                 text-decoration: underline;
             }
@@ -280,20 +285,39 @@ nav {
 }
 
 ///////////// BS desktop nav styling /////////////
-// #non-mob-menu.navbar {
+/* change the background color */
+// .navbar-custom {
+//     background-color: #f8f9fa;
+// }
+
+// /* change the link color */
+// .navbar-custom .navbar-nav .nav-link {
+//     text-align: center;
+//     color: rgba(51, 51, 51, 0.5);
+// }
+// /* change the color of active or hovered links */
+// .navbar-custom .nav-item .nav-link.is-active,
+// .navbar-custom .nav-item:hover .nav-link {
+//     color: #b60f15 !important;
+//     background-color: #ddd;
+//     text-decoration: underline !important;
+// }
+
+
+// .navbar {
 //     min-height: 37px !important;
 //     margin-bottom: 17px;
 // }
 
-// #non-mob-menu.navbar-default {
-//     font-size: 1.4rem;
+// .navbar-custom {
+//     font-size: 1.1rem;
 //     background-color: white;
 //     border-width: 0 0 4px 0;
 //     border-color: #231815;
 //     border-radius: 0;
 // }
 
-// #non-mob-menu.navbar-default .navbar-nav>li>a {
+// .navbar-custom .nav-item .nav-link {
 //     &.is-active {
 //         color: #b60f15;
 //         background-color: #ddd;
@@ -303,49 +327,46 @@ nav {
 //     height: 37px;
 //     padding: 5px 37px;
 //     line-height: 26px;
-//     font-size: 1.6rem;
 //     text-align: center;
-//     color: #231815;
-//     background-color: white;
 // }
 
-// #non-mob-menu.navbar-default .navbar-nav>li {
+// .navbar-custom .nav-item {
 //     cursor: pointer;
 //     border-right: 1px solid #231815;
 // }
 
-// #non-mob-menu.navbar-default .navbar-nav>li:last-child {
+// .navbar-custom .nav-item:last-child {
 //     border-right: none;
 // }
 
-// #non-mob-menu.navbar-default .navbar-nav>li>a:hover,
-// #non-mob-menu.navbar-default .navbar-nav>li>a:focus {
+// .navbar-custom .nav-item .nav-link:hover,
+// .navbar-custom .nav-item .nav-link:focus {
 //     color: #b60f15;
-//     background-color: #eeeeee;
+//     background-color: rgb(238, 238, 238);
 // }
 
-// #non-mob-menu.navbar-default .navbar-nav>.active>a,
-// #non-mob-menu.navbar-default .navbar-nav>.active>a:hover,
-// #non-mob-menu.navbar-default .navbar-nav>.active>a:focus {
+// .navbar-default .navbar-nav>.active>a,
+// .navbar-default .navbar-nav>.active>a:hover,
+// .navbar-default .navbar-nav>.active>a:focus {
 //     color: #b60f15;
 //     background-color: #ddd;
 // }
 
-// #non-mob-menu.navbar-default .navbar-toggle {
+// .navbar-custom .navbar-toggler {
 //     border-color: #ddd;
 // }
 
-// #non-mob-menu.navbar-default .navbar-toggle:hover,
-// #non-mob-menu.navbar-default .navbar-toggle:focus {
+// .navbar-custom .navbar-toggler:hover,
+// .navbar-custom .navbar-toggler:focus {
 //     background-color: white;
 // }
 
-// #non-mob-menu.navbar-default .navbar-toggle .icon-bar {
+// .navbar-custom .navbar-toggler .navbar-toggler-icon {
 //     background-color: #888;
 // }
 
-// #non-mob-menu.navbar-default .navbar-toggle:hover .icon-bar,
-// #non-mob-menu.navbar-default .navbar-toggle:focus .icon-bar {
+// .navbar-custom .navbar-toggler:hover .navbar-toggler-icon,
+// .navbar-custom .navbar-toggler:focus .navbar-toggler-icon {
 //     background-color: #888;
 // }
 
