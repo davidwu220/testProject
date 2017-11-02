@@ -8,7 +8,7 @@ class SlidingAds extends Component {
 
     render() {
         return (
-            <div className="carousel" data-flickity='{ "lazyLoad": 2, "autoPlay": true, "wrapAround": true }'>
+            <div className="carousel" data-flickity='{ "lazyLoad": 2, "autoPlay": true, "imagesLoaded": true, "wrapAround": true }'>
                 <div className="carousel-cell">
                     <img className="carousel-cell-image" data-flickity-lazyload="/images/page_icons/placeholder.jpg" alt="First slide" />
                 </div>
