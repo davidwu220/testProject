@@ -37,6 +37,7 @@ body {
 .carousel {
     background-color: #000;
     max-width: 867px;
+    margin: 20px 0 40px 0;
 }
 
 .carousel-cell {
@@ -56,19 +57,10 @@ body {
 }
 
 .flickity-prev-next-button {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    background: #333;
+
 }
-.flickity-prev-next-button:hover {
-    background: #333;
-  }
-.flickity-prev-next-button .arrow {
-    fill: white;
-}
-.flickity-prev-next-button.no-svg {
-    color: white;
+.flickity-page-dots .dot.is-selected {
+    background: #06c8b8;
 }
 
 
@@ -420,13 +412,14 @@ nav {
 	.my-container {
 		width: 758px;
     }
-    .carousel {
-        margin: 20px 0 40px 0;
+    .flickity-prev-next-button {
+        width: 40px;
+        height: 40px;
     }
     /* dots are lines */
     .flickity-page-dots .dot {
         height: 3px;
-        width: 40px;
+        width: 60px;
         margin: 3px;
         border-radius: 0;
     }
@@ -456,12 +449,6 @@ nav {
 }
 
 @media all and (max-width: 767px) {
-    .carousel {
-        margin: 20px 0;
-    }
-    .flickity-page-dots {
-        bottom: 10px;
-    }
     .ad-item {
         &.ad-wrapper {
             display: block;
