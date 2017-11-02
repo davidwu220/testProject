@@ -21,9 +21,9 @@ class Menu extends Component {
             this.props.onHomeMenuClick("");
         }
 
-        $(menuButton).addClass("is-active");
-        if(this.previousSelection != "" && button != this.previousSelection) {
-            $(this.previousSelection).removeClass("is-active");
+        $(menuButton).addClass("active");
+        if(this.previousSelection != "" && menuButton != this.previousSelection) {
+            $(this.previousSelection).removeClass("active");
         }
         this.previousSelection = menuButton;
 

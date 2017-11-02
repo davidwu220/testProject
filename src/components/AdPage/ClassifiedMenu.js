@@ -97,6 +97,7 @@ class ClassifiedMenu extends Component {
 
         // set current viewing class active
         $('#'+cls).addClass("is-active");
+        
         if(this.previousClass != "" && cls != this.previousClass) {
             $('#'+this.previousClass).removeClass("is-active");
         }

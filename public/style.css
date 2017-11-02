@@ -21,10 +21,41 @@ body {
     transition: all 0.5s cubic-bezier(0, 0, 0.2, 1); }
     .Menu .nav-link.is-active {
       color: white !important;
-      font-weight: bold;
       background-color: #06c8b8;
       border-radius: 3px;
       text-decoration: underline !important; }
+
+.carousel {
+  background-color: #000;
+  max-width: 867px; }
+
+.carousel-cell {
+  width: 100%;
+  text-align: center; }
+
+.carousel-cell-image {
+  max-height: 400px;
+  transition: opacity 0.4s;
+  opacity: 0; }
+
+.carousel-cell-image.flickity-lazyloaded,
+.carousel-cell-image.flickity-lazyerror {
+  opacity: 1; }
+
+.flickity-prev-next-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: #333; }
+
+.flickity-prev-next-button:hover {
+  background: #333; }
+
+.flickity-prev-next-button .arrow {
+  fill: white; }
+
+.flickity-prev-next-button.no-svg {
+  color: white; }
 
 .Header .singtao-logo {
   height: 90px;
@@ -229,7 +260,15 @@ nav {
 
 @media all and (min-width: 768px) {
   .my-container {
-    width: 758px; } }
+    width: 758px; }
+  .carousel {
+    margin: 20px 0 40px 0; }
+  /* dots are lines */
+  .flickity-page-dots .dot {
+    height: 3px;
+    width: 40px;
+    margin: 3px;
+    border-radius: 0; } }
 
 @media all and (min-width: 992px) {
   .my-container {
@@ -249,6 +288,10 @@ nav {
     padding-top: 7px; } }
 
 @media all and (max-width: 767px) {
+  .carousel {
+    margin: 20px 0; }
+  .flickity-page-dots {
+    bottom: 10px; }
   .ad-item.ad-wrapper {
     display: block; }
     .ad-item.ad-wrapper .ad-text {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import SlidingAds from './SlidingAds';
 import ClassifiedSection from '../AdPage/ClassifiedSection';
 import CommercialSection from '../AdPage/CommercialSection';
 
@@ -10,6 +11,7 @@ class Main extends Component {
         if (this.props.viewState == "classifiedAds") {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
+                    <SlidingAds />
                     <ClassifiedSection 
                         setPicker={this.props.setPicker}
                         show300Picker={this.props.show300Picker}
@@ -25,6 +27,7 @@ class Main extends Component {
         } else if (this.props.viewState == "commercialAds") {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
+                    <SlidingAds />
                     <CommercialSection
                         viewState={ this.props.viewState } 
                         onComMenuClick={ this.props.onComMenuClick }
@@ -34,6 +37,7 @@ class Main extends Component {
         } else {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
+                    <SlidingAds />
                     <ClassifiedSection 
                         setPicker={this.props.setPicker}
                         show300Picker={this.props.show300Picker}
