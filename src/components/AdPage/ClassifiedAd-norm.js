@@ -27,7 +27,7 @@ class ClassifiedAd extends Component {
                         )}
                     </div>
                 </div>
-                <a href={this.props.data.image} data-fancybox="group" data-caption={this.props.data.title} className="ad-img">
+                <a href={this.props.data.image} data-fancybox="ad-group" data-caption={this.props.data.title} className="ad-img">
                     <img src={this.props.data.image} alt="Ad Picture"/>
                 </a>
             </div>
