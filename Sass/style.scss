@@ -46,7 +46,8 @@ body {
 }
 
 .carousel-cell-image {
-    max-height: 400px;
+    max-width: 768px;
+    width: 100%;
     transition: opacity 0.4s;
     opacity: 0;
 }
@@ -56,14 +57,13 @@ body {
     opacity: 1;
 }
 
-.flickity-prev-next-button {
-
-}
 .flickity-page-dots .dot.is-selected {
     background: #06c8b8;
 }
 
-
+.flickity-viewport {
+    transition: height 0.2s;
+}
 
 .Header {
     .singtao-logo {
@@ -404,7 +404,6 @@ nav {
     .commercial-ad-item {
         width: 100%;
         height: 100%;
-        margin: 10px;
     }
 }
 
@@ -438,6 +437,7 @@ nav {
 @media all and (max-width: 629px) {
     .commercial-ad-item {
         margin: auto;
+        padding-bottom: 20px;
     }
 }
 

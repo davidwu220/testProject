@@ -34,7 +34,7 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
 const router = express.Router();
 
 router.get('/classifiedAds', (req, res) => {
-    //res.send({ classifiedAds: data.classifiedAds });
+    
     // finds documents with 4hr time offset
     mdb.collection('ads')
         .find(
