@@ -5,7 +5,7 @@ import CarouselCell from './CarouselCell';
 
 class SlidingAds extends Component {
     state = {
-        shoudlPlay: "0",
+        shoudlPlay: '',
         ready: false
     }
 
@@ -15,6 +15,9 @@ class SlidingAds extends Component {
     }
     
     componentDidMount() {
+        // if the first slide is video, set it to play
+        this.setState({ shoudlPlay: '0' });
+
         var $carousel = $(".carousel").flickity({
             cellAlign: "center",
             contain: true,
@@ -26,10 +29,19 @@ class SlidingAds extends Component {
         var flkty = $carousel.data('flickity');
 
         $carousel.on("select.flickity", () => {
-            console.log(flkty.selectedIndex);
             if(this.state.ready) {
                 this.setState({ shoudlPlay: flkty.selectedIndex });
                 
+            }
+        });
+
+        // pause and unpause the video if the slide is clicked
+        $("[data-fancybox]").fancybox({
+            beforeShow: (instance, slide) => {
+                this.setState({ shoudlPlay: '' });
+            },
+            afterClose: (instance, slide) => {
+                this.setState({ shoudlPlay: flkty.selectedIndex });
             }
         });
     }
@@ -39,49 +51,52 @@ class SlidingAds extends Component {
             <div className="carousel">
                 <CarouselCell
                     type="video"
-                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    fullVidUrl="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                    shortVidUrl="https://www.youtube.com/watch?v=ysz5S6PUM-U"
                     id="0"
                     shouldPlay={this.state.shoudlPlay}
                     playerReady={this.playerReady}
+                    onVidClick={this.onVidClick}
                 />
-
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6254CF6.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6254CF6.png" alt="carousel slide" />
-                    </a>
-                </div>
+                <CarouselCell
+                    type="image"
+                    id="1"
+                    url="/ads/slider_ads/6254CF6.png"
+                />
                 <CarouselCell
                     type="video"
-                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    fullVidUrl="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                    shortVidUrl="https://www.youtube.com/watch?v=ysz5S6PUM-U"
                     id="2"
                     shouldPlay={this.state.shoudlPlay}
                     playerReady={this.playerReady}
+                    onVidClick={this.onVidClick}
                 />
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6277CF5.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6277CF5.png" alt="carousel slide" />
-                    </a>
-                </div>
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6283CHR11-1.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6283CHR11-1.png" alt="carousel slide" />
-                    </a>
-                </div>
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6283CHR11-2.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6283CHR11-2.png" alt="carousel slide" />
-                    </a>
-                </div>
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6615CF5.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6615CF5.png" alt="carousel slide" />
-                    </a>
-                </div>
-                <div className="carousel-cell">
-                    <a href="/ads/slider_ads/6615CF6A.png" data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload="/ads/slider_ads/6615CF6A.png" alt="carousel slide" />
-                    </a>
-                </div>
+                <CarouselCell
+                    type="image"
+                    id="3"
+                    url="/ads/slider_ads/6277CF5.png"
+                />
+                <CarouselCell
+                    type="image"
+                    id="4"
+                    url="/ads/slider_ads/6283CHR11-1.png"
+                />
+                <CarouselCell
+                    type="image"
+                    id="5"
+                    url="/ads/slider_ads/6283CHR11-2.png"
+                />
+                <CarouselCell
+                    type="image"
+                    id="6"
+                    url="/ads/slider_ads/6615CF5.png"
+                />
+                <CarouselCell
+                    type="image"
+                    id="7"
+                    url="/ads/slider_ads/6615CF6A.png"
+                />
             </div>
         );
     }

@@ -124,11 +124,11 @@ body {
         height: 100%;
         z-index: 2;
     }
-    &__externalLink {
+    &__overlay {
         position: absolute;
         left: 0;
-        width: 40%;
-        top: 45px;
+        width: 100%;
+        top: 0px;
         bottom: 45px;
         border: 2px solid green;
         z-index: 3;

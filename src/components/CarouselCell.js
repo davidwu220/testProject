@@ -16,11 +16,16 @@ class CarouselCell extends Component {
             return (
                 <div className="carousel-cell video-wrap" id={props.id}>
                     <ReactPlayer
-                        url={this.props.url}
+                        url={this.props.shortVidUrl}
                         playing={this.props.shouldPlay == props.id}
                         onReady={this.props.playerReady}
                         loop
                     />
+                    <a
+                        className="video-wrap__overlay"
+                        data-fancybox href={this.props.fullVidUrl}
+                        data-fancybox="slider-group"
+                    ></a>
                 </div>
             );
         }
