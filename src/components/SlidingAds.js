@@ -51,8 +51,8 @@ class SlidingAds extends Component {
             <div className="carousel">
                 <CarouselCell
                     type="video"
-                    fullVidUrl="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                    shortVidUrl="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    fullVidUrl="https://youtu.be/wjFlgOJmbfw"
+                    shortVidUrl="https://youtu.be/m-02MYq03qA"
                     id="0"
                     shouldPlay={this.state.shoudlPlay}
                     playerReady={this.playerReady}
@@ -64,37 +64,28 @@ class SlidingAds extends Component {
                     url="/ads/slider_ads/6254CF6.png"
                 />
                 <CarouselCell
-                    type="video"
-                    fullVidUrl="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
-                    shortVidUrl="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-                    id="2"
-                    shouldPlay={this.state.shoudlPlay}
-                    playerReady={this.playerReady}
-                    onVidClick={this.onVidClick}
-                />
-                <CarouselCell
                     type="image"
-                    id="3"
+                    id="2"
                     url="/ads/slider_ads/6277CF5.png"
                 />
                 <CarouselCell
                     type="image"
-                    id="4"
+                    id="3"
                     url="/ads/slider_ads/6283CHR11-1.png"
                 />
                 <CarouselCell
                     type="image"
-                    id="5"
+                    id="4"
                     url="/ads/slider_ads/6283CHR11-2.png"
                 />
                 <CarouselCell
                     type="image"
-                    id="6"
+                    id="5"
                     url="/ads/slider_ads/6615CF5.png"
                 />
                 <CarouselCell
                     type="image"
-                    id="7"
+                    id="6"
                     url="/ads/slider_ads/6615CF6A.png"
                 />
             </div>
