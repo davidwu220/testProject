@@ -1,6 +1,53 @@
 body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-}
+    padding: 50px;
+    font: "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+  
+  a {
+    color: #00B7FF;
+  }
+  
+  .alert {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+  
+  .alert .alert-message {
+    margin-right: 40px;
+  }
+  
+  #linkHelpText {
+    font-size: 0.8rem;
+  }
+  
+  #startDate {
+    height: 40px;
+  }
+  
+  #endDate {
+    height: 40px;
+  }
+  
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  
+  .btn-default:hover, .btn-default:active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  
+  .btn-default:focus {
+    box-shadow: 0 0 0 2px rgba(204,204,204,.5);
+  }
+  
+  [disabled] {
+    cursor: not-allowed;
+  }
 
 .aside {
     margin-top: 20px;
@@ -63,6 +110,29 @@ body {
 
 .flickity-viewport {
     transition: height 0.2s;
+}
+
+.video-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+    &__externalLink {
+        position: absolute;
+        left: 0;
+        width: 40%;
+        top: 45px;
+        bottom: 45px;
+        border: 2px solid green;
+        z-index: 3;
+    }
 }
 
 .Header {
@@ -405,6 +475,16 @@ nav {
         width: 100%;
         height: 100%;
     }
+    .ad-item {
+        &.ad-wrapper {
+            .ad-img {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
 }
 
 @media all and (min-width: 768px) {
@@ -439,6 +519,7 @@ nav {
         margin: auto;
         padding-bottom: 20px;
     }
+    
 }
 
 @media all and (max-width: 1259px) {
@@ -449,26 +530,25 @@ nav {
 }
 
 @media all and (max-width: 767px) {
-    .ad-item {
-        &.ad-wrapper {
-            display: block;
-            .ad-text {
-                margin-bottom: 20px;
-                padding-right: 0px;
-            }
-            .ad-img {
-                text-align: center;
-                
+    form {
+        div:nth-child(1), div:nth-child(2) {
+            padding: 0;
+        }
+    }
+    .ad-wrapper {
+        display: block;
+        .ad-text {
+            margin-bottom: 20px;
+            padding-right: 0px;
+        }
+        .ad-img {
+            text-align: center;
+            img {
+                height: 200px;
             }
         }
     }
 }
-
-// @media all and (min-width: 768px) {
-//     .navbar-nav {
-//         margin-left: -30px;
-//     }
-// }
 
 @media all and (min-width: 600px) {
     .aside {
@@ -476,7 +556,7 @@ nav {
     }
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: 991px) {
     .Main {
         flex: 3 0px;
         order: 2;

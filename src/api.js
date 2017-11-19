@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const exctractClassifiedCats = (arrayOfObjs) =>  {
+    console.log('extractClassifiedCats arrayOfObjects', arrayOfObjs);
     let tempCatList = [];
     let clasCat = [];
     let catTitle = [];
@@ -8,7 +9,7 @@ const exctractClassifiedCats = (arrayOfObjs) =>  {
     // put all categories in temp
     arrayOfObjs.map(classifiedAds => {
 
-        tempCatList.push(classifiedAds.class);
+        tempCatList.push(classifiedAds.cat);
     });
 
     // trim duplicate categories

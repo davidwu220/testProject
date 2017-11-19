@@ -2,7 +2,9 @@ import React from 'react';
 
 const RightSide = () => (
     <aside className="aside right-side">
-        <a href="https://subscribe.singtaola.com/subscribe.htm" target="_blank"><img className="static-aside-ad" src="/ads/aside_ads/subscribe.jpg" alt=""/></a>
+        <a href="https://subscribe.singtaola.com/subscribe.htm" target="_blank">
+            <img className="static-aside-ad" src="/ads/aside_ads/subscribe.jpg" alt=""/>
+        </a>
 
         <a href="https://www.singtaousa.com/la/28457-%E6%98%9F%E5%B3%B6%E7%89%B9%E5%88%8A%E9%9B%BB%E5%AD%90%E7%89%88/" target="_blank">
             <img className="static-aside-ad" src="/ads/aside_ads/singtao_special.jpg" alt=""/>

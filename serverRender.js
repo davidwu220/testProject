@@ -5,12 +5,26 @@ import App from './src/components/App';
 import axios from 'axios';
 import config from './config';
 
-const serverRender = ({type, path, query}) => (
-    axios.get(`${config.serverUrl}/api/${type}/${path}${query}`)
+export const serverRender = ({type, path}) => (
+    axios.get(`${config.serverUrl}/api/${type}/${path}`)
         .then(res => {
             return res.data;
         })
         .catch((err) => console.error(err))
 )
 
-export default serverRender;
+export const serverRenderPage = ({type, page}) => (
+    axios.get(`${config.serverUrl}/api/${type}/all/page/${page}`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)
+
+export const serverRenderSearch = ({type, path, query}) => (
+    axios.get(`${config.serverUrl}/api/${type}/${path}${query}`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)

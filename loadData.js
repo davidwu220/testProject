@@ -5,20 +5,12 @@ import extract from 'extract-zip';
 
 import config from './config';
 
+var moment = require('moment');
 
-let formatDate = (date) => {
-    let d = new Date(date),
-    month = (d.getMonth() + 1).toString(),
-    day = d.getDate().toString(),
-    year = d.getFullYear().toString();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return year+month+day;
-}
-
-let today = formatDate(Date.now());
+let today = moment().format('YYYYMMDD');
+let todayWithOffset = moment().subtract(1, 'day').format('YYYYMMDD');
+let counter = 0;
+let insertCount = 0;
 
 let extractPromise = new Promise ((resolve, reject) => {
     extract('/home/singtao-ftp/ftp/files/' + today + '.zip', {dir: '/opt/singtao-ad/public/ads/' + today}, err => {
@@ -32,23 +24,22 @@ let extractPromise = new Promise ((resolve, reject) => {
 
 extractPromise.then(success => {
     console.log(success);
-
     MongoClient.connect(config.mongodbUri, (err, db) => {
         assert.equal(null, err);
-
-        let buf=fs.readFileSync('/opt/singtao-ad/public/ads/' + today + '/webclass.txt');
-        let webclassArr;
-        let cls;
-        let textBuf;
-        let textArray;
-        let title;
-        let descArray;
     
-        let insertPromise = new Promise ((resolve, reject) => {
+        let buf=fs.readFileSync('/opt/singtao-ad/public/ads/' + today + '/webclass.txt');
+      
+        let insertPromist = new Promise ((resolve, reject) => {
             buf.toString().split("\n").forEach((line) => {
+                // preserve webclass line array
+                let webclassArr;
                 webclassArr = line.split(/^"|"$|","/).filter(text => text != '');
-
+                
+                //preserve class
+                let cls;
                 if (webclassArr[0]) {
+                    counter++;
+                    insertCount++;
                     if (webclassArr[2] == "101" || webclassArr[2] == "102") {
                         cls = "101_102";
                     } else if (webclassArr[2] == "103" || webclassArr[2] == "104") {
@@ -59,6 +50,11 @@ extractPromise.then(success => {
                         cls = webclassArr[2];
                     }
 
+                    // preserve text
+                    let textBuf;
+                    let textArray;
+                    let title;
+                    let descArray;
                     textBuf = fs.readFileSync("/opt/singtao-ad/public/ads/" + today + "/" + webclassArr[0] + ".txt");
                     textArray = textBuf.toString().split(/\r|\n/).filter(text => text != '');
                     if (textArray[0] != '') {
@@ -68,26 +64,47 @@ extractPromise.then(success => {
                         title = textArray[1];
                         descArray = textArray.slice(2);
                     }
-                    db.collection('ads').insertOne({
-                        "id": webclassArr[0],
-                        "date": today,
-                        "title": title,
-                        "type": "classifiedAds",
-                        "class": cls,
-                        "image": "/ads/" + today + "/" + webclassArr[0] + ".jpg",
-                        "description": descArray,
-                        "tag": ""
+
+                    // preserve ad_id
+                    let ad_id = webclassArr[0];
+                    db.collection('categories').findOne({cat: cls}).then((cat) => {
+                        db.collection('ads').insertOne({
+                            ad_id,
+                            date_inserted: todayWithOffset,
+                            cat: cat.cat,
+                            cat_title_cn: cat.cat_title_cn,
+                            cat_cn: cat.cat_cn,
+                            type: cat.type,
+                            title: title,
+                            description: descArray,
+                            image: "/ads/" + today + "/" + ad_id + ".jpg",
+                            locations: ["classified"],
+                            tags: []
+                        }).then(() => {
+                            if (--counter === 0) {
+                                resolve("entries successfully inserted");
+                            }
+                        });
                     });
                 }
-
-                resolve("Data was successfully inserted to database.");
-
+                
             });
+            
         });
-
-        insertPromise.then((success) => {
-            console.log(success);
-            db.close();
+    
+        insertPromist.then((success) => {
+            console.log('[ ' + insertCount + ' ] ' + success + ' - ' + moment().toString());
+            db.collection('ads')
+                .updateOne(
+                    { lastUpdate: { $exists: true } },
+                    { $set: { lastUpdate: todayWithOffset }},
+                    { upsert: true },
+                    (err, result) => {
+                        console.log('Last Update: ' + today);
+                        console.log('Last Update Offset: ' + todayWithOffset);
+                        db.close();
+                    }
+                )
         });
         
     });

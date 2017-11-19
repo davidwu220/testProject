@@ -54,24 +54,24 @@ class Menu extends Component {
                     </button>
                 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" id="home-btn" onClick={() => this.handleClick("body")}>首頁 <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="classified-ad-btn" onClick={() => this.handleClick("#classified-ad")}>星島分類廣告</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="commercial-ad-btn" onClick={() => this.handleClick("#commercial-ad")}>星島商業廣告</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="https://www.singtaousa.com/la/" target="_blank">星島新聞首頁</a>
-                        </li>
-                    </ul>
-                    <div className="form-inline my-2 my-lg-0" onSubmit={(event) => event.preventDefault()}>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.props.onSearchChange}/>
-                        <button className="btn btn-outline-success my-2 my-sm-0 d-none" type="submit">Search</button>
-                    </div>
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" id="home-btn" onClick={() => this.handleClick("body")}>首頁 <span className="sr-only">(current)</span></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="classified-ad-btn" onClick={() => this.handleClick("#classified-ad")}>分類廣告</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" id="commercial-ad-btn" onClick={() => this.handleClick("#commercial-ad")}>商業廣告</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="https://www.singtaousa.com/la/" target="_blank">星島新聞</a>
+                            </li>
+                        </ul>
+                        <div className="form-inline my-2 my-lg-0" onSubmit={(event) => event.preventDefault()}>
+                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.props.onSearchChange}/>
+                            <button className="btn btn-outline-success my-2 my-sm-0 d-none" type="submit">Search</button>
+                        </div>
                     </div>
                 </nav>
             </div>

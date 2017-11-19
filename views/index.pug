@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    #root
+        img.img-fluid.rounded.mx-auto.d-block(src="/images/page_icons/StartUp.jpg", alt="Loading Image")
+
+    script
+        | window.initialCat = !{JSON.stringify(initialCat || null)};
+        | window.initialData = !{JSON.stringify(initialData || [])};
+        | window.initialView = !{JSON.stringify(type)};

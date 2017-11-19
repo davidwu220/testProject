@@ -29,8 +29,6 @@ class App extends Component {
     componentDidMount() {
         // timers, listeners
 
-        // update classified menu at 5 am
-        // !!!!remember to unmount timer!!!!
         api.fetchClasMenu()
         .then(({ clasCat, catTitle }) => {
             this.setState({

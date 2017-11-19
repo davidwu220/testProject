@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SlidingAds from './SlidingAds';
+import SlidingAds from '../SlidingAds';
 import ClassifiedSection from '../AdPage/ClassifiedSection';
 import CommercialSection from '../AdPage/CommercialSection';
 

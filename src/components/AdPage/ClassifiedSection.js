@@ -1,40 +1,26 @@
 import React, { Component } from 'react';
 
-import ClassifiedAd_card from './ClassifiedAd-card';
-import ClassifiedAd_norm from './ClassifiedAd-norm';
+import ClassifiedAd from './ClassifiedAd';
 import ClassifiedMenu from './ClassifiedMenu';
 
 class ClassifiedSection extends Component {
     // TODO: create share button for each ad
     RenderList = () => {
         let list = null;
-
-        if ($(window).width() < 992) {
+        
+        if(this.props.currentCat != "") {
             if (Array.isArray(this.props.adList)) {
                 list = this.props.adList.map((ad) => 
-                    <ClassifiedAd_card key={ad.id} data={ad} />
+                    <ClassifiedAd key={ad._id} data={ad} />
                 );
             } else if (this.props.adList.hasOwnProperty("classifiedAds")) {
                 list = this.props.adList.classifiedAds.map((ad) => 
-                    <ClassifiedAd_card key={ad._id} data={ad} />
+                    <ClassifiedAd key={ad._id} data={ad} />
                 );
             } else {
-                list = <ClassifiedAd_card data={this.props.adList} />
-            }
-        } else {
-            if (Array.isArray(this.props.adList)) {
-                list = this.props.adList.map((ad) => 
-                    <ClassifiedAd_norm key={ad.id} data={ad} />
-                );
-            } else if (this.props.adList.hasOwnProperty("classifiedAds")) {
-                list = this.props.adList.classifiedAds.map((ad) => 
-                    <ClassifiedAd_norm key={ad._id} data={ad} />
-                );
-            } else {
-                list = <ClassifiedAd_norm data={this.props.adList} />
+                list = <ClassifiedAd data={this.props.adList} />
             }
         }
-
         
         return (
             <div className="adList">

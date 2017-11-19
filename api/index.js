@@ -2,30 +2,13 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
-
-import data from '../src/testData';
-
-let dayWithOffset = (offset) => {
-    let d = new Date();
-    d.setHours(d.getHours()+offset);
-    return d;
-};
-
-let formatDate = (date) => {
-    let d = new Date(date),
-    month = (d.getMonth() + 1).toString(),
-    day = d.getDate().toString(),
-    year = d.getFullYear().toString();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return year+month+day;
-}
-console.log("date with offset: ", formatDate(dayWithOffset(-4)));
+var moment = require('moment');
 
 let mdb;
+let listLength = 10;
+let lastUpdate;
 MongoClient.connect(config.mongodbUri, (err, db) => {
+    
     assert.equal(null,err);
 
     mdb = db;
@@ -33,32 +16,60 @@ MongoClient.connect(config.mongodbUri, (err, db) => {
 
 const router = express.Router();
 
-router.get('/classifiedAds', (req, res) => {
-    
-    // finds documents with 4hr time offset
-    mdb.collection('ads')
-        .find(
-            {
-                "type": "classifiedAds",
-                "date": formatDate(dayWithOffset(-4))
-            }
-        )
-        .toArray((err, docs) => {
-            assert.equal(null, err);
-            res.send(docs);
+router.use((req, res, next) => {
+    mdb.collection('ads').findOne({ lastUpdate: { $exists: true }}, (err, lu) => {
+        assert.equal(null, err);
+        // then use the last update date to fetch the ads accordingly
+        lastUpdate = lu.lastUpdate;
+        console.log('loocking for ads on lu.lastUpdate: ', lastUpdate);
+        
+        next();
     });
-});
+})
+
+router.get('/get_category_titles', (req, res) => {
+    mdb.collection('categories').find({}, (err, cats) => {
+        
+    })
+})
+
+
+router.get('/classifiedAds', (req, res) => {
+    mdb.collection('ads')
+    .find({
+        date_inserted: lastUpdate,
+        type: 'classified'
+    })
+    .toArray((err, ads) => {
+        assert.equal(null, err);
+        res.send(ads);
+    });
+    
+})
+
+router.get('/classifiedAds/all/page/:page', (req, res) => {
+    mdb.collection('ads')
+    .find({
+        date_inserted: lastUpdate,
+        type: 'classified'
+    })
+    .skip( (req.params.page-1) * listLength )
+    .limit(listLength)
+    .toArray((err, ads) => {
+        assert.equal(null, err);
+        res.send(ads);
+    });
+})
 
 router.get('/classifiedAds/:class', (req, res) => {
-
     if (req.query.id) {
         mdb.collection('ads')
             .find(
                 {
-                    "id": req.query.id,
-                    "type": "classifiedAds",
-                    "date": formatDate(dayWithOffset(-4)), 
-                    "class": req.params.class
+                    ad_id: req.query.id,
+                    type: "classified",
+                    date_inserted: lastUpdate, 
+                    cat: req.params.class
                 }
             )
             .toArray((err, docs) => {
@@ -70,9 +81,10 @@ router.get('/classifiedAds/:class', (req, res) => {
         mdb.collection('ads')
             .find(
                 {
-                    "type": "classifiedAds",
-                    "date": formatDate(dayWithOffset(-4)), 
-                    "class": req.params.class
+                    ad_id: req.query.id,
+                    type: "classified",
+                    date_inserted: lastUpdate, 
+                    cat: req.params.class
                 }
             )
             .toArray((err, docs) => {
@@ -83,9 +95,9 @@ router.get('/classifiedAds/:class', (req, res) => {
         mdb.collection('ads')
             .find(
                 {
-                    "type": "classifiedAds",
-                    "date": formatDate(dayWithOffset(-4)), 
-                    "class": req.params.class
+                    type: "classified",
+                    date_inserted: lastUpdate, 
+                    cat: req.params.class
                 }
             )
             .toArray((err, docs) => {
@@ -93,11 +105,12 @@ router.get('/classifiedAds/:class', (req, res) => {
                 res.send(docs);
             });
     }
+    
 
-});
+})
 
 router.get('/commercialAds', (req, res) => {
-    res.send({ commercialAds: data.commercialAds || [] });
-});
+    res.send({ commercialAds: [] });
+})
 
 export default router;
