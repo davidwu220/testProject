@@ -13,16 +13,17 @@ html
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css")
     link(rel='stylesheet', href='/style.css')
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css")
-  body.my-container
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+  body
+    nav.navbar.navbar-expand.navbar-light.bg-light.sticky-top
+      a.navbar-brand(href="/maintenance") Maintenance
       button.navbar-toggler(type="button" data-toggle="collapse" data-target="#maintenanceNav")
         span.navbar-toggler-icon
       #maintenanceNav.collapse.navbar-collapse
         .navbar-nav
           a.nav-link.nav-item(active href="/maintenance") Ad List
           a.nav-link.nav-item(href="/maintenance/create") Create New Ad
-    
-    block content
+    .container.p-4
+      block content
 
     script(src="https://code.jquery.com/jquery-3.2.1.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js")

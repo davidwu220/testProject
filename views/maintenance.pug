@@ -1,48 +1,47 @@
 extends maintenance_layout
 
 block content
-    .p-4
-        if flash.error
-            .alert.alert-danger.alert-dismissible.fade.show(role="alert")
-                p.alert-message !{flash.error}
-                button.close(type="button" data-dismiss="alert" aria-label="Close")
-                    span(aria-hidden='true') &times;
-        if flash.success
-            .alert.alert-success.alert-dismissible.fade.show(role="alert")
-                .alert-message !{flash.success}
-                button.close(type="button" data-dismiss="alert" aria-label="Close")
-                    span(aria-hidden='true') &times;
-        .row
-            h1.display-4.mb-2 #{title}
-        .row
-            table.table.table-hover.table-responsive-sm
-                thead.thead-light
+    if flash.error
+        .alert.alert-danger.alert-dismissible.fade.show(role="alert")
+            p.alert-message !{flash.error}
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+                span(aria-hidden='true') &times;
+    if flash.success
+        .alert.alert-success.alert-dismissible.fade.show(role="alert")
+            .alert-message !{flash.success}
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+                span(aria-hidden='true') &times;
+    .row
+        h1.display-4.mb-2 #{title}
+    .row
+        table.table.table-hover.table-responsive-sm
+            thead.thead-light
+                tr
+                    th(scope="col") #
+                    th(scope="col") Title
+                    th(scope="col") Start Date
+                    th(scope="col") End Date
+                    th(scope="col") Tags
+                    th(scope="col") Edit
+                    th(scope="col") Delete
+            tbody
+                each ad, index in ads
                     tr
-                        th(scope="col") #
-                        th(scope="col") Title
-                        th(scope="col") Start Date
-                        th(scope="col") End Date
-                        th(scope="col") Tags
-                        th(scope="col") Edit
-                        th(scope="col") Delete
-                tbody
-                    each ad, index in ads
-                        tr
-                            th(scope="row")= index + 1
-                            th #{ad.title}
-                            th #{ad.start_date}
-                            th #{ad.end_date}
-                            th
-                                each tag in ad.tags
-                                    | #{tag.cat_cn + ' '}
-                            th
-                                a.btn.btn-outline-info(role="button" href="/maintenance/" + ad._id + "/edit")
-                                    i.fa.fa-pencil-square-o
+                        th(scope="row")= index + 1
+                        th #{ad.title}
+                        th #{ad.start_date}
+                        th #{ad.end_date}
+                        th
+                            each tag in ad.tags
+                                | #{tag.cat_cn + ' '}
+                        th
+                            a.btn.btn-outline-info(role="button" href="/maintenance/" + ad._id + "/edit")
+                                i.fa.fa-pencil-square-o
+                                |
+                                | Edit
+                        th
+                            a.btn.btn-outline-danger(role="button" href="/maintenance/" + ad._id + "/delete")
+                                    i.fa.fa-trash-o
                                     |
-                                    | Edit
-                            th
-                                a.btn.btn-outline-danger(role="button" href="/maintenance/" + ad._id + "/delete")
-                                        i.fa.fa-trash-o
-                                        |
-                                        | Delete
+                                    | Delete
 
