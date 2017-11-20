@@ -5,13 +5,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('express-flash-2');
+var multer = require('multer');
 
 import config from './config';
 import apiRouter from './api';
 import * as serverRender from './serverRender';
 var maintenance_controller = require('./controllers/maintenanceController');
 
-//Set up mongoose connection
+// Set up mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = config.mongodbUri;
 mongoose.connect(mongoDB, {
@@ -20,6 +21,15 @@ mongoose.connect(mongoDB, {
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+// Setup storage engine
+var storageEngine = multer.diskStorage({
+    destination: './public/manualUploads/images/',
+    filename: (req, file, callback) => {
+      callback(null, 'image-' + Date.now() + path.extname(file.originalname));
+    }
+  })
+var upload = multer({ storage: storageEngine });
 
 const server = express();
 
@@ -55,17 +65,25 @@ server.get('/' , (req, res) => {
 
 });
 
-server.get('/maintenance' , (req, res) => {
-    res.render('maintenance', {
-
-    });
-});
+server.get('/maintenance', maintenance_controller.maintenance_list);
+// , (req,res) => {
+//     serverRender.serverRenderMaintenanceList().then((ads) => {
+//         console.log('got ads: ', ads);
+//         res.render('maintenance', {
+//             title: 'Maintenance',
+//             ads
+//         });
+//     });
+// });
 
 server.get('/maintenance/create', maintenance_controller.maintenance_create_get);
-server.post('/maintenance/create', maintenance_controller.maintenance_create_post);
+server.post('/maintenance/create', upload.single("image"), maintenance_controller.maintenance_create_post);
 
-server.get('/maintenance/:id/update', maintenance_controller.maintenance_update_get);
-server.post('/maintenance/:id/update', maintenance_controller.maintenance_update_post);
+server.get('/maintenance/:id/edit', maintenance_controller.maintenance_edit_get);
+server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_post);
+
+server.get('/maintenance/:id/delete', maintenance_controller.maintenance_delete_get);
+server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
 
 server.get('/classifiedAds/:cat?' , (req, res) => {
     let request = "";

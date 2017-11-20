@@ -28,3 +28,11 @@ export const serverRenderSearch = ({type, path, query}) => (
         })
         .catch((err) => console.error(err))
 )
+
+export const serverRenderMaintenanceList = () => (
+    axios.get(`${config.serverUrl}/api/get_maintenance_list/`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)

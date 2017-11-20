@@ -1,7 +1,7 @@
 extends maintenance_layout
 
 block content
-  .main.container
+  .p-4
     if flash.error
       .alert.alert-danger.alert-dismissible.fade.show(role="alert")
         p.alert-message !{flash.error}
@@ -59,11 +59,11 @@ block content
             option(selected) Choose one...
             if classified_ads
               optgroup(label='分類廣告')
-                for c_ad in classified_ads
+                each c_ad in classified_ads
                   option(value=c_ad._id) #{c_ad.cat_cn}
             if commercial_ads
               optgroup(label='商業廣告')
-                for c_ad in commercial_ads
+                each c_ad in commercial_ads
                   option(value=c_ad._id) #{c_ad.cat_cn}
         .form-group
           label(for='title') Title:
@@ -79,7 +79,7 @@ block content
               each des in ad.description
                 | !{des + '&#13;&#10;'}
         .form-group
-          label(for='link') Link:
+          label(for='link') External Link:
           input#link.form-control(type='url' name='link' placeholder='http://example.com' value=(undefined=== ad ? '' : ad.ad_link))
           small#linkHelpText.form-text.text-muted Make sure http:// or https:// is included.
         .form-row
@@ -100,8 +100,8 @@ block content
           input#ytLink.form-control(type='url' name='ytLink' value=(undefined=== ad ? '' : ad.yt_link))
         .form-group
           label(for='locations') Ad Locations:
-          | 
-          span.text-danger *
+            | 
+            span.text-danger *
           #locations
             .form-check.form-check-inline
               label.form-check-label
@@ -126,7 +126,7 @@ block content
             if classified_ads
               | 分類廣告類別
               br
-              for c_ad in classified_ads
+              each c_ad in classified_ads
                 .form-check.form-check-inline
                   label.form-check-label
                     input.form-check-input(type='checkbox' name='tags' value=c_ad._id)
@@ -135,7 +135,7 @@ block content
             if commercial_ads
               | 商業廣告類別
               br
-              for c_ad in commercial_ads
+              each c_ad in commercial_ads
                 .form-check.form-check-inline
                   label.form-check-label
                     input.form-check-input(type='checkbox' name='tags' value=c_ad._id)

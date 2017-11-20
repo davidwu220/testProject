@@ -33,6 +33,18 @@ router.get('/get_category_titles', (req, res) => {
     })
 })
 
+router.get('/get_maintenance_list', (req, res) => {
+    mdb.collection('ads')
+        .find({
+            uploaded_manually: true
+        })
+        .toArray((err, manuallyUploads) => {
+            console.log('manuallyuploads: ', manuallyUploads);
+            assert.equal(null, err);
+            res.send(manuallyUploads);
+        });
+})
+
 
 router.get('/classifiedAds', (req, res) => {
     mdb.collection('ads')

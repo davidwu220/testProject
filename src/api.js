@@ -88,3 +88,8 @@ export const fetchComAdByClass = commercialClass => {
     return axios.get(`/api/commercialAds/${commercialClass}`)
     .then(res => res.data);
 }
+
+export const fetchManualUploads = () => {
+    return axios.get(`api/get_maintenance_list`)
+    .then(res => res.data);
+}

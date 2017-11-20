@@ -9,9 +9,11 @@ var AdSchema = new Schema({
         ref: 'Customer'
     },
     // ad information
+    uploaded_manually: {
+        type: Boolean
+    },
     ad_id: {
         type: String,
-        required: true,
         max: 100
     },
     date_inserted: {
@@ -70,7 +72,7 @@ var AdSchema = new Schema({
             ref: 'Category'
         }
     ]
-});
+}, { strict: false });
 
 // Virtual for Ad's URL
 AdSchema

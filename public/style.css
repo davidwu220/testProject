@@ -1,6 +1,5 @@
 body {
-  padding: 50px;
-  font: "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: "Open Sans", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
@@ -105,6 +104,19 @@ a {
     top: 0px;
     bottom: 45px;
     z-index: 3; }
+    .video-wrap__overlay:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white; }
+      .video-wrap__overlay:hover:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 2rem;
+        font-weight: 300;
+        text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4), 2px 2px 6px rgba(0, 0, 0, 0.3);
+        content: "Click to see the full video!"; }
 
 .Header .singtao-logo {
   height: 90px;

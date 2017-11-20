@@ -22,7 +22,7 @@ var CategorySchema = new Schema({
             'other'
         ]
     }
-});
+}, { strict: false });
 
 // Virtual for author's URL
 CategorySchema

@@ -34,7 +34,7 @@ var CustomerSchema = new Schema({
     address: {
         type: String
     }
-});
+}, { strict: false });
 
 // Virtual for author's full name
 CustomerSchema
