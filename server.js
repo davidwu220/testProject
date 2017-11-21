@@ -56,25 +56,7 @@ server.use(session({
 server.use(flash());
 server.use(express.static('public'));
 
-server.get('/' , (req, res) => {
-    res.render('index', {
-        type: "home",
-        initialCat: null,
-        initialData: []
-    });
-
-});
-
 server.get('/maintenance', maintenance_controller.maintenance_list);
-// , (req,res) => {
-//     serverRender.serverRenderMaintenanceList().then((ads) => {
-//         console.log('got ads: ', ads);
-//         res.render('maintenance', {
-//             title: 'Maintenance',
-//             ads
-//         });
-//     });
-// });
 
 server.get('/maintenance/create', maintenance_controller.maintenance_create_get);
 server.post('/maintenance/create', upload.single("image"), maintenance_controller.maintenance_create_post);
@@ -84,6 +66,41 @@ server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_pos
 
 server.get('/maintenance/:id/delete', maintenance_controller.maintenance_delete_get);
 server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
+
+let cls_cats, com_cats, all_cls;
+
+server.use(
+    (req, res, next) => {
+        serverRender.serverRenderGetCats()
+            .then((cats) => {
+                cls_cats = cats.filter((cat) => {
+                    return cat.type === 'classified'
+                });
+                
+                com_cats = cats.filter((cat) => {
+                    return cat.type === 'commercial'
+                });
+
+                next();
+            })
+            .catch((error) => {
+                console.error(error);
+
+                next();
+            });
+    }
+);
+
+server.get('/' , (req, res) => {
+    res.render('index', {
+        type: "home",
+        initialCat: null,
+        initialData: [],
+        cls_cats,
+        com_cats
+    });
+
+});
 
 server.get('/classifiedAds/:cat?' , (req, res) => {
     let request = "";
@@ -103,7 +120,9 @@ server.get('/classifiedAds/:cat?' , (req, res) => {
         res.render('index', {
             type: "classifiedAds",
             initialCat: req.params.cat,
-            initialData
+            initialData,
+            cls_cats,
+            com_cats
         });
     })
     .catch((error) => 
@@ -121,16 +140,14 @@ server.get('/classifiedAds/all/page/:page' , (req, res) => {
         res.render('index', {
             type: "classifiedAds",
             initialCat: req.params.cat,
-            initialData
+            initialData,
+            cls_cats,
+            com_cats
         });
     })
     .catch((error) => 
         console.error(error));
 });
-
-
-
-
 
 server.get('/commercialAds/:cat?/:id?' , (req, res) => {
     let type = "commercialAds";
@@ -147,7 +164,9 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
             res.render('index', {
                 type,
                 initialCat: req.params.cat,
-                initialData
+                initialData,
+                cls_cats,
+                com_cats
             });
         })
         .catch((error) => 

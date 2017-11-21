@@ -21,7 +21,8 @@ class Main extends Component {
                         catTitle={ this.props.catTitle }
                         viewState={ this.props.viewState }
                         onClasMenuClick={ this.props.onClasMenuClick }
-                        adList={ this.props.adList }/>
+                        adList={ this.props.adList }
+                        activeClasMenu={this.props.activeClasMenu} />
                 </div>
             );
         } else if (this.props.viewState == "commercialAds") {
@@ -30,8 +31,10 @@ class Main extends Component {
                     <SlidingAds />
                     <CommercialSection
                         viewState={ this.props.viewState } 
+                        currentCat={ this.props.currentCat }
                         onComMenuClick={ this.props.onComMenuClick }
-                        adList={ this.props.adList }/>
+                        adList={ this.props.adList }
+                        activeComMenu={this.props.activeComMenu} />
                 </div>
             );
         } else {
@@ -47,11 +50,14 @@ class Main extends Component {
                         catTitle={ this.props.catTitle }
                         viewState={ this.props.viewState }
                         onClasMenuClick={ this.props.onClasMenuClick }
-                        adList={ this.props.adList }/>
+                        adList={ this.props.adList }
+                        activeClasMenu={this.props.activeClasMenu} />
                     <CommercialSection
                         viewState={ this.props.viewState } 
+                        currentCat={ this.props.currentCat }
                         onComMenuClick={ this.props.onComMenuClick }
-                        adList={ this.props.adList }/>
+                        adList={ this.props.adList }
+                        activeComMenu={this.props.activeComMenu} />
                 </div>
             );
         }

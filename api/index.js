@@ -2,7 +2,10 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
+import { request } from 'https';
 var moment = require('moment');
+var Ad = require('../models/ad');
+var Category = require('../models/category');
 
 let mdb;
 let listLength = 10;
@@ -27,21 +30,91 @@ router.use((req, res, next) => {
     });
 })
 
-router.get('/get_category_titles', (req, res) => {
-    mdb.collection('categories').find({}, (err, cats) => {
-        
-    })
+// Note: only return ads that are not expired
+router.get('/get_categories', (req, res) => {
+    Category
+        .find()
+        .select('_id cat cat_cn cat_title_cn type')
+        .sort( '_id' )
+        .exec((err, cats) => {
+            if (err) console.log('error getting categories: ', err);
+            res.send(cats);
+        });
 })
 
-router.get('/get_maintenance_list', (req, res) => {
-    mdb.collection('ads')
+router.get('/get_manual_uploads', (req, res) => {
+    Ad
         .find({
             uploaded_manually: true
         })
-        .toArray((err, manuallyUploads) => {
-            console.log('manuallyuploads: ', manuallyUploads);
-            assert.equal(null, err);
-            res.send(manuallyUploads);
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+            if (err) console.log('error getting full manual upload list: ', err);
+            res.send(muAds);
+        });
+})
+
+
+
+// Note: only return ads that are not expired
+router.get('/commercialAds/:cat?', (req, res) => {
+    Ad
+        .find({
+            uploaded_manually: true,
+            end_date: { $gt : moment().format('YYYY-MM-DD') }
+        })
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+
+            if (req.params.cat) {
+                let filteredAds = muAds.filter((ad) => {
+                    return ad.category.cat == req.params.cat;
+                });
+                res.send(filteredAds);
+            } else {
+                res.send(muAds);
+            }
+        });
+})
+
+router.get('/get_manual_uploads/slider', (req, res) => {
+    Ad
+        .find({
+            uploaded_manually: true
+        })
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+            if (err) console.log('error getting full manual upload list: ', err);
+            res.send(muAds);
+        });
+})
+
+router.get('/get_manual_uploads/aside/right', (req, res) => {
+    Ad
+        .find({
+            uploaded_manually: true
+        })
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+            if (err) console.log('error getting full manual upload list: ', err);
+            res.send(muAds);
+        });
+})
+
+router.get('/get_manual_uploads/aside/left', (req, res) => {
+    Ad
+        .find({
+            uploaded_manually: true
+        })
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+            if (err) console.log('error getting full manual upload list: ', err);
+            res.send(muAds);
         });
 })
 
@@ -119,10 +192,6 @@ router.get('/classifiedAds/:class', (req, res) => {
     }
     
 
-})
-
-router.get('/commercialAds', (req, res) => {
-    res.send({ commercialAds: [] });
 })
 
 export default router;

@@ -190,6 +190,24 @@ body {
     margin-bottom: 20px;
 }
 
+.commercial-text-menu {
+    padding-bottom: 20px;
+    white-space: pre-wrap;
+    font-size: 1.2rem;
+
+    span a.menu-item {
+        padding: 3px 10px;
+        text-decoration: none;
+        transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
+        &.is-active {
+            color: white;
+            background-color: #06c8b8;
+            border-radius: 3px;
+            text-decoration: underline;
+        }
+    }
+}
+
 .Footer {
     .info {
         display: -webkit-box;

@@ -13,6 +13,11 @@ export const serverRender = ({type, path}) => (
         .catch((err) => console.error(err))
 )
 
+export const serverRenderGetCats = () => {
+    return axios.get(`${config.serverUrl}/api/get_categories`)
+    .then(res => res.data);
+}
+
 export const serverRenderPage = ({type, page}) => (
     axios.get(`${config.serverUrl}/api/${type}/all/page/${page}`)
         .then(res => {
@@ -30,7 +35,7 @@ export const serverRenderSearch = ({type, path, query}) => (
 )
 
 export const serverRenderMaintenanceList = () => (
-    axios.get(`${config.serverUrl}/api/get_maintenance_list/`)
+    axios.get(`${config.serverUrl}/api/get_manual_uploads`)
         .then(res => {
             return res.data;
         })

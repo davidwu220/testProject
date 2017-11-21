@@ -8,10 +8,10 @@ import Main from "./Home/Main";
 import Menu from './Menu';
 
 const pushState = (obj, url) => 
-window.history.pushState(obj, '', url);
+    window.history.pushState(obj, '', url);
 
 const onPopState = handler => {
-window.onpopstate = handler;
+    window.onpopstate = handler;
 }
 
 class App extends Component {
@@ -23,7 +23,10 @@ class App extends Component {
         initialData: this.props.initialData,
         adList: this.props.initialData,
         category: window.initialCat || "",
-        view: window.initialView
+        view: window.initialView,
+        activeMenu: window.initialView,
+        activeClasMenu: "",
+        activeComMenu: ""
     };
 
     componentDidMount() {
@@ -36,7 +39,7 @@ class App extends Component {
                 catTitle
             });
         });
-
+        
         // push initial state when landing
         if (this.state.view == "classifiedAds") {
             pushState(
@@ -100,55 +103,73 @@ class App extends Component {
     }
 
     fetchHome = () => {
-        
         this.setState({
             view: "home",
             category: "",
-            adList: []
+            adList: [],
+            activeMenu: "home",
+            activeClasMenu: "",
+            activeClasMenu: ""
         });
         console.log("pushing state: category:", this.state.category, "view: home", "adList", this.state.adList )
         pushState(
             {   category: this.state.category,
                 view: "home",
-                adList: [] },
+                adList: [],
+                activeMenu: "home",
+                activeClasMenu: "",
+                activeClasMenu: ""
+            },
             `/`
         );
 
     }
 
     fetchClasAds = (adClass) => {
-        
         api.fetchClasAdByClass(adClass)
             .then(adsInClass => {
                 this.setState({
                     view: "classifiedAds",
                     category: adClass,
                     initialData: adsInClass,
-                    adList: adsInClass
+                    adList: adsInClass,
+                    activeMenu: "classifiedAds",
+                    activeClasMenu: adClass
                 });
                 console.log("pushing state: category:", adClass, "view: classifiedAds", "adList", this.state.adList )
                 pushState(
                     {   category: adClass,
                         view: "classifiedAds",
-                        adList: this.state.adList },
+                        adList: this.state.adList,
+                        activeMenu: "classifiedAds",
+                        activeClasMenu: adClass
+                    },
                     `/classifiedAds/${adClass}`
                 );
             });
     }
 
-    fetchComAds = (adClass) => {
-        api.fetchComAdByClass(adClass)
-            .then(adsInClass => {
+    fetchComAds = (cat) => {
+        api.fetchComAdByClass(cat)
+            .then((ads) => {
+                console.log("fetch com ads: ", ads);
                 this.setState({
                     view: "commercialAds",
-                    category: adClass,
-                    adList: adsInClass
+                    category: cat,
+                    initialData: ads,
+                    adList: ads,
+                    activeMenu: "commercialAds",
+                    activeComMenu: cat
                 });
                 pushState(
-                    {   category: adClass,
+                    {
+                        category: cat,
                         view: "commercialAds",
-                        adList: this.state.adList },
-                    `/commercialAds/${adClass}`
+                        adList: this.state.adList,
+                        activeMenu: "commercialAds",
+                        activeComMenu: cat
+                    },
+                    `/commercialAds/${cat}`
                 );
             });
     }
@@ -188,7 +209,8 @@ class App extends Component {
                     setPicker={this.setPicker}
                     onHomeMenuClick={this.fetchHome}
                     onClasMenuClick={this.fetchClasAds}
-                    onComMenuClick={this.fetchComAds} />
+                    onComMenuClick={this.fetchComAds}
+                    activeMenu={this.state.activeMenu} />
                 <div className="wrapper">
                     <Main 
                         show300Picker={this.state.show300Picker}
@@ -201,7 +223,9 @@ class App extends Component {
                         viewState={this.state.view}
                         onClasMenuClick={this.fetchClasAds}
                         onComMenuClick={this.fetchComAds}
-                        adList={this.state.adList} />
+                        adList={this.state.adList}
+                        activeClasMenu={this.state.activeClasMenu}
+                        activeComMenu={this.state.activeComMenu} />
                     <RightSide />
                 </div>
                 <Footer />

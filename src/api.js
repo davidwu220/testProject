@@ -89,7 +89,22 @@ export const fetchComAdByClass = commercialClass => {
     .then(res => res.data);
 }
 
+export const fetchSlider = () => {
+    return axios.get(`/api/get_manual_uploads/slider`)
+    .then(res => res.data);
+}
+
+export const fetchRightAside = () => {
+    return axios.get(`/api/get_manual_uploads/aside/right`)
+    .then(res => res.data);
+}
+
+export const fetchLeftAside = () => {
+    return axios.get(`/api/get_manual_uploads/aside/left`)
+    .then(res => res.data);
+}
+
 export const fetchManualUploads = () => {
-    return axios.get(`api/get_maintenance_list`)
+    return axios.get(`/api/get_manual_uploads`)
     .then(res => res.data);
 }

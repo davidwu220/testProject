@@ -19,17 +19,9 @@ var AdSchema = new Schema({
     date_inserted: {
         type: String
     },
-    cat:{
-        type: String
-    },
-    cat_title_cn: {
-        type: String
-    },
-    cat_cn:{
-        type: String
-    },
-    type:{
-        type: String
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
     },
     title: {
         type: String

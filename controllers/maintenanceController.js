@@ -13,9 +13,11 @@ exports.maintenance_list = function(req, res) {
             uploaded_manually: true
         })
         .populate('tags', 'cat_cn')
+        .populate('category', 'type')
         .select({
             _id: 1,
             title: 1,
+            locations: 1,
             start_date: 1,
             end_date: 1,
             tags: 1
@@ -29,6 +31,7 @@ exports.maintenance_list = function(req, res) {
                     ads: []
                 });
             }
+            console.log(ads);
             res.render('maintenance', {
                 title: 'Maintenance',
                 ads
@@ -76,10 +79,10 @@ exports.maintenance_create_post = function(req, res) {
         
                     let ad = new Ad({
                         date_inserted: moment().format('YYYYMMDD'),
-                        cat: category.cat,
-                        cat_title_cn: category.cat_title_cn || null,
-                        cat_cn: category.cat_cn,
-                        type: category.type,
+                        // cat: category.cat,
+                        // cat_title_cn: category.cat_title_cn || null,
+                        // cat_cn: category.cat_cn,
+                        // type: category.type,
                         uploaded_manually: true,
                         category: category._id,
                         title: data.title,
@@ -276,7 +279,7 @@ exports.maintenance_edit_get = function(req, res) {
 exports.maintenance_edit_post = function(req, res) {
     let data = req.body;
     Ad.
-        update({ ad_id: data.adId },
+        updateOne({ _id: req.params.id },
             { $set: {
                 category: data.category,
                 title: data.title,
@@ -291,10 +294,11 @@ exports.maintenance_edit_post = function(req, res) {
             (err) => {
                 if (err) {
                     res.flash('error', "error creating ad post: " + err);
-                } else {
-                    res.flash('success', 'Ad information successfully updated!');
+                    res.redirect('/maintenance/' + data.adId + '/edit');
                 }
-                res.redirect('/maintenance/123/edit');
+
+                res.flash('success', 'Ad information successfully updated!');
+                res.redirect('/maintenance');
             }
         );
     // Ad.findOne(req.body.adId, (err, ad) => {

@@ -19,6 +19,7 @@ block content
                 tr
                     th(scope="col") #
                     th(scope="col") Title
+                    th(scope="col") Location
                     th(scope="col") Start Date
                     th(scope="col") End Date
                     th(scope="col") Tags
@@ -29,11 +30,14 @@ block content
                     tr
                         th(scope="row")= index + 1
                         th #{ad.title}
+                        th 
+                            each location in ad.locations
+                                | #{location + ', '}
                         th #{ad.start_date}
                         th #{ad.end_date}
                         th
                             each tag in ad.tags
-                                | #{tag.cat_cn + ' '}
+                                | #{tag.cat_cn + ', '}
                         th
                             a.btn.btn-outline-info(role="button" href="/maintenance/" + ad._id + "/edit")
                                 i.fa.fa-pencil-square-o

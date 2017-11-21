@@ -1,17 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import CommercialMenu from '../AdPage/CommercialMenu';
+import CommercialAd from '../AdPage/CommercialAd';
+import CommercialPicMenu from '../AdPage/CommercialPicMenu';
+import CommercialTextMenu from '../AdPage/CommercialTextMenu';
 
-const CommercialSection = () => {
-    return (
-        <div>
-            <div id="commercial-ad" className="commercial-ad-bar">
-                <img src="/images/page_icons/commercial_ad_bar.jpg" alt="Commercial AD Menu Bar"/>
+class CommercialSection extends Component {
+    RenderList = () => {
+        return (
+            <div className="adList">
+                {this.props.adList.map((ad) => {
+                    return <CommercialAd key={ad._id} data={ad} />
+                })}
             </div>
-    
-            <CommercialMenu />
-        </div>
-    );
-};
+        );
+    }
+
+    RenderMenu = () => {
+        if (this.props.currentCat != "") {
+            return (
+                <CommercialTextMenu
+                    onComMenuClick={ this.props.onComMenuClick }
+                    activeComMenu={this.props.activeComMenu}
+                />
+            );
+        } else {
+            return (
+                <CommercialPicMenu
+                    onComMenuClick={ this.props.onComMenuClick }
+                />
+            );
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <div id="commercial-ad" className="commercial-ad-bar">
+                    <img src="/images/page_icons/commercial_ad_bar.jpg" alt="Commercial AD Menu Bar"/>
+                </div>
+        
+                <this.RenderMenu />
+
+                <this.RenderList />
+            </div>
+        );
+    }
+}
 
 export default CommercialSection;
