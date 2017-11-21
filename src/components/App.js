@@ -25,8 +25,8 @@ class App extends Component {
         category: window.initialCat || "",
         view: window.initialView,
         activeMenu: window.initialView,
-        activeClasMenu: "",
-        activeComMenu: ""
+        activeClasMenu: window.initialCat,
+        activeComMenu: window.initialCat
     };
 
     componentDidMount() {
@@ -39,27 +39,35 @@ class App extends Component {
                 catTitle
             });
         });
-        
+
         // push initial state when landing
         if (this.state.view == "classifiedAds") {
             pushState(
                 {   category: this.state.category,
                     view: "classifiedAds",
-                    adList: this.state.adList },
+                    adList: this.state.adList,
+                    activeMenu: this.state.activeMenu,
+                    activeClasMenu: this.state.activeClasMenu
+                },
                 `/classifiedAds/${this.state.category}`
             );
         } else if (this.state.view == "commercialAds") {
             pushState(
                 {   category: this.state.category,
                     view: "commercialAds",
-                    adList: this.state.adList },
+                    adList: this.state.adList,
+                    activeMenu: this.state.activeMenu,
+                    activeComMenu: this.state.activeComMenu
+                },
                 `/commercialAds/${this.state.category}`
             );
         } else {
             pushState(
                 {   category: this.state.category,
                     view: "home",
-                    adList: this.state.adList },
+                    adList: this.state.adList,
+                    activeMenu: this.state.activeMenu
+                },
                 `/`
             );
         }
@@ -70,7 +78,10 @@ class App extends Component {
                 this.setState({
                     category: event.state.category,
                     view: event.state.view,
-                    adList: event.state.adList
+                    adList: event.state.adList,
+                    activeMenu: event.state.activeMenu,
+                    activeClasMenu: event.state.activeClasMenu,
+                    activeComMenu: event.state.activeComMenu
                 });
             }
         });
@@ -109,7 +120,7 @@ class App extends Component {
             adList: [],
             activeMenu: "home",
             activeClasMenu: "",
-            activeClasMenu: ""
+            activeComMenu: ""
         });
         console.log("pushing state: category:", this.state.category, "view: home", "adList", this.state.adList )
         pushState(
@@ -118,7 +129,7 @@ class App extends Component {
                 adList: [],
                 activeMenu: "home",
                 activeClasMenu: "",
-                activeClasMenu: ""
+                activeComMenu: ""
             },
             `/`
         );
