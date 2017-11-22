@@ -48,46 +48,46 @@ function createCategories(cb) {
             categoriesCreate('105', '聘請', '衣廠', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('301', '住宅租售', '城市 A-C', 'classified', callback);
+            categoriesCreate('301', '住宅租售', '住宅出租 城市 A-C', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('302', '住宅租售', '城市 D-H', 'classified', callback);
+            categoriesCreate('302', '住宅租售', '住宅出租 城市 D-H', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('303', '住宅租售', '城市 I-M', 'classified', callback);
+            categoriesCreate('303', '住宅租售', '住宅出租 城市 I-M', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('304', '住宅租售', '城市 N-R', 'classified', callback);
+            categoriesCreate('304', '住宅租售', '住宅出租 城市 N-R', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('305', '住宅租售', '城市 S', 'classified', callback);
+            categoriesCreate('305', '住宅租售', '住宅出租 城市 S', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('306', '住宅租售', '城市 T-W', 'classified', callback);
+            categoriesCreate('306', '住宅租售', '住宅出租 城市 T-W', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('307', '住宅租售', '城市 X-Z', 'classified', callback);
+            categoriesCreate('307', '住宅租售', '住宅出租 城市 X-Z', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('501', '住宅租售', '城市 A-C', 'classified', callback);
+            categoriesCreate('501', '住宅租售', '住宅出售 城市 A-C', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('502', '住宅租售', '城市 D-H', 'classified', callback);
+            categoriesCreate('502', '住宅租售', '住宅出售 城市 D-H', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('503', '住宅租售', '城市 I-M', 'classified', callback);
+            categoriesCreate('503', '住宅租售', '住宅出售 城市 I-M', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('504', '住宅租售', '城市 N-R', 'classified', callback);
+            categoriesCreate('504', '住宅租售', '住宅出售 城市 N-R', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('505', '住宅租售', '城市 S', 'classified', callback);
+            categoriesCreate('505', '住宅租售', '住宅出售 城市 S', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('506', '住宅租售', '城市 T-W', 'classified', callback);
+            categoriesCreate('506', '住宅租售', '住宅出售 城市 T-W', 'classified', callback);
         },
         function(callback) {
-            categoriesCreate('507', '住宅租售', '城市 X-Z', 'classified', callback);
+            categoriesCreate('507', '住宅租售', '住宅出售 城市 X-Z', 'classified', callback);
         },
         function(callback) {
             categoriesCreate('200', '商業租售', '商業招租', 'classified', callback);
@@ -202,6 +202,9 @@ function createCategories(cb) {
         },
         function(callback) {
             categoriesCreate('other', false, '其他', 'commercial', callback);
+        },
+        function(callback) {
+            categoriesCreate('NO CATEGORY', false, 'NO CATEGORY', 'other', callback);
         }
     ],
     cb);
