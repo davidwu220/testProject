@@ -114,6 +114,9 @@ block content
                 span.fileinput-exists Change
                 input#image.form-control-file(type='file' accept="image/*" name="image")
               span.btn.btn-outline-danger.ml-1.fileinput-exists(data-dismiss="fileinput") Remove
+        else if (ad.image === "")
+          div(style={overflow: 'hidden'})
+            | [ NO IMAGE ]
         else
           div(style={overflow: 'hidden'})
             a(href=ad.image target="_blank")
