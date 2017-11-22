@@ -99,7 +99,8 @@ router.get('/commercialAds/:cat?', (req, res) => {
     Ad
         .find({
             uploaded_manually: true,
-            location: "commercial",$or: [
+            location: "commercial",
+            $or: [
                 {
                     end_date: { $gte : moment().format('YYYY-MM-DD') }
                 },
@@ -110,7 +111,7 @@ router.get('/commercialAds/:cat?', (req, res) => {
             ]
         })
         .populate('category')
-        //.populate('tags')
+        .populate('tags')
         .exec((err, muAds) => {
 
             if (req.params.cat) {
