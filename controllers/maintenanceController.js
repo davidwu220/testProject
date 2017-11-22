@@ -13,14 +13,6 @@ exports.maintenance_list = function(req, res) {
             uploaded_manually: true
         })
         .populate('tags', 'cat_cn')
-        .select({
-            _id: 1,
-            title: 1,
-            location: 1,
-            start_date: 1,
-            end_date: 1,
-            tags: 1
-        })
         .sort('start_date')
         .exec((err, ads) => {
             if (err) {
@@ -68,9 +60,11 @@ exports.maintenance_create_get = function(req, res, next) {
 // Handle maintenance create on POST
 exports.maintenance_create_post = function(req, res) {
     let data = req.body;
+    console.log('posted request: ', data);
     let conf = {
         date_inserted: moment().format('YYYYMMDD'),
         uploaded_manually: true,
+        location: data.location,
         title: data.title,
         description: data.description,
         ad_link: data.link,
@@ -78,7 +72,7 @@ exports.maintenance_create_post = function(req, res) {
         yt_link: data.ytLink,
         start_date: "",
         end_date: "",
-        location: data.location,
+        media_format: data.mediaFormat,
         tags: data.tags
     }
 

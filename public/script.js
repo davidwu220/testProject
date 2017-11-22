@@ -11,7 +11,6 @@ let media_youtube = $('#media_youtube');
 let yt_section = $('#ytLink_section');
 let yt_selector = $('#ytLink');
 
-
 locations_radio.change(() => {
     // Only show category picker when adding commercial ad
     // Only hide youtube field when adding commercial ad
@@ -34,7 +33,6 @@ locations_radio.change(() => {
     }
 })
 
-
 media_radio.change(() => {
     if (media_youtube.is(':checked')) {
         yt_section.removeClass('hidden');
@@ -53,4 +51,30 @@ media_radio.change(() => {
         yt_selector.prop('required', false);
         yt_selector.prop('disabled', true);
     }
+})
+
+
+$('#deleteModal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget);
+    let postTo = button.data('post-to');
+    let adId = button.data('ad-id');
+    let title = button.data('title');
+    let location = button.data('location');
+    let image = button.data('image') || '[ No Image ]';
+    let yt_link = button.data('yt_link') || '[ No Link ]';
+
+    let modal = $(this);
+    modal.find('#deleteModalForm').attr('action', postTo);
+    modal.find('#ad_id').val(adId);
+    modal.find('#location').val(location);
+    modal.find('#title').val(title);
+    modal.find('#deleteModalImagePlaceHolder').html(() => {
+        let imageHtml = "<div style='overflow: hidden';>" +
+                            "<a href='" + image + "' target='_blank'>" +
+                                "<img src='" + image + "' style='max-height: 200px;' alt='Ad image' />" +
+                            "</a>" + 
+                        "</div>";
+        return imageHtml;
+    });
+    modal.find('#yt_link').val(yt_link);
 })

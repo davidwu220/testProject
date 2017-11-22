@@ -44,6 +44,9 @@ var AdSchema = new Schema({
     end_date: {
         type: String
     },
+    media_format: {
+        type: String
+    },
     location: {
         type: String,
         enum: [

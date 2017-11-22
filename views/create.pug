@@ -110,11 +110,11 @@ block content
         #media-format
           .form-check.form-check-inline
             label.form-check-label
-              input#media_image.form-check-input(type='radio' name='mediaFormat' value='aside-right' checked)
+              input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked)
               | Image
           .form-check.form-check-inline
             label.form-check-label
-              input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='aside-right')
+              input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube')
               | Youtube Link
       #image_section.form-group
         label(for='image') Image:
@@ -158,5 +158,5 @@ block content
                 label.form-check-label
                   input.form-check-input(type='checkbox' name='tags' value=c_ad._id)
                   | #{c_ad.cat_cn}
-    button.btn(type='submit' class=(title == 'Delete' ? 'btn-danger' : 'btn-primary')) #{title}
+    button.btn.btn-primary(type='submit') #{title}
     button.btn.btn-default.ml-3(type='reset') Reset
