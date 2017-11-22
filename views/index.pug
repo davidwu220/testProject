@@ -5,7 +5,7 @@ block content
         img.img-fluid.rounded.mx-auto.d-block(src="/images/page_icons/StartUp.jpg", alt="Loading Image")
 
     script
-        | window.initialCat = !{JSON.stringify(initialCat || null)};
+        | window.initialCat = !{JSON.stringify(initialCat || "")};
         | window.initialData = !{JSON.stringify(initialData || [])};
         | window.initialView = !{JSON.stringify(type)};
         | window.classifiedCats = !{JSON.stringify(cls_cats)};

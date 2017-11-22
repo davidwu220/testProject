@@ -10,17 +10,14 @@ class SlidingAds extends Component {
     }
 
     playerReady = () => {
-        console.log('ready');
         this.setState({ ready: true });
+
+        // if the first slide is video, set it to play
+        this.setState({ shoudlPlay: '0' });
     }
     
     componentDidMount() {
-        // if the first slide is video, set it to play
-        this.setState({ shoudlPlay: '0' });
-
         var $carousel = $(".carousel").flickity({
-            cellAlign: "center",
-            contain: true,
             lazyLoad: 2,
             autoPlay: 10000,
             wrapAround: true 

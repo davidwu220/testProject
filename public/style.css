@@ -44,11 +44,6 @@ a {
   .aside .static-aside-ad {
     border-radius: 18px; }
 
-.sticky {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0px; }
-
 .Menu {
   margin: 0px !important;
   z-index: 100;
@@ -71,7 +66,6 @@ a {
   text-align: center; }
 
 .carousel-cell-image {
-  max-width: 768px;
   width: 100%;
   transition: opacity 0.4s;
   opacity: 0; }
@@ -85,6 +79,10 @@ a {
 
 .flickity-viewport {
   transition: height 0.2s; }
+
+.flickity-slider {
+  display: flex;
+  align-items: center; }
 
 .video-wrap {
   position: relative;
@@ -118,10 +116,21 @@ a {
         text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4), 2px 2px 6px rgba(0, 0, 0, 0.3);
         content: "Click to see the full video!"; }
 
-.Header .singtao-logo {
+.form-group {
+  transition: all 0.5s cubic-bezier(0, 0, 0.2, 1); }
+  .form-group.hidden {
+    height: 0;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0; }
+
+.Header #singtao-logo {
   height: 90px;
-  width: auto;
-  transition: all 0.5s; }
+  width: auto; }
+
+.Header #postAd {
+  height: 90px;
+  width: auto; }
 
 .wrapper {
   display: -webkit-box;
@@ -289,7 +298,8 @@ span {
       color: whitesmoke; }
   .adList .ad-text {
     flex: 1 0 1px;
-    padding-right: 10px; }
+    margin-right: 10px;
+    min-width: 190px; }
   .adList .ad-header {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -362,9 +372,9 @@ nav {
     padding-bottom: 20px; } }
 
 @media all and (max-width: 1259px) {
-  .page-header img.singtao-logo {
-    height: 120px;
-    padding-top: 7px; } }
+  .page-header #postAd {
+    height: 75px;
+    margin: 1rem; } }
 
 @media all and (max-width: 767px) {
   form div:nth-child(1), form div:nth-child(2) {
@@ -383,7 +393,7 @@ nav {
   .aside {
     flex: 1 auto; } }
 
-@media all and (min-width: 991px) {
+@media all and (min-width: 992px) {
   .Main {
     flex: 3 0px;
     order: 2; }

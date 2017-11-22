@@ -22,7 +22,7 @@ class App extends Component {
         catTitle: [],
         initialData: this.props.initialData,
         adList: this.props.initialData,
-        category: window.initialCat || "",
+        category: window.initialCat,
         view: window.initialView,
         activeMenu: window.initialView,
         activeClasMenu: window.initialCat,

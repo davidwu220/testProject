@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
+import config from '../../config';
 
 class CarouselCell extends Component {
 
@@ -19,6 +20,13 @@ class CarouselCell extends Component {
                         url={this.props.shortVidUrl}
                         playing={this.props.shouldPlay == props.id}
                         onReady={this.props.playerReady}
+                        config={{
+                            youtube: {
+                                playerVars: { origin: config.serverUrl }
+                            }
+                        }}
+                        volume={0.2}
+                        controls={true}
                         loop
                     />
                     <a

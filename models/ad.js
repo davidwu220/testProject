@@ -33,8 +33,7 @@ var AdSchema = new Schema({
         type: String
     },
     image: {
-        type: String,
-        required: true
+        type: String
     },
     yt_link: {
         type: String
@@ -45,19 +44,17 @@ var AdSchema = new Schema({
     end_date: {
         type: String
     },
-    locations: [
-        {
-            type: String,
-            enum: [
-                'aside-right',
-                'aside-left',
-                'classified',
-                'commercial',
-                'slider'
-            ],
-            required: true,
-        }
-    ],
+    location: {
+        type: String,
+        enum: [
+            'aside-right',
+            'aside-left',
+            'classified',
+            'commercial',
+            'slider'
+        ],
+        required: true,
+    },
     tags: [
         {
             type: Schema.Types.ObjectId,

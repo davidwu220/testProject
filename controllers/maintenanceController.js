@@ -13,11 +13,10 @@ exports.maintenance_list = function(req, res) {
             uploaded_manually: true
         })
         .populate('tags', 'cat_cn')
-        .populate('category', 'type')
         .select({
             _id: 1,
             title: 1,
-            locations: 1,
+            location: 1,
             start_date: 1,
             end_date: 1,
             tags: 1
@@ -31,7 +30,6 @@ exports.maintenance_list = function(req, res) {
                     ads: []
                 });
             }
-            console.log(ads);
             res.render('maintenance', {
                 title: 'Maintenance',
                 ads
@@ -70,34 +68,48 @@ exports.maintenance_create_get = function(req, res, next) {
 // Handle maintenance create on POST
 exports.maintenance_create_post = function(req, res) {
     let data = req.body;
+    let conf = {
+        date_inserted: moment().format('YYYYMMDD'),
+        uploaded_manually: true,
+        title: data.title,
+        description: data.description,
+        ad_link: data.link,
+        image: req.file !== undefined ? "/manualUploads/images/" + req.file.filename : "",
+        yt_link: data.ytLink,
+        start_date: "",
+        end_date: "",
+        location: data.location,
+        tags: data.tags
+    }
+
+    if (moment(data.startDate).isValid()) {
+        conf.start_date = moment(data.startDate).format('YYYY-MM-DD');
+    }
+
+    if (moment(data.endDate).isValid()) {
+        conf.end_date = moment(data.endDate).format('YYYY-MM-DD');
+    }
 
     async.waterfall([
         (callback) => {
-            Category
-                .findById(data.category, (err, category) => {
-                    if (err) callback('error at finding matching category: ' + err, null);
-        
-                    let ad = new Ad({
-                        date_inserted: moment().format('YYYYMMDD'),
-                        // cat: category.cat,
-                        // cat_title_cn: category.cat_title_cn || null,
-                        // cat_cn: category.cat_cn,
-                        // type: category.type,
-                        uploaded_manually: true,
-                        category: category._id,
-                        title: data.title,
-                        description: data.description,
-                        ad_link: data.link,
-                        image: "/manualUploads/images/" + req.file.filename,
-                        yt_link: data.ytLink,
-                        start_date: moment(data.startDate).format('YYYY-MM-DD'),
-                        end_date: moment(data.endDate).format('YYYY-MM-DD'),
-                        locations: data.locations,
-                        tags: data.tags
-                    })
+            if (data.category !== "") {
+                Category
+                    .findById(data.category, (err, category) => {
+                        if (err) callback('error at finding matching category: ' + err, null);
 
-                    callback(null, ad);
-                })
+                        conf.category = category._id;
+            
+                        let ad = new Ad(conf);
+                        
+                        console.log("[cat] ad is now:", ad);
+                        callback(null, ad);
+                    })
+            } else {
+                let ad = new Ad(conf);
+
+                console.log("[no_cat] ad is now:", ad);
+                callback(null, ad);
+            }
         },
         (newAd, callback) => {
             // look for customer by id, if not found, insert a new customer.
@@ -190,7 +202,7 @@ exports.maintenance_delete_get = function(req, res) {
         //         }
         //     }
         // }
-        res.render('delete', {
+        res.render('create', {
             title: 'Delete',
             ad: results.ad,
             classified_ads,
@@ -212,8 +224,10 @@ exports.maintenance_delete_post = function(req, res) {
                 res.redirect('/maintenance');
             }
 
-            // remove image file
-            fs.unlinkSync("./public" + removed.image);
+            if (removed.image !== "") {
+                // remove image file
+                fs.unlinkSync("./public" + removed.image);
+            }
 
             Customer
                 .findOneAndUpdate(
@@ -266,7 +280,7 @@ exports.maintenance_edit_get = function(req, res) {
         //         }
         //     }
         // }
-        res.render('edit', {
+        res.render('create', {
             title: 'Edit',
             ad: results.ad,
             classified_ads,
@@ -278,29 +292,43 @@ exports.maintenance_edit_get = function(req, res) {
 // Handle maintenance update on POST
 exports.maintenance_edit_post = function(req, res) {
     let data = req.body;
+    let conf = {
+        title: data.title,
+        description: data.description,
+        ad_link: data.link,
+        yt_link: data.ytLink,
+        start_date: "",
+        end_date: "",
+        location: data.location,
+        tags: data.tags || [] 
+    }
+
+    if (data.category !== "") {
+        conf.category = data.category
+    }
+
+    if (moment(data.startDate).isValid()) {
+        conf.start_date = moment(data.startDate).format('YYYY-MM-DD');
+    }
+
+    if (moment(data.endDate).isValid()) {
+        conf.end_date = moment(data.endDate).format('YYYY-MM-DD');
+    }
+
     Ad.
         updateOne({ _id: req.params.id },
-            { $set: {
-                category: data.category,
-                title: data.title,
-                description: data.description,
-                ad_link: data.link,
-                yt_link: data.ytLink,
-                start_date: moment(data.startDate).format('YYYY-MM-DD'),
-                end_date: moment(data.endDate).format('YYYY-MM-DD'),
-                locations: data.locations,
-                tags: data.tags 
-            }},
+            { $set: conf },
             (err) => {
                 if (err) {
                     res.flash('error', "error creating ad post: " + err);
-                    res.redirect('/maintenance/' + data.adId + '/edit');
+                    res.redirect('/maintenance');
                 }
 
                 res.flash('success', 'Ad information successfully updated!');
                 res.redirect('/maintenance');
             }
         );
+
     // Ad.findOne(req.body.adId, (err, ad) => {
     //     ad.category = req.body.category;
     //     ad.title = req.body.title;

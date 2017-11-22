@@ -55,30 +55,6 @@ router.get('/get_manual_uploads', (req, res) => {
         });
 })
 
-
-
-// Note: only return ads that are not expired
-router.get('/commercialAds/:cat?', (req, res) => {
-    Ad
-        .find({
-            uploaded_manually: true,
-            end_date: { $gt : moment().format('YYYY-MM-DD') }
-        })
-        .populate('category')
-        .populate('tags')
-        .exec((err, muAds) => {
-
-            if (req.params.cat) {
-                let filteredAds = muAds.filter((ad) => {
-                    return ad.category.cat == req.params.cat;
-                });
-                res.send(filteredAds);
-            } else {
-                res.send(muAds);
-            }
-        });
-})
-
 router.get('/get_manual_uploads/slider', (req, res) => {
     Ad
         .find({
@@ -118,6 +94,27 @@ router.get('/get_manual_uploads/aside/left', (req, res) => {
         });
 })
 
+// Note: only return ads that are not expired
+router.get('/commercialAds/:cat?', (req, res) => {
+    Ad
+        .find({
+            uploaded_manually: true,
+            end_date: { $gt : moment().format('YYYY-MM-DD') }
+        })
+        .populate('category')
+        .populate('tags')
+        .exec((err, muAds) => {
+
+            if (req.params.cat) {
+                let filteredAds = muAds.filter((ad) => {
+                    return ad.category.cat == req.params.cat;
+                });
+                res.send(filteredAds);
+            } else {
+                res.send(muAds);
+            }
+        });
+})
 
 router.get('/classifiedAds', (req, res) => {
     mdb.collection('ads')

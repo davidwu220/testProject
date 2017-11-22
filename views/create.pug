@@ -15,109 +15,112 @@ block content
     h1.display-4.mb-2 #{title}
   .row
     .mb-4.text-danger * Required
-  form.row(method='POST' action='' enctype='multipart/form-data')
+  form.row(method='POST' action='' enctype=(title !== 'Create' ? 'application/x-www-form-urlencoded' : 'multipart/form-data'))
     .col-md-6.col-md-offset-3
       h2.m-b-2 Customer Info
       .form-group
         label(for='customerId') Customer ID:
-          | 
-          span.text-danger *
-        input#customerId.form-control(type='text' name='customerId' value=(undefined=== ad ? '' : ad.customer_id) required)
+        input#customerId.form-control(type='text' name='customerId' value=(undefined === ad ? '' : ad.customer.customer_id) readonly=(undefined === ad ? false : true))
       .form-row
         .form-group.col-md-6
           label(for='firstName') Customer First Name:
-            | 
-            span.text-danger *
-          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(undefined=== ad ? '' : ad.first_name) required)
+          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(undefined === ad ? '' : ad.customer.first_name) readonly=(undefined === ad ? false : true))
         .form-group.col-md-6
           label(for='lastName') Customer Last Name:
-          input#lastName.form-control(type='text' placeholder='Last Name' value=(undefined=== ad ? '' : ad.last_name) name='lastName')
+          input#lastName.form-control(type='text' placeholder='Last Name' name='lastName' value=(undefined === ad ? '' : ad.customer.last_name) readonly=(undefined === ad ? false : true))
       .form-group
         label(for='email') Email:
-        input#email.form-control(type='email' placeholder='name@email.com' value=(undefined=== ad ? '' : ad.email) name='email')
+        input#email.form-control(type='email' placeholder='name@email.com' name='email' value=(undefined === ad ? '' : ad.customer.email) readonly=(undefined === ad ? false : true))
       .form-group
         label(for='phone') Phone:
-        input#phone.form-control(type='tel' name='phone' value=(undefined=== ad ? '' : ad.phone))
+        input#phone.form-control(type='tel' name='phone' value=(undefined === ad ? '' : ad.customer.phone) readonly=(undefined === ad ? false : true))
       .form-group
         label(for='address') Address:
-        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=(undefined=== ad ? '' : ad.address))
+        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=value=(undefined === ad ? '' : ad.customer.address) readonly=(undefined === ad ? false : true))
 
     .col-md-6.col-md-offset-3
       h2.m-b-2 Ad Info
       .form-group
-        label(for='category') Category:
-          | 
-          span.text-danger *
-        select#category.form-control(name='category' required)
-          option(selected) Choose one...
-          if classified_ads
-            optgroup(label='分類廣告')
-              each c_ad in classified_ads
+        label(for='locations') Ad Location:
+        | 
+        span.text-danger *
+        #locations
+          .form-check.form-check-inline
+            label.form-check-label
+              input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked)
+              | Aside-Right
+          .form-check.form-check-inline
+            label.form-check-label
+              input#location_AL.form-check-input(type='radio' name='location' value='aside-left')
+              | Aside-Left
+          .form-check.form-check-inline
+            label.form-check-label
+              input#location_CA.form-check-input(type='radio' name='location' value='commercial')
+              | Commercial Ad Section
+          .form-check.form-check-inline
+            label.form-check-label
+              input#location_SA.form-check-input(type='radio' name='location' value='slider')
+              | Slider Ad
+      if ad
+        #category_selector_section.form-group(class=(ad.location == 'commercial' ? '' : 'hidden'))
+          label(for='category') Category:
+            | 
+            span.text-danger *
+          select#category.form-control(name='category')
+            option(selected value="") Choose one...
+            if commercial_ads
+              each c_ad in commercial_ads
                 option(value=c_ad._id) #{c_ad.cat_cn}
-          if commercial_ads
-            optgroup(label='商業廣告')
+      else
+        #category_selector_section.form-group.hidden
+          label(for='category') Category:
+            | 
+            span.text-danger *
+          select#category.form-control(name='category')
+            option(selected value="") Choose one...
+            if commercial_ads
               each c_ad in commercial_ads
                 option(value=c_ad._id) #{c_ad.cat_cn}
       .form-group
         label(for='title') Title:
           | 
           span.text-danger *
-        input#title.form-control(type='text' placeholder='Title' name='title' value=(undefined=== ad ? '' : ad.title) required)
+        input#title.form-control(type='text' placeholder='Title' name='title' value=(undefined === ad ? '' : ad.title) required)
       .form-group
         label(for='description') Description:
           | 
           span.text-danger *
         textarea#description.form-control(type='text' placeholder='Description' name='description' rows='3' required)
-          | #{undefined=== ad ? '' : ad.description}
+          | #{undefined === ad ? '' : ad.description}
       .form-group
-        label(for='link') Link:
-        input#link.form-control(type='url' name='link' placeholder='http://example.com' value=(undefined=== ad ? '' : ad.ad_link))
+        label(for='link') External Link:
+        input#link.form-control(type='url' name='link' placeholder='http://example.com' value=(undefined === ad ? '' : ad.ad_link))
         small#linkHelpText.form-text.text-muted Make sure http:// or https:// is included.
       .form-row
         .form-group.col-md
           label(for='startDate') Start Date:
-          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined=== ad ? '' : ad.start_date))
+          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined === ad ? '' : ad.start_date))
         .form-group.col-md
           label(for='endDate') End Date:
-          input#endDate.form-control(type='date' placeholder='dd/mm/yyyy' name='endDate' value=(undefined=== ad ? '' : ad.end_date))
+          input#endDate.form-control(type='date' placeholder='dd/mm/yyyy' name='endDate' value=(undefined === ad ? '' : ad.end_date))
       .form-group
         label(for='image') Image:
-          | 
-          span.text-danger *
-        .fileinput.fileinput-new(data-provides="fileinput" style={width: '100%'})
-          .fileinput-preview.fileinput-exists.thumbnail(style={'max-width': '200px', 'max-height': '150px'})
-          div
-            span.btn.btn-default.btn-file
-              span.fileinput-new Select Image
-              span.fileinput-exists Change
-              input#image.form-control-file(type='file' accept="image/*" name="image" required)
-            span.btn.btn-outline-danger.ml-1.fileinput-exists(data-dismiss="fileinput") Remove
-      .form-group
+        if (title == "Create")
+          .fileinput.fileinput-new(data-provides="fileinput" style={width: '100%'})
+            .fileinput-preview.fileinput-exists.thumbnail(style={'max-width': '200px', 'max-height': '150px'})
+            div
+              span.btn.btn-default.btn-file
+                span.fileinput-new Select Image
+                span.fileinput-exists Change
+                input#image.form-control-file(type='file' accept="image/*" name="image")
+              span.btn.btn-outline-danger.ml-1.fileinput-exists(data-dismiss="fileinput") Remove
+        else
+          div(style={'max-height': '200px', overflow: 'hidden'})
+            img(src=ad.image, alt="Ad image")
+      #ytLink_section.form-group
         label(for='ytLink') YouTube Link:
-        input#ytLink.form-control(type='url' name='ytLink' value=(undefined=== ad ? '' : ad.yt_link))
+        input#ytLink.form-control(type='url' name='ytLink' value=(undefined === ad ? '' : ad.yt_link))
       .form-group
-        label(for='locations') Ad Locations:
-        | 
-        span.text-danger *
-        #locations
-          .form-check.form-check-inline
-            label.form-check-label
-              input.form-check-input(type='checkbox' name='locations' value='aside-right')
-              | Aside-Right
-          .form-check.form-check-inline
-            label.form-check-label
-              input.form-check-input(type='checkbox' name='locations' value='aside-left')
-              | Aside-Left
-          .form-check.form-check-inline
-            label.form-check-label
-              input.form-check-input(type='checkbox' name='locations' value='commercial')
-              | Commercial Ad Section
-          .form-check.form-check-inline
-            label.form-check-label
-              input.form-check-input(type='checkbox' name='locations' value='slider')
-              | Slider Ad
-
-        .form-group
         label(for='tags') Tags:
         #tags
           if classified_ads
@@ -137,5 +140,5 @@ block content
                 label.form-check-label
                   input.form-check-input(type='checkbox' name='tags' value=c_ad._id)
                   | #{c_ad.cat_cn}
-    button.btn.btn-primary(type='submit') Create
+    button.btn(type='submit' class=(title == 'Delete' ? 'btn-danger' : 'btn-primary')) #{title}
     button.btn.btn-default.ml-3(type='reset') Reset
