@@ -99,10 +99,18 @@ router.get('/commercialAds/:cat?', (req, res) => {
     Ad
         .find({
             uploaded_manually: true,
-            end_date: { $gt : moment().format('YYYY-MM-DD') }
+            location: "commercial",$or: [
+                {
+                    end_date: { $gte : moment().format('YYYY-MM-DD') }
+                },
+                {
+                    end_date: ""
+                }
+
+            ]
         })
         .populate('category')
-        .populate('tags')
+        //.populate('tags')
         .exec((err, muAds) => {
 
             if (req.params.cat) {

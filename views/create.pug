@@ -115,8 +115,10 @@ block content
                 input#image.form-control-file(type='file' accept="image/*" name="image")
               span.btn.btn-outline-danger.ml-1.fileinput-exists(data-dismiss="fileinput") Remove
         else
-          div(style={'max-height': '200px', overflow: 'hidden'})
-            img(src=ad.image, alt="Ad image")
+          div(style={overflow: 'hidden'})
+            a(href=ad.image target="_blank")
+              img(src=ad.image style={'max-height': '200px'} alt="Ad image")
+          small.form-text.text-muted Click to see full size image.
       #ytLink_section.form-group
         label(for='ytLink') YouTube Link:
         input#ytLink.form-control(type='url' name='ytLink' value=(undefined === ad ? '' : ad.yt_link))
