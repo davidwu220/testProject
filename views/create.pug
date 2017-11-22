@@ -99,7 +99,11 @@ block content
       .form-row
         .form-group.col-md
           label(for='startDate') Start Date:
-          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined === ad ? '' : ad.start_date))
+          | 
+          span.text-danger *
+          | 
+          small.text-muted Default today
+          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined === ad ? defaultStartDate : ad.start_date))
         .form-group.col-md
           label(for='endDate') End Date:
           input#endDate.form-control(type='date' placeholder='dd/mm/yyyy' name='endDate' value=(undefined === ad ? '' : ad.end_date))
@@ -118,6 +122,8 @@ block content
               | Youtube Link
       #image_section.form-group
         label(for='image') Image:
+        | 
+        span.text-danger *
         if (title === "Create")
           .fileinput.fileinput-new(data-provides="fileinput" style={width: '100%'})
             .fileinput-preview.fileinput-exists.thumbnail(style={'max-width': '200px', 'max-height': '150px'})
@@ -137,6 +143,8 @@ block content
           small.form-text.text-muted Click to see full size image.
       #ytLink_section.form-group.hidden
         label(for='ytLink') YouTube Link:
+        | 
+        span.text-danger *
         input#ytLink.form-control(type='url' name='ytLink' value=(undefined === ad ? '' : ad.yt_link))
       .form-group
         label(for='tags') Tags:

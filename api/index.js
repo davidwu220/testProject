@@ -102,6 +102,9 @@ router.get('/commercialAds/:cat?', (req, res) => {
             location: "commercial",
             $or: [
                 {
+                    start_date: { $lte : moment().format('YYYY-MM-DD') }
+                },
+                {
                     end_date: { $gte : moment().format('YYYY-MM-DD') }
                 },
                 {

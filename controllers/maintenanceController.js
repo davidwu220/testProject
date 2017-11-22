@@ -51,6 +51,7 @@ exports.maintenance_create_get = function(req, res, next) {
             });
             res.render('create', {
                 title: 'Create',
+                defaultStartDate: moment().format('YYYY-MM-DD'),
                 classified_ads,
                 commercial_ads
             });
