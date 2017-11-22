@@ -8,7 +8,7 @@ class CommercialPicMenu extends Component {
 
     render() {
         return (
-            <div className="commercial-ad-menu ad-wrapper">
+            <div className="commercial-ad-menu com-ad-wrapper">
                 <a onClick={() => this.handleClick("real_loan")}>
                     <img className="commercial-ad-item" src="/images/page_icons/webIcon_realty.jpg" alt="Commercial AD Menu"/>
                 </a>

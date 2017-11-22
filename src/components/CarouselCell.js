@@ -9,11 +9,11 @@ class CarouselCell extends Component {
             return (
                 <div className="carousel-cell">
                     <a href={this.props.url} data-fancybox="slider-group" data-caption="Slider Image">
-                        <img className="carousel-cell-image" data-flickity-lazyload={this.props.url} alt="carousel slide" />
+                        <img className="carousel-cell-image" src={this.props.url} alt="carousel slide" />
                     </a>
                 </div>
             );
-        } else if (props.type == "video") {
+        } else if (props.type == "youtube") {
             return (
                 <div className="carousel-cell video-wrap" id={props.id}>
                     <ReactPlayer

@@ -67,7 +67,7 @@ server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_pos
 server.get('/maintenance/:id/delete', maintenance_controller.maintenance_delete_get);
 server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
 
-let cls_cats, com_cats, all_cls;
+let cls_cats, com_cats, slider_ads;
 
 server.use(
     (req, res, next) => {
@@ -88,6 +88,13 @@ server.use(
 
                 next();
             });
+    }, (req, res, next) => {
+        serverRender.serverRenderSliderList()
+            .then((sliders) => {
+                slider_ads = sliders;
+
+                next();
+            })
     }
 );
 
@@ -97,7 +104,8 @@ server.get('/' , (req, res) => {
         initialCat: null,
         initialData: [],
         cls_cats,
-        com_cats
+        com_cats,
+        slider_ads
     });
 
 });
@@ -122,7 +130,8 @@ server.get('/classifiedAds/:cat?' , (req, res) => {
             initialCat: req.params.cat,
             initialData,
             cls_cats,
-            com_cats
+            com_cats,
+            slider_ads
         });
     })
     .catch((error) => 
@@ -142,7 +151,8 @@ server.get('/classifiedAds/all/page/:page' , (req, res) => {
             initialCat: req.params.cat,
             initialData,
             cls_cats,
-            com_cats
+            com_cats,
+            slider_ads
         });
     })
     .catch((error) => 
@@ -166,7 +176,8 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
                 initialCat: req.params.cat,
                 initialData,
                 cls_cats,
-                com_cats
+                com_cats,
+                slider_ads
             });
         })
         .catch((error) => 

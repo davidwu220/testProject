@@ -9,26 +9,38 @@ let image_selector = $('#image');
 let media_image = $('#media_image');
 let media_youtube = $('#media_youtube');
 let yt_section = $('#ytLink_section');
-let yt_selector = $('#ytLink');
+let yt_s_selector = $('#ytShortLink');
+let yt_f_selector = $('#ytFullLink');
 
 locations_radio.change(() => {
     // Only show category picker when adding commercial ad
     // Only hide youtube field when adding commercial ad
     if (location_ca.is(':checked')) {
+        // Show category selector and set it to be required
         cat_selector_sec.removeClass('hidden');
         cat_selector.prop('required', true);
 
+        // Set image media format checked
         media_image.prop('checked', true);
+
+        // Set youtube media format unchecked and disable it
         media_youtube.prop('checked', false);
         media_youtube.prop('disabled', true);
 
+        // Show image section and set it to be required
         image_section.removeClass('hidden');
         image_selector.prop('required', true);
+
+        // Hide youtube section and not required
         yt_section.addClass('hidden');
-        yt_selector.prop('required', false);
+        yt_s_selector.prop('required', false);
+        yt_f_selector.prop('required', false);
     } else {
+        // Hide category selector and set not required
         cat_selector_sec.addClass('hidden');
         cat_selector.prop('required', false);
+
+        // Set youtube media format enabled
         media_youtube.prop('disabled', false);
     }
 })
@@ -36,8 +48,12 @@ locations_radio.change(() => {
 media_radio.change(() => {
     if (media_youtube.is(':checked')) {
         yt_section.removeClass('hidden');
-        yt_selector.prop('required', true);
-        yt_selector.prop('disabled', false);
+        
+        yt_s_selector.prop('required', true);
+        yt_f_selector.prop('required', true);
+        
+        yt_s_selector.prop('disabled', false);
+        yt_f_selector.prop('disabled', false);
 
         image_section.addClass('hidden');
         image_selector.prop('required', false);
@@ -48,8 +64,12 @@ media_radio.change(() => {
         image_selector.prop('disabled', false);
 
         yt_section.addClass('hidden');
-        yt_selector.prop('required', false);
-        yt_selector.prop('disabled', true);
+        
+        yt_s_selector.prop('required', false);
+        yt_f_selector.prop('required', false);
+        
+        yt_s_selector.prop('disabled', true);
+        yt_f_selector.prop('disabled', true);
     }
 })
 

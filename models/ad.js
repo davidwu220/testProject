@@ -35,7 +35,10 @@ var AdSchema = new Schema({
     image: {
         type: String
     },
-    yt_link: {
+    yt_short_link: {
+        type: String
+    },
+    yt_full_link: {
         type: String
     },
     start_date: {

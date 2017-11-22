@@ -88,9 +88,7 @@ block content
         input#title.form-control(type='text' placeholder='Title' name='title' value=(undefined === ad ? '' : ad.title) required)
       .form-group
         label(for='description') Description:
-          | 
-          span.text-danger *
-        textarea#description.form-control(type='text' placeholder='Description' name='description' rows='3' required)
+        textarea#description.form-control(type='text' placeholder='Description' name='description' rows='3')
           | #{undefined === ad ? '' : ad.description}
       .form-group
         label(for='link') External Link:
@@ -119,7 +117,7 @@ block content
           .form-check.form-check-inline
             label.form-check-label
               input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube')
-              | Youtube Link
+              | YouTube Link
       #image_section.form-group
         label(for='image') Image:
         | 
@@ -142,10 +140,14 @@ block content
               img(src=ad.image style={'max-height': '200px'} alt="Ad image")
           small.form-text.text-muted Click to see full size image.
       #ytLink_section.form-group.hidden
-        label(for='ytLink') YouTube Link:
+        label(for='ytShortLink') YouTube Short Link:
         | 
         span.text-danger *
-        input#ytLink.form-control(type='url' name='ytLink' value=(undefined === ad ? '' : ad.yt_link))
+        input#ytShortLink.form-control.mb-3(type='url' name='ytShortLink' value=(undefined === ad ? '' : ad.yt_short_link))
+        label(for='ytFullLink') YouTube Full Link:
+        | 
+        span.text-danger *
+        input#ytFullLink.form-control(type='url' name='ytFullLink' value=(undefined === ad ? '' : ad.yt_full_link))
       .form-group
         label(for='tags') Tags:
         #tags

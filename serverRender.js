@@ -41,3 +41,11 @@ export const serverRenderMaintenanceList = () => (
         })
         .catch((err) => console.error(err))
 )
+
+export const serverRenderSliderList = () => (
+    axios.get(`${config.serverUrl}/api/get_manual_uploads/slider`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)

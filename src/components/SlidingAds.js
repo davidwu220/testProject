@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 
 import CarouselCell from './CarouselCell';
+import { fetchSlider } from '../api';
 
 class SlidingAds extends Component {
     state = {
@@ -9,17 +10,23 @@ class SlidingAds extends Component {
         ready: false
     }
 
+    sliderAds = [];
+
     playerReady = () => {
         this.setState({ ready: true });
 
         // if the first slide is video, set it to play
         this.setState({ shoudlPlay: '0' });
     }
+
+    componentWillMount() {
+        
+    }
     
     componentDidMount() {
         var $carousel = $(".carousel").flickity({
-            lazyLoad: 2,
-            autoPlay: 10000,
+            imagesLoaded: true,
+            autoPlay: 12000,
             wrapAround: true 
 
         });
@@ -46,45 +53,19 @@ class SlidingAds extends Component {
     render() {
         return (
             <div className="carousel">
-                <CarouselCell
-                    type="video"
-                    fullVidUrl="https://youtu.be/wjFlgOJmbfw"
-                    shortVidUrl="https://youtu.be/m-02MYq03qA"
-                    id="0"
-                    shouldPlay={this.state.shoudlPlay}
-                    playerReady={this.playerReady}
-                    onVidClick={this.onVidClick}
-                />
-                <CarouselCell
-                    type="image"
-                    id="1"
-                    url="/ads/slider_ads/6254CF6.png"
-                />
-                <CarouselCell
-                    type="image"
-                    id="2"
-                    url="/ads/slider_ads/6277CF5.png"
-                />
-                <CarouselCell
-                    type="image"
-                    id="3"
-                    url="/ads/slider_ads/6283CHR11-1.png"
-                />
-                <CarouselCell
-                    type="image"
-                    id="4"
-                    url="/ads/slider_ads/6283CHR11-2.png"
-                />
-                <CarouselCell
-                    type="image"
-                    id="5"
-                    url="/ads/slider_ads/6615CF5.png"
-                />
-                <CarouselCell
-                    type="image"
-                    id="6"
-                    url="/ads/slider_ads/6615CF6A.png"
-                />
+                {this.props.sliderAds.map((ad, index) => {
+                    return <CarouselCell
+                        key={ad._id}
+                        type={ad.media_format}
+                        shortVidUrl={ad.yt_short_link}
+                        fullVidUrl={ad.yt_full_link}
+                        id={index}
+                        shouldPlay={this.state.shoudlPlay}
+                        playerReady={this.playerReady}
+                        onVidClick={this.onVidClick}
+                    />
+                })}
+                
             </div>
         );
     }

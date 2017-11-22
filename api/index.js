@@ -58,13 +58,24 @@ router.get('/get_manual_uploads', (req, res) => {
 router.get('/get_manual_uploads/slider', (req, res) => {
     Ad
         .find({
-            uploaded_manually: true
+            uploaded_manually: true,
+            location: 'slider',
+            $or: [
+                {
+                    start_date: { $lte : moment().format('YYYY-MM-DD') }
+                },
+                {
+                    end_date: { $gte : moment().format('YYYY-MM-DD') }
+                },
+                {
+                    end_date: ""
+                }
+            ]
         })
-        .populate('category')
         .populate('tags')
-        .exec((err, muAds) => {
+        .exec((err, sliderAds) => {
             if (err) console.log('error getting full manual upload list: ', err);
-            res.send(muAds);
+            res.send(sliderAds);
         });
 })
 
@@ -73,7 +84,6 @@ router.get('/get_manual_uploads/aside/right', (req, res) => {
         .find({
             uploaded_manually: true
         })
-        .populate('category')
         .populate('tags')
         .exec((err, muAds) => {
             if (err) console.log('error getting full manual upload list: ', err);
@@ -86,7 +96,6 @@ router.get('/get_manual_uploads/aside/left', (req, res) => {
         .find({
             uploaded_manually: true
         })
-        .populate('category')
         .populate('tags')
         .exec((err, muAds) => {
             if (err) console.log('error getting full manual upload list: ', err);

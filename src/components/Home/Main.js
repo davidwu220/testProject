@@ -11,7 +11,9 @@ class Main extends Component {
         if (this.props.viewState == "classifiedAds") {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
-                    <SlidingAds />
+                    <SlidingAds
+                        sliderAds={this.props.sliderAds}
+                    />
                     <ClassifiedSection 
                         setPicker={this.props.setPicker}
                         show300Picker={this.props.show300Picker}
@@ -28,7 +30,9 @@ class Main extends Component {
         } else if (this.props.viewState == "commercialAds") {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
-                    <SlidingAds />
+                    <SlidingAds
+                        sliderAds={this.props.sliderAds}
+                    />
                     <CommercialSection
                         viewState={ this.props.viewState } 
                         currentCat={ this.props.currentCat }
@@ -40,7 +44,9 @@ class Main extends Component {
         } else {
             return (
                 <div className="Main" style={{width: 1 + "px"}}>
-                    <SlidingAds />
+                    <SlidingAds
+                        sliderAds={this.props.sliderAds}
+                    />
                     <ClassifiedSection 
                         setPicker={this.props.setPicker}
                         show300Picker={this.props.show300Picker}

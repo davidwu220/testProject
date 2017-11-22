@@ -26,7 +26,8 @@ class App extends Component {
         view: window.initialView,
         activeMenu: window.initialView,
         activeClasMenu: window.initialCat,
-        activeComMenu: window.initialCat
+        activeComMenu: window.initialCat,
+        sliderAds: window.sliderAds
     };
 
     componentDidMount() {
@@ -136,6 +137,16 @@ class App extends Component {
 
     }
 
+    // fetchSliderAds = () => {
+    //     api.fetchSlider()
+    //         .then((sliderAds) => {
+    //             console.log('got slider ads: ', sliderAds);
+    //             this.setState({
+    //                 sliderAds: sliderAds
+    //             }) 
+    //     });
+    // }
+
     fetchClasAds = (adClass) => {
         api.fetchClasAdByClass(adClass)
             .then(adsInClass => {
@@ -224,6 +235,7 @@ class App extends Component {
                     activeMenu={this.state.activeMenu} />
                 <div className="wrapper">
                     <Main 
+                        sliderAds={this.state.sliderAds}
                         show300Picker={this.state.show300Picker}
                         show500Picker={this.state.show500Picker}
                         setPicker={this.setPicker}
