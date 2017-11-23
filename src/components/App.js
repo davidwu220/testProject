@@ -158,7 +158,6 @@ class App extends Component {
                     activeMenu: "classifiedAds",
                     activeClasMenu: adClass
                 });
-                console.log("pushing state: category:", adClass, "view: classifiedAds", "adList", this.state.adList )
                 pushState(
                     {   category: adClass,
                         view: "classifiedAds",
@@ -174,7 +173,6 @@ class App extends Component {
     fetchComAds = (cat) => {
         api.fetchComAdByClass(cat)
             .then((ads) => {
-                console.log("fetch com ads: ", ads);
                 this.setState({
                     view: "commercialAds",
                     category: cat,

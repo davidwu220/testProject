@@ -24,7 +24,6 @@ router.use((req, res, next) => {
         assert.equal(null, err);
         // then use the last update date to fetch the ads accordingly
         lastUpdate = lu.lastUpdate;
-        console.log('loocking for ads on lu.lastUpdate: ', lastUpdate);
         
         next();
     });
