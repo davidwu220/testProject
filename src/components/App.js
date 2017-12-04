@@ -14,10 +14,18 @@ const onPopState = handler => {
     window.onpopstate = handler;
 }
 
+const check300 = (is300) => {
+    return parseInt(is300/100) == 3;
+}
+
+const check500 = (is500) => {
+    return parseInt(is500/100) == 5;
+}
+
 class App extends Component {
     state = { 
-        show300Picker: false,
-        show500Picker: false,
+        show300Picker: check300(window.initialCat),
+        show500Picker: check500(window.initialCat),
         clasCat: [],
         catTitle: [],
         initialData: this.props.initialData,
