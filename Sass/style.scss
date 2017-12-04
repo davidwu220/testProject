@@ -130,9 +130,15 @@ body {
             height: 13px;
             margin-top: 8px;
             background-color: rgb(160,160,160);
+            opacity: 0.6;
+            transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
+        }
+        .swiper-pagination-bullet:hover:not(.swiper-pagination-bullet-active ){
             opacity: 1;
+            background-color: whitesmoke;
         }
         .swiper-pagination-bullet-active {
+            opacity: 1;
             background-color: #06c8b8;
         }
     }
