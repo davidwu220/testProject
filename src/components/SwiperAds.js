@@ -59,14 +59,14 @@ class SwiperAds extends Component {
                 clickable: true
             },
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
+                nextEl: '.swiper-button-next.swiper-button-white',
+                prevEl: '.swiper-button-prev.swiper-button-white'
             },
             spaceBetween: 30,
             autoplay: {
                 delay: 12000,
                 disableOnInteraction: false
-            },
+            }
         }
         
         return (
@@ -89,7 +89,6 @@ class SwiperAds extends Component {
                                 }
                             }
                             volume={ 0.2 }
-                            controls={ true }
                             loop
                         />
                         <a

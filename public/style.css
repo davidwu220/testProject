@@ -83,8 +83,41 @@ a {
 .swiper-container.swiper-container-horizontal {
   margin: 20px 0 40px 0;
   max-width: 867px; }
-  .swiper-container.swiper-container-horizontal .swiper-pagination {
-    bottom: -30px; }
+  .swiper-container.swiper-container-horizontal .swiper-pagination-bullets {
+    position: absolute;
+    width: auto;
+    height: 30px;
+    bottom: 50px;
+    right: 10px;
+    left: unset;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 10px;
+    border-radius: 15px; }
+    .swiper-container.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet {
+      margin: 0 5px;
+      width: 13px;
+      height: 13px;
+      margin-top: 8px;
+      background-color: #a0a0a0;
+      opacity: 1; }
+    .swiper-container.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet-active {
+      background-color: #06c8b8; }
+
+.slideshow-leftbtn {
+  position: absolute;
+  z-index: 500;
+  font-size: 1.4em;
+  color: #a0a0a0;
+  left: 10px;
+  top: 5px; }
+
+.slideshow-rightbtn {
+  position: absolute;
+  z-index: 500;
+  font-size: 1.4em;
+  color: #a0a0a0;
+  top: 5px;
+  left: 145px; }
 
 .swiper-slide.video-wrap {
   position: relative;
@@ -104,7 +137,7 @@ a {
   left: 0;
   width: 100%;
   top: 0px;
-  bottom: 45px;
+  bottom: 0px;
   z-index: 3; }
   .video-wrap__overlay:hover {
     background-color: rgba(0, 0, 0, 0.3);

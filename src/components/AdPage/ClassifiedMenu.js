@@ -107,7 +107,7 @@ class ClassifiedMenu extends Component {
     Picker300 = () => {
         return (
             <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
-                {this.in300.map(cat => 
+                {this.in300.sort().map(cat => 
                     <option key={cat} value={cat}>住宅出租 {this.getCity(cat)}</option>
                 )}
             </select>
@@ -117,7 +117,7 @@ class ClassifiedMenu extends Component {
     Picker500 = () => {
         return (
             <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
-                {this.in500.map(cat => 
+                {this.in500.sort().map(cat => 
                     <option key={cat} value={cat}>住宅出售 {this.getCity(cat)}</option>
                 )}
             </select>
