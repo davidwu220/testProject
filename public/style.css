@@ -87,8 +87,8 @@ a {
     position: absolute;
     width: auto;
     height: 30px;
-    bottom: 50px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
     left: unset;
     background: rgba(0, 0, 0, 0.5);
     padding: 0 10px;

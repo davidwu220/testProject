@@ -5,8 +5,8 @@ class ClassifiedMenu extends Component {
     previousClass = "";
     in300 = [];
     in500 = [];
-    first300;
-    first500;
+    first300 = "";
+    first500 = "";
 
     check300 = (is300) => {
         return parseInt(is300/100) == 3;
@@ -23,7 +23,7 @@ class ClassifiedMenu extends Component {
         this.props.clasCat.forEach(cat => {
             if (this.check300(cat)) {
                 this.in300.push(cat);
-                if (!isTrue) {
+                if (!isTrue || this.first300 > cat) {
                     this.first300 = cat;
                     isTrue = true;
                 }
@@ -40,7 +40,7 @@ class ClassifiedMenu extends Component {
         this.props.clasCat.forEach(cat => {
             if (this.check500(cat)) {
                 this.in500.push(cat);
-                if (!isTrue) {
+                if (!isTrue || this.first500 > cat) {
                     this.first500 = cat;
                     isTrue = true;
                 }
@@ -107,7 +107,7 @@ class ClassifiedMenu extends Component {
     Picker300 = () => {
         return (
             <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
-                {this.in300.sort().map(cat => 
+                {this.in300.sort().map((cat, i) => 
                     <option key={cat} value={cat}>住宅出租 {this.getCity(cat)}</option>
                 )}
             </select>
@@ -117,7 +117,7 @@ class ClassifiedMenu extends Component {
     Picker500 = () => {
         return (
             <select id="picker" className="form-control" onChange={this.onPickerChange} value={this.props.currentCat}>
-                {this.in500.sort().map(cat => 
+                {this.in500.sort().map((cat, i) => 
                     <option key={cat} value={cat}>住宅出售 {this.getCity(cat)}</option>
                 )}
             </select>
