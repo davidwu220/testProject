@@ -6,7 +6,7 @@ import { fetchSlider } from '../api';
 
 class SlidingAds extends Component {
     state = {
-        shoudlPlay: '',
+        shouldPlay: '',
         ready: false
     }
 
@@ -16,7 +16,7 @@ class SlidingAds extends Component {
         this.setState({ ready: true });
 
         // if the first slide is video, set it to play
-        this.setState({ shoudlPlay: '0' });
+        this.setState({ shouldPlay: '0' });
     }
 
     componentWillMount() {
@@ -34,7 +34,7 @@ class SlidingAds extends Component {
 
         $carousel.on("select.flickity", () => {
             if(this.state.ready) {
-                this.setState({ shoudlPlay: flkty.selectedIndex });
+                this.setState({ shouldPlay: flkty.selectedIndex });
                 
             }
         });
@@ -42,10 +42,13 @@ class SlidingAds extends Component {
         // pause and unpause the video if the slide is clicked
         $("[data-fancybox]").fancybox({
             beforeShow: (instance, slide) => {
-                this.setState({ shoudlPlay: '' });
+                console.log("flkty.selectedIndex:", flkty.selectedIndex);
+                this.setState({ shouldPlay: '' });
             },
             afterClose: (instance, slide) => {
-                this.setState({ shoudlPlay: flkty.selectedIndex });
+                console.log("flkty.selectedIndex:", flkty.selectedIndex);
+                this.setState({ shouldPlay: flkty.selectedIndex });
+                $carousel.flickity('playPlayer');
             }
         });
     }
@@ -60,7 +63,7 @@ class SlidingAds extends Component {
                         shortVidUrl={ad.yt_short_link}
                         fullVidUrl={ad.yt_full_link}
                         id={index}
-                        shouldPlay={this.state.shoudlPlay}
+                        shouldPlay={this.state.shouldPlay}
                         playerReady={this.playerReady}
                         onVidClick={this.onVidClick}
                     />

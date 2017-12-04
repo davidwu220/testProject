@@ -20,7 +20,9 @@ block content
       h2.m-b-2 Customer Info
       .form-group
         label(for='customerId') Customer ID:
-        input#customerId.form-control(type='text' name='customerId' value=(undefined === ad ? '' : ad.customer.customer_id) readonly=(undefined === ad ? false : true))
+        | 
+        span.text-danger *
+        input#customerId.form-control(type='text' name='customerId' value=(undefined === ad ? '' : ad.customer.customer_id) readonly=(undefined === ad ? false : true) required)
       .form-row
         .form-group.col-md-6
           label(for='firstName') Customer First Name:
@@ -45,42 +47,54 @@ block content
         | 
         span.text-danger *
         #locations
-          .form-check.form-check-inline
-            label.form-check-label
-              input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked)
-              | Aside-Right
-          .form-check.form-check-inline
-            label.form-check-label
-              input#location_AL.form-check-input(type='radio' name='location' value='aside-left')
-              | Aside-Left
-          .form-check.form-check-inline
-            label.form-check-label
-              input#location_CA.form-check-input(type='radio' name='location' value='commercial')
-              | Commercial Ad Section
-          .form-check.form-check-inline
-            label.form-check-label
-              input#location_SA.form-check-input(type='radio' name='location' value='slider')
-              | Slider Ad
-      if ad
-        #category_selector_section.form-group(class=(ad.location == 'commercial' ? '' : 'hidden'))
-          label(for='category') Category:
-            | 
-            span.text-danger *
+          if (undefined === ad)
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked)
+                | Aside-Right
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_AL.form-check-input(type='radio' name='location' value='aside-left')
+                | Aside-Left
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_CA.form-check-input(type='radio' name='location' value='commercial')
+                | Commercial Ad
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_SA.form-check-input(type='radio' name='location' value='slider')
+                | Slideshow Ad
+          else
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked=(ad.location == 'aside-right' ? 'true' : null))
+                | Aside-Right
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_AL.form-check-input(type='radio' name='location' value='aside-left' checked=(ad.location == 'aside-left' ? 'true' : null))
+                | Aside-Left
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_CA.form-check-input(type='radio' name='location' value='commercial' checked=(ad.location == 'commercial' ? 'true' : null))
+                | Commercial Ad
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_SA.form-check-input(type='radio' name='location' value='slider' checked=(ad.location == 'slider' ? 'true' : null))
+                | Slideshow Ad
+      #category_selector_section.form-group.hidden
+        label(for='category') Category:
+          | 
+          span.text-danger *
+        if (undefined === ad)
           select#category.form-control(name='category')
             option(selected value="") Choose one...
-            if commercial_ads
-              each c_ad in commercial_ads
-                option(value=c_ad._id) #{c_ad.cat_cn}
-      else
-        #category_selector_section.form-group.hidden
-          label(for='category') Category:
-            | 
-            span.text-danger *
+            each c_ad in commercial_ads
+              option(value=c_ad._id) #{c_ad.cat_cn}
+        else
           select#category.form-control(name='category')
-            option(selected value="") Choose one...
-            if commercial_ads
-              each c_ad in commercial_ads
-                option(value=c_ad._id) #{c_ad.cat_cn}
+            option(value="") Choose one...
+            each c_ad in commercial_ads
+              option(value=c_ad._id selected=c_ad.catSelected) #{c_ad.cat_cn}
       .form-group
         label(for='title') Title:
           | 
@@ -100,7 +114,7 @@ block content
           | 
           span.text-danger *
           | 
-          small.text-muted Default today
+          small.text-muted Defaults today
           input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined === ad ? defaultStartDate : ad.start_date))
         .form-group.col-md
           label(for='endDate') End Date:
@@ -110,14 +124,24 @@ block content
         | 
         span.text-danger *
         #media-format
-          .form-check.form-check-inline
-            label.form-check-label
-              input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked)
-              | Image
-          .form-check.form-check-inline
-            label.form-check-label
-              input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube')
-              | YouTube Link
+          if (undefined === ad)
+            .form-check.form-check-inline
+              label.form-check-label
+                input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked)
+                | Image
+            .form-check.form-check-inline
+              label.form-check-label
+                input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube')
+                | YouTube Link
+          else
+            .form-check.form-check-inline
+              label.form-check-label
+                input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked=(ad.media_format == 'image' ? 'true' : null))
+                | Image
+            .form-check.form-check-inline
+              label.form-check-label
+                input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube' checked=(ad.media_format == 'youtube' ? 'true' : null))
+                | YouTube Link
       #image_section.form-group
         label(for='image') Image:
         | 
@@ -132,7 +156,7 @@ block content
                 input#image.form-control-file(type='file' accept="image/*" name="image" required)
               span.btn.btn-outline-danger.ml-1.fileinput-exists(data-dismiss="fileinput") Remove
         else if (ad.image === "")
-          div(style={overflow: 'hidden'})
+          div
             | [ NO IMAGE ]
         else
           div(style={overflow: 'hidden'})
@@ -157,7 +181,7 @@ block content
             each c_ad in classified_ads
               .form-check.form-check-inline
                 label.form-check-label
-                  input.form-check-input(type='checkbox' name='tags' value=c_ad._id)
+                  input.form-check-input(type='checkbox' name='tags' value=c_ad._id checked=c_ad.tagChecked)
                   | #{c_ad.cat_cn}
             br
           if commercial_ads
@@ -166,7 +190,8 @@ block content
             each c_ad in commercial_ads
               .form-check.form-check-inline
                 label.form-check-label
-                  input.form-check-input(type='checkbox' name='tags' value=c_ad._id)
+                  input.form-check-input(type='checkbox' name='tags' value=c_ad._id checked=c_ad.tagChecked)
                   | #{c_ad.cat_cn}
     button.btn.btn-primary(type='submit') #{title}
     button.btn.btn-default.ml-3(type='reset') Reset
+    a.btn.btn-default.ml-3(rule='button' href='/maintenance') Back To List

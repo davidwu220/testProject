@@ -29,11 +29,6 @@ exports.maintenance_list = function(req, res) {
         })
 }
 
-// Display detail page for a specific maintenance
-exports.maintenance_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: maintenance detail: ' + req.params.id);
-};
-
 // Display maintenance create form on GET
 exports.maintenance_create_get = function(req, res, next) {
     // load categories
@@ -145,7 +140,7 @@ exports.maintenance_create_post = function(req, res) {
                                 newAd.customer = cus._id;
                                 newAd.save((err) => {
                                     if (err) callback('error at saving > update ad customer info: ' + err, null);
-                                    console.log('ad updated with new customer');
+                                    console.log('customer updated with new ad');
                                 });
                             });
                         }
@@ -163,48 +158,6 @@ exports.maintenance_create_post = function(req, res) {
         res.flash('success', 'Ad successfully created!');
         res.redirect('/maintenance');
     })
-};
-
-// Display maintenance delete form on GET
-exports.maintenance_delete_get = function(req, res) {
-    async.parallel({
-        ad: (callback) => {
-            Ad.
-                findById(req.params.id).
-                populate('category').
-                populate('customer').
-                populate('tags').
-                exec(callback);
-        },
-        categories: (callback) => {
-            Category.find(callback);
-        }
-    }, (err, results) => {
-        let classified_ads = [],
-            commercial_ads = [];
-        results.categories.forEach(c => {
-            if (c.type == 'classified') {
-                classified_ads.push(c);
-            } else if (c.type == 'commercial') {
-                commercial_ads.push(c);
-            }
-        });
-
-        // for (var all_cat_iter = 0; all_cat_iter < results.categories.length; all_cat_iter++) {
-        //     for (var ad_tags_iter = 0; ad_tags_iter < results.ad.tags.length; ad_tags_iter++) {
-        //         if (results.categories[all_cat_iter]._id.toString()==results.ad.tags[ad_tags_iter]._id.toString()) {
-        //             results.ad.tags[ad_tags_iter].checked='true';
-        //             console.log(results.ad.tags[ad_tags_iter]);
-        //         }
-        //     }
-        // }
-        res.render('create', {
-            title: 'Delete',
-            ad: results.ad,
-            classified_ads,
-            commercial_ads
-        });
-    });
 };
 
 // Handle maintenance delete on POST
@@ -260,22 +213,28 @@ exports.maintenance_edit_get = function(req, res) {
     }, (err, results) => {
         let classified_ads = [],
             commercial_ads = [];
+
         results.categories.forEach(c => {
+            let returnedCat = c.toObject();
+            if(results.ad.category) {
+                if (c._id.toString() == results.ad.category._id.toString()) {
+                    returnedCat.catSelected='true';
+                }
+            }
+
+            results.ad.tags.forEach(t => {
+                if (c._id.toString() == t._id.toString()) {
+                    returnedCat.tagChecked='true';
+                }
+            })
+
             if (c.type == 'classified') {
-                classified_ads.push(c);
+                classified_ads.push(returnedCat);
             } else if (c.type == 'commercial') {
-                commercial_ads.push(c);
+                commercial_ads.push(returnedCat);
             }
         });
 
-        // for (var all_cat_iter = 0; all_cat_iter < results.categories.length; all_cat_iter++) {
-        //     for (var ad_tags_iter = 0; ad_tags_iter < results.ad.tags.length; ad_tags_iter++) {
-        //         if (results.categories[all_cat_iter]._id.toString()==results.ad.tags[ad_tags_iter]._id.toString()) {
-        //             results.ad.tags[ad_tags_iter].checked='true';
-        //             console.log(results.ad.tags[ad_tags_iter]);
-        //         }
-        //     }
-        // }
         res.render('create', {
             title: 'Edit',
             ad: results.ad,
@@ -325,24 +284,4 @@ exports.maintenance_edit_post = function(req, res) {
                 res.redirect('/maintenance');
             }
         );
-
-    // Ad.findOne(req.body.adId, (err, ad) => {
-    //     ad.category = req.body.category;
-    //     ad.title = req.body.title;
-    //     ad.description = req.body.description;
-    //     ad.ad_link = req.body.link;
-    //     start_date = moment(req.body.startDate).format('YYYY-MM-DD');
-    //     end_date = moment(req.body.endDate).format('YYYY-MM-DD');
-    //     locations = req.body.locations;
-    //     tags = req.body.tags;
-
-    //     ad.save((err) => {
-    //         if (err) {
-    //             res.flash('error', "error creating ad post: " + err);
-    //         } else {
-    //             res.flash('success', 'Ad information successfully updated!');
-    //         }
-    //         res.redirect('/maintenance/' + ad.ad_id + '/update');
-    //     });
-    // });
 };

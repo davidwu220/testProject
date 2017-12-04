@@ -5,14 +5,6 @@ class CommercialTextMenu extends Component {
 
     handleClick = (cat) => {
         this.props.onComMenuClick(cat);
-
-        // // set current viewing class active
-        // $('#'+cat).addClass("is-active");
-        
-        // if(this.previousClass != "" && cat != this.previousClass) {
-        //     $('#'+this.previousClass).removeClass("is-active");
-        // }
-        // this.previousClass = cat;
     } 
 
     render() {

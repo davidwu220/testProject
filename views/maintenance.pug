@@ -34,10 +34,13 @@ block content
                             input#title.form-control(type='text' readonly)
                         .form-group
                             label.col-form-label(for="image") Image:
-                            div#deleteModalImagePlaceHolder(style={ overflow: 'hidden' })
+                            div#deleteModalImagePlaceHolder()
                         .form-group
-                            label.col-form-label(for="yt_link") YouTube Link:
-                            input#yt_link.form-control(type='text' readonly)
+                            label.col-form-label(for="yt_short_link") YouTube Short Link:
+                            input#yt_short_link.form-control(type='text' readonly)
+                        .form-group
+                            label.col-form-label(for="yt_full_link") YouTube Full Link:
+                            input#yt_full_link.form-control(type='text' readonly)
                         .modal-footer
                             button.btn.btn-secondary(type="button" data-dismiss="modal") Close
                             button.btn.btn-danger(type='submit') Delete
@@ -73,7 +76,7 @@ block content
                                 |
                                 | Edit
                         th
-                            button.btn.btn-outline-danger(role="button" data-toggle="modal" data-target="#deleteModal" data-post-to=("/maintenance/" + ad._id + "/delete") data-ad-id=ad._id data-title=ad.title data-location=ad.location data-image=ad.image data-ytLink=ad.ytLink)
+                            button.btn.btn-outline-danger(role="button" data-toggle="modal" data-target="#deleteModal" data-post-to=("/maintenance/" + ad._id + "/delete") data-ad-id=ad._id data-title=ad.title data-location=ad.location data-image=ad.image data-yt_short_link=ad.yt_short_link data-yt_full_link=ad.yt_full_link)
                                     i.fa.fa-trash-o
                                     |
                                     | Delete

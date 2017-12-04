@@ -56,6 +56,8 @@ server.use(session({
 server.use(flash());
 server.use(express.static('public'));
 
+
+
 server.get('/maintenance', maintenance_controller.maintenance_list);
 
 server.get('/maintenance/create', maintenance_controller.maintenance_create_get);
@@ -64,7 +66,6 @@ server.post('/maintenance/create', upload.single("image"), maintenance_controlle
 server.get('/maintenance/:id/edit', maintenance_controller.maintenance_edit_get);
 server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_post);
 
-server.get('/maintenance/:id/delete', maintenance_controller.maintenance_delete_get);
 server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
 
 let cls_cats, com_cats, slider_ads;
@@ -91,6 +92,13 @@ server.use(
     }, (req, res, next) => {
         serverRender.serverRenderSliderList()
             .then((sliders) => {
+                for (var i = sliders.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = sliders[i];
+                    sliders[i] = sliders[j];
+                    sliders[j] = temp;
+                }
+
                 slider_ads = sliders;
 
                 next();
