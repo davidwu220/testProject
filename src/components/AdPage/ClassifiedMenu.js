@@ -222,7 +222,7 @@ class ClassifiedMenu extends Component {
 
                         {this.props.clasCat.includes("814") &&
                             <span> // <a id="814" className={"menu-item " + (this.props.activeClasMenu === '814' ? 'is-active' : '')} onClick={() => this.handleClick("814")}>命相</a></span>}
-                        
+                        <span> // </span>
                     </div>
                 </div>}
                 {this.props.catTitle.includes(7) && <div className="media">
