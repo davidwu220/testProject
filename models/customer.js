@@ -21,7 +21,6 @@ var CustomerSchema = new Schema({
     },
     first_name: {
         type: String,
-        required: true,
         max: 100
     },
     last_name: {

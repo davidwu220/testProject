@@ -7,8 +7,9 @@ const Header = () => (
             <img id="singtao-logo" src="/images/page_icons/ST_logo.png" alt="Singtao Logo"/><br/>
             <img id="singtao-life" src="/images/page_icons/Singtao_Life.jpg" alt="Singtao life logo"/>
         </a>
-        <img id="postAd" className="d-none d-lg-block ad-posting-link float-right" src="/images/page_icons/ad_posting_icon.jpg" alt="Ad posting link"/>
-
+        <a href="http://classified.singtaola.com/advertising_info/%E5%88%86%E9%A1%9E%E5%BB%A3%E5%91%8A/?variant=zh-cn">
+            <img id="postAd" className="d-none d-lg-block ad-posting-link float-right" src="/images/page_icons/ad_posting_icon.jpg" alt="Ad posting link"/>
+        </a>
     </header>
 );
 
