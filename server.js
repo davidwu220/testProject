@@ -58,7 +58,7 @@ server.use(express.static('public'));
 
 
 
-server.get('/maintenance', maintenance_controller.maintenance_list);
+server.get('/maintenance:query?', maintenance_controller.maintenance_list);
 
 server.get('/maintenance/create', maintenance_controller.maintenance_create_get);
 server.post('/maintenance/create', upload.single("image"), maintenance_controller.maintenance_create_post);
@@ -92,6 +92,7 @@ server.use(
     }, (req, res, next) => {
         serverRender.serverRenderSliderList()
             .then((sliders) => {
+                // randomize slides
                 for (var i = sliders.length - 1; i > 0; i--) {
                     var j = Math.floor(Math.random() * (i + 1));
                     var temp = sliders[i];

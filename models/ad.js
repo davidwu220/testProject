@@ -14,6 +14,7 @@ var AdSchema = new Schema({
     },
     ad_id: {
         type: String,
+        required: true,
         max: 100
     },
     date_inserted: {

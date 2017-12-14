@@ -23,6 +23,13 @@ block content
         | 
         span.text-danger *
         input#customerId.form-control(type='text' name='customerId' value=(undefined === ad ? '' : ad.customer.customer_id) readonly=(undefined === ad ? false : true) required)
+      .form-group
+        label(for='customerId') Customer Name:
+        | 
+        span.text-danger *
+        | 
+        small.text-muted Business name or personal name
+        input#customerName.form-control(type='text' name='customerName' value=(undefined === ad ? '' : ad.customer.customer_name) readonly=(undefined === ad ? false : true) required)
       .form-row
         .form-group.col-md-6
           label(for='firstName') Customer First Name:
@@ -43,6 +50,11 @@ block content
     .col-md-6.col-md-offset-3
       h2.m-b-2 Ad Info
       .form-group
+        label(for='ad_id') Ad Id:
+          | 
+          span.text-danger *
+        input#ad_id.form-control(type='text' name='adId' value=(undefined === ad ? '' : ad.ad_id) readonly=(undefined === ad ? false : true) required)
+      .form-group
         label(for='locations') Ad Location:
         | 
         span.text-danger *
@@ -51,36 +63,36 @@ block content
             .form-check.form-check-inline
               label.form-check-label
                 input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked)
-                | Aside-Right
+                | 右側廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_AL.form-check-input(type='radio' name='location' value='aside-left')
-                | Aside-Left
+                | 左側廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_CA.form-check-input(type='radio' name='location' value='commercial')
-                | Commercial Ad
+                | 商業廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_SA.form-check-input(type='radio' name='location' value='slider')
-                | Slideshow Ad
+                | Slideshow 廣告
           else
             .form-check.form-check-inline
               label.form-check-label
                 input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked=(ad.location == 'aside-right' ? 'true' : null))
-                | Aside-Right
+                | 右側廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_AL.form-check-input(type='radio' name='location' value='aside-left' checked=(ad.location == 'aside-left' ? 'true' : null))
-                | Aside-Left
+                | 左側廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_CA.form-check-input(type='radio' name='location' value='commercial' checked=(ad.location == 'commercial' ? 'true' : null))
-                | Commercial Ad
+                | 商業廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_SA.form-check-input(type='radio' name='location' value='slider' checked=(ad.location == 'slider' ? 'true' : null))
-                | Slideshow Ad
+                | Slideshow 廣告
       #category_selector_section.form-group.hidden
         label(for='category') Category:
           | 

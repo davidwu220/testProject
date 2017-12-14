@@ -35,8 +35,19 @@ a {
 .btn-default:focus {
   box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5); }
 
-[readonly], [disabled] {
+[readonly], [disabled], .disabled {
   cursor: not-allowed; }
+
+.maint-list-table .maint-list-title a {
+  color: inherit; }
+
+.maint-list-table #maint-list-delete button {
+  width: 44px; }
+
+.pagination-nav {
+  box-shadow: unset; }
+  .pagination-nav ul {
+    margin: 0; }
 
 .aside {
   margin-top: 20px; }

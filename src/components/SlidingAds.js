@@ -18,10 +18,6 @@ class SlidingAds extends Component {
         // if the first slide is video, set it to play
         this.setState({ shouldPlay: '0' });
     }
-
-    componentWillMount() {
-        
-    }
     
     componentDidMount() {
         var $carousel = $(".carousel").flickity({

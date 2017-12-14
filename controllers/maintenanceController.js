@@ -8,25 +8,46 @@ var moment = require('moment');
 
 // Display list of manually uploaded ads
 exports.maintenance_list = function(req, res) {
+    // handle query
+    let pageNumber = req.query.pageNumber || '1';
+    let sortBy = req.query.sortBy || 'start_date';
+    let nPerPage = 20;
+
+    // Get page count
     Ad
-        .find({
-            uploaded_manually: true
-        })
-        .populate('tags', 'cat_cn')
-        .sort('start_date')
-        .exec((err, ads) => {
-            if (err) {
-                res.flash('error', 'Error Fetching list: ' + err);
-                res.render('maintenance', {
-                    title: 'Maintenance',
-                    ads: []
+        .count({ uploaded_manually: true })
+        .exec((err, count) => {
+            let totalPages = Math.ceil(count / nPerPage);
+
+            // do list query
+            Ad
+                .find({
+                    uploaded_manually: true
+                })
+                .populate('tags', 'cat_cn')
+                .populate('customer')
+                .sort(sortBy)
+                .skip(pageNumber > 0 ? ((pageNumber-1)*nPerPage) : 0)
+                .limit(nPerPage)
+                .exec((err, ads) => {
+                    if (err) {
+                        res.flash('error', 'Error Fetching list: ' + err);
+                        res.render('maintenance', {
+                            title: "list",
+                            totalPages: 0,
+                            ads: []
+                        });
+                    }
+                    res.render('maintenance', {
+                        title: "List",
+                        pageNumber,
+                        sortBy,
+                        totalPages,
+                        ads
+                    });
                 });
-            }
-            res.render('maintenance', {
-                title: 'Maintenance',
-                ads
-            });
-        })
+    });
+
 }
 
 // Display maintenance create form on GET
@@ -58,6 +79,7 @@ exports.maintenance_create_post = function(req, res) {
     let data = req.body;
     console.log('posted request: ', data);
     let conf = {
+        ad_id: data.adId,
         date_inserted: moment().format('YYYYMMDD'),
         uploaded_manually: true,
         location: data.location,
@@ -111,6 +133,7 @@ exports.maintenance_create_post = function(req, res) {
                     if (!cus) {
                         let c = new Customer({
                             customer_id: data.customerId,
+                            customer_name: data.customerName,
                             first_name: data.firstName,
                             last_name: data.lastName,
                             phone: data.phone,

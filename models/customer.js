@@ -14,6 +14,11 @@ var CustomerSchema = new Schema({
             ref: 'Ad'
         }
     ],
+    customer_name: {
+        type: String,
+        required: true,
+        max: 100
+    },
     first_name: {
         type: String,
         required: true,

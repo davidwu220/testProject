@@ -1,53 +1,74 @@
 body {
     font: "Open Sans", Helvetica, Arial, sans-serif;
-  }
+}
   
-  a {
+a {
     cursor: pointer;
     color: #00B7FF;
-  }
-  
-  .alert {
+}
+
+.alert {
     position: absolute;
     top: 70px;
     right: 10px;
-  }
-  
-  .alert .alert-message {
+}
+
+.alert .alert-message {
     margin-right: 40px;
-  }
-  
-  #linkHelpText {
+}
+
+#linkHelpText {
     font-size: 0.8rem;
-  }
-  
-  #startDate {
+}
+
+#startDate {
     height: 40px;
-  }
-  
-  #endDate {
+}
+
+#endDate {
     height: 40px;
-  }
-  
-  .btn-default {
+}
+
+.btn-default {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
-  }
-  
-  .btn-default:hover, .btn-default:active {
+}
+
+.btn-default:hover, .btn-default:active {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
-  }
-  
-  .btn-default:focus {
+}
+
+.btn-default:focus {
     box-shadow: 0 0 0 2px rgba(204,204,204,.5);
-  }
-  
-  [readonly], [disabled] {
+}
+
+[readonly], [disabled], .disabled {
     cursor: not-allowed;
-  }
+}
+
+.maint-list-table {
+    .maint-list-title {
+        a {
+            color: inherit;
+        }
+    }
+    #maint-list-delete {
+        button {
+            width: 44px;
+        }
+    }
+
+}
+
+.pagination-nav {
+    box-shadow: unset;
+    ul {
+        margin: 0;
+    }
+}
 
 .aside {
     margin-top: 20px;
