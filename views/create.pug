@@ -172,7 +172,7 @@ block content
             | [ NO IMAGE ]
         else
           div(style={overflow: 'hidden'})
-            a(href=ad.image data-fancybox="image-preview" data-caption="Image Preview")
+            a(href=ad.image data-fancybox="ad-image" data-caption="Ad Image")
               img(src=ad.image style={'max-height': '200px'} alt="Ad image")
           small.form-text.text-muted Click to see full size image.
       #ytLink_section.form-group.hidden
