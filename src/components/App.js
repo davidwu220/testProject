@@ -35,7 +35,8 @@ class App extends Component {
         activeMenu: window.initialView,
         activeClasMenu: window.initialCat,
         activeComMenu: window.initialCat,
-        sliderAds: window.sliderAds
+        sliderAds: window.sliderAds,
+        showSearchResult: false
     };
 
     componentDidMount() {
@@ -145,16 +146,6 @@ class App extends Component {
 
     }
 
-    // fetchSliderAds = () => {
-    //     api.fetchSlider()
-    //         .then((sliderAds) => {
-    //             console.log('got slider ads: ', sliderAds);
-    //             this.setState({
-    //                 sliderAds: sliderAds
-    //             }) 
-    //     });
-    // }
-
     fetchClasAds = (adClass) => {
         api.fetchClasAdByClass(adClass)
             .then(adsInClass => {
@@ -164,7 +155,8 @@ class App extends Component {
                     initialData: adsInClass,
                     adList: adsInClass,
                     activeMenu: "classifiedAds",
-                    activeClasMenu: adClass
+                    activeClasMenu: adClass,
+                    showSearchResult: false
                 });
                 pushState(
                     {   category: adClass,
@@ -212,12 +204,10 @@ class App extends Component {
 
         return yesno;
     }
-
-    onSearchChange = (event) => {
-        event.preventDefault();
+    
+    onSearch = (searchStr) => {
         let updatedList = this.state.initialData;
 
-        let searchStr = event.target.value;
         // filter adlist
         updatedList = updatedList.filter(item => {
             if (item.title.search(searchStr) !== -1 || this.charInEachStr(item.description, searchStr)) {
@@ -225,7 +215,10 @@ class App extends Component {
             } else return false;
         });
         // setState
-        this.setState({adList: updatedList});
+        this.setState({
+            adList: updatedList,
+            showSearchResult: true
+        });
     }
 
     render() {
@@ -233,7 +226,7 @@ class App extends Component {
             <div className="App">
                 <Header />
                 <Menu
-                    onSearchChange={this.onSearchChange}
+                    onSearch={this.onSearch}
                     setPicker={this.setPicker}
                     onHomeMenuClick={this.fetchHome}
                     onClasMenuClick={this.fetchClasAds}
@@ -254,7 +247,8 @@ class App extends Component {
                         onComMenuClick={this.fetchComAds}
                         adList={this.state.adList}
                         activeClasMenu={this.state.activeClasMenu}
-                        activeComMenu={this.state.activeComMenu} />
+                        activeComMenu={this.state.activeComMenu}
+                        showSearchResult={this.state.showSearchResult} />
                     <RightSide />
                 </div>
                 <Footer />

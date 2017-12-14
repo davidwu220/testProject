@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 class Menu extends Component {
-    previousSelection = "";
-
     handleClick = (button) => {
-        $(".menu-item").removeClass("is-active");
         this.props.setPicker(null);
         
         if (button == "#classified-ad") {
@@ -78,10 +75,20 @@ class Menu extends Component {
                                 <a className="nav-link" href="https://www.singtaousa.com/la/" target="_blank">星島新聞</a>
                             </li>
                         </ul>
-                        <div className="form-inline my-2 my-lg-0" onSubmit={(event) => event.preventDefault()}>
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={this.props.onSearchChange}/>
-                            <button className="btn btn-outline-success my-2 my-sm-0 d-none" type="submit">Search</button>
-                        </div>
+                        {
+                            this.props.activeMenu == "classifiedAds" &&
+
+                            <form className="form-inline my-2 my-lg-0" onSubmit={(event) => {
+                                event.preventDefault();
+                                $(".navbar-collapse").collapse('hide');
+                                this.props.onSearch($("#searchInput").val());
+                            }
+                            }>
+                                <input id="searchInput" className="form-control mr-sm-2" type="search" placeholder="搜尋分類廣告" aria-label="Search" />
+                                    
+                                <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        }
                     </div>
                 </nav>
             </div>

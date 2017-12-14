@@ -25,7 +25,8 @@ class Main extends Component {
                         viewState={ this.props.viewState }
                         onClasMenuClick={ this.props.onClasMenuClick }
                         adList={ this.props.adList }
-                        activeClasMenu={this.props.activeClasMenu} />
+                        activeClasMenu={this.props.activeClasMenu}
+                        showSearchResult={this.props.showSearchResult} />
                 </div>
             );
         } else if (this.props.viewState == "commercialAds") {

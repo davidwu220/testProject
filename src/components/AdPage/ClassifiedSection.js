@@ -13,13 +13,13 @@ class ClassifiedSection extends Component {
                 list = this.props.adList.map((ad) => 
                     <ClassifiedAd key={ad._id} data={ad} />
                 );
-            } else if (this.props.adList.hasOwnProperty("classifiedAds")) {
-                list = this.props.adList.classifiedAds.map((ad) => 
-                    <ClassifiedAd key={ad._id} data={ad} />
-                );
             } else {
                 list = <ClassifiedAd data={this.props.adList} />
             }
+        } else if (this.props.showSearchResult) {
+            list = this.props.adList.map((ad) => 
+                <ClassifiedAd key={ad._id} data={ad} />
+            );
         }
         
         return (
