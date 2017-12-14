@@ -95,7 +95,7 @@ block content
                             a.btn.btn-outline-info(role="button" href="/maintenance/" + ad._id + "/edit")
                                 i.far.fa-edit
                         th#maint-list-delete.text-center
-                            button.btn.btn-outline-danger(role="button" data-toggle="modal" data-target="#deleteModal" data-post-to=("/maintenance/" + ad._id + "/delete") data-ad-id=ad._id data-title=ad.title data-location=ad.location data-image=ad.image data-yt_short_link=ad.yt_short_link data-yt_full_link=ad.yt_full_link)
+                            button.btn.btn-outline-danger(role="button" data-toggle="modal" data-target="#deleteModal" data-post-to=("/maintenance/" + ad._id + "/delete") data-ad-id=ad.ad_id data-title=ad.title data-location=ad.location data-image=ad.image data-yt_short_link=ad.yt_short_link data-yt_full_link=ad.yt_full_link)
                                     i.far.fa-trash-alt
     .row.justify-content-center.mt-5
         - var n = 0;
