@@ -49,3 +49,11 @@ export const serverRenderSliderList = () => (
         })
         .catch((err) => console.error(err))
 )
+
+export const serverRenderRightSide = () => (
+    axios.get(`${config.serverUrl}/api/get_manual_uploads/aside/right`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)

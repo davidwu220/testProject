@@ -9,7 +9,7 @@ class CommercialSection extends Component {
         return (
             <div className="adList">
                 {this.props.adList.map((ad) => {
-                    return <CommercialAd key={ad._id} data={ad} />
+                    return <CommercialAd key={ ad._id } data={ ad } />
                 })}
             </div>
         );
@@ -18,10 +18,14 @@ class CommercialSection extends Component {
     RenderMenu = () => {
         if (this.props.currentCat != "") {
             return (
-                <CommercialTextMenu
-                    onComMenuClick={ this.props.onComMenuClick }
-                    activeComMenu={this.props.activeComMenu}
-                />
+                <div>
+                    <CommercialTextMenu
+                        onComMenuClick={ this.props.onComMenuClick }
+                        activeComMenu={ this.props.activeComMenu }
+                    />
+                    <this.RenderList />
+                </div>
+                
             );
         } else {
             return (
@@ -40,8 +44,6 @@ class CommercialSection extends Component {
                 </div>
         
                 <this.RenderMenu />
-
-                <this.RenderList />
             </div>
         );
     }

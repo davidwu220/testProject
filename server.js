@@ -16,7 +16,7 @@ var maintenance_controller = require('./controllers/maintenanceController');
 var mongoose = require('mongoose');
 var mongoDB = config.mongodbUri;
 mongoose.connect(mongoDB, {
-  useMongoClient: true
+    useMongoClient: true
 });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -26,9 +26,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var storageEngine = multer.diskStorage({
     destination: './public/manualUploads/images/',
     filename: (req, file, callback) => {
-      callback(null, 'image-' + Date.now() + path.extname(file.originalname));
+        callback(null, 'image-' + Date.now() + path.extname(file.originalname));
     }
-  })
+});
 var upload = multer({ storage: storageEngine });
 
 const server = express();
@@ -41,18 +41,17 @@ server.use(sassMiddleware({
 // view engine setup
 server.set('views', path.join(__dirname, 'views'));
 server.set('view engine', 'pug');
-//server.set('view engine', 'ejs');
 
 server.use('/api', apiRouter);
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 server.use(cookieParser());
 server.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized:true}));
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized:true}));
 server.use(flash());
 server.use(express.static('public'));
 
@@ -68,7 +67,7 @@ server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_pos
 
 server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
 
-let cls_cats, com_cats, slider_ads;
+let cls_cats, com_cats, slider_ads, aside_right;
 
 server.use(
     (req, res, next) => {
@@ -104,6 +103,13 @@ server.use(
 
                 next();
             })
+    }, (req, res, next) => {
+        serverRender.serverRenderRightSide()
+            .then((rightSideAds) => {
+                aside_right = rightSideAds;
+
+                next();
+            })
     }
 );
 
@@ -114,7 +120,8 @@ server.get('/' , (req, res) => {
         initialData: [],
         cls_cats,
         com_cats,
-        slider_ads
+        slider_ads,
+        aside_right
     });
 
 });
@@ -140,7 +147,8 @@ server.get('/classifiedAds/:cat?' , (req, res) => {
             initialData,
             cls_cats,
             com_cats,
-            slider_ads
+            slider_ads,
+            aside_right
         });
     })
     .catch((error) => 
@@ -161,7 +169,8 @@ server.get('/classifiedAds/all/page/:page' , (req, res) => {
             initialData,
             cls_cats,
             com_cats,
-            slider_ads
+            slider_ads,
+            aside_right
         });
     })
     .catch((error) => 
@@ -186,7 +195,8 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
                 initialData,
                 cls_cats,
                 com_cats,
-                slider_ads
+                slider_ads,
+                aside_right
             });
         })
         .catch((error) => 

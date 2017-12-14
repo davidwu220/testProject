@@ -36,7 +36,8 @@ class App extends Component {
         activeClasMenu: window.initialCat,
         activeComMenu: window.initialCat,
         sliderAds: window.sliderAds,
-        showSearchResult: false
+        showSearchResult: false,
+        rightSideAds: window.rightSideAds
     };
 
     componentDidMount() {
@@ -249,7 +250,8 @@ class App extends Component {
                         activeClasMenu={this.state.activeClasMenu}
                         activeComMenu={this.state.activeComMenu}
                         showSearchResult={this.state.showSearchResult} />
-                    <RightSide />
+                    <RightSide
+                        rightSideAds={this.state.rightSideAds} />
                 </div>
                 <Footer />
             </div>
