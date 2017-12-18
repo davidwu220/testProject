@@ -234,6 +234,11 @@ exports.maintenance_edit_get = function(req, res) {
             Category.find(callback);
         }
     }, (err, results) => {
+        if (err) {
+            res.flash('error', "error getting edit page: " + err);
+            res.redirect('/maintenance');
+        }
+
         let classified_ads = [],
             commercial_ads = [];
 
@@ -270,41 +275,73 @@ exports.maintenance_edit_get = function(req, res) {
 // Handle maintenance update on POST
 exports.maintenance_edit_post = function(req, res) {
     let data = req.body;
-    let conf = {
-        title: data.title,
-        description: data.description,
-        ad_link: data.link,
-        yt_short_link: data.ytShortLink,
-        yt_full_link: data.ytFullLink,
-        start_date: "",
-        end_date: "",
-        location: data.location,
-        tags: data.tags || [] 
-    }
-
-    if (data.category !== "") {
-        conf.category = data.category
-    }
-
-    if (moment(data.startDate).isValid()) {
-        conf.start_date = moment(data.startDate).format('YYYY-MM-DD');
-    }
-
-    if (moment(data.endDate).isValid()) {
-        conf.end_date = moment(data.endDate).format('YYYY-MM-DD');
-    }
-
-    Ad.
-        updateOne({ _id: req.params.id },
-            { $set: conf },
-            (err) => {
-                if (err) {
-                    res.flash('error', "error creating ad post: " + err);
-                    res.redirect('/maintenance');
-                }
-
-                res.flash('success', 'Ad information successfully updated!');
-                res.redirect('/maintenance');
+    async.parallel({
+        ad: (callback) => {
+            // Update Ad with the new information
+            let adConf = {
+                title: data.title,
+                description: data.description,
+                ad_link: data.link,
+                yt_short_link: data.ytShortLink,
+                yt_full_link: data.ytFullLink,
+                start_date: "",
+                end_date: "",
+                location: data.location,
+                tags: data.tags || [] 
             }
-        );
+        
+            if (data.category !== "") {
+                adConf.category = data.category;
+            }
+        
+            if (moment(data.startDate).isValid()) {
+                adConf.start_date = moment(data.startDate).format('YYYY-MM-DD');
+            }
+        
+            if (moment(data.endDate).isValid()) {
+                adConf.end_date = moment(data.endDate).format('YYYY-MM-DD');
+            }
+        
+            Ad.
+                findOneAndUpdate(
+                    { _id: req.params.id },
+                    { $set: adConf },
+                    (err) => {
+                        if (err) { callback(err, null); }
+                        callback(null, "Ad updated");
+                    }
+                );
+        },
+        customer: (callback) => {
+            // Update customer. If no customer is found on the customer_id,
+            // a new customer will be created
+            let customerConf = {
+                customer_name: data.customerName,
+                first_name: data.firstName,
+                last_name: data.lastName,
+                phone: data.phone,
+                email: data.email,
+                address: data.address
+            }
+            Customer.
+                findOneAndUpdate(
+                    { customer_id: data.customerId },
+                    { $set: customerConf },
+                    (err, result) => {
+                        if (err) { callback(err, null); }
+                        callback(null, "Customer updated");
+                    }
+                );
+        }
+    }, (err, results) => {
+        console.log("req.params.id is: ", req.params.id);
+        if (err) {
+            res.flash('error', "error finish editing ad post: " + err);
+            res.redirect('/maintenance/' + req.params.id + '/edit');
+        }
+
+        res.flash('success', 'Ad information successfully updated!');
+        res.redirect('/maintenance');
+    });
+    
 };

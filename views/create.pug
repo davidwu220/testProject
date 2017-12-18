@@ -29,23 +29,23 @@ block content
         span.text-danger *
         | 
         small.text-muted Business name or personal name
-        input#customerName.form-control(type='text' name='customerName' value=(undefined === ad ? '' : ad.customer.customer_name) readonly=(undefined === ad ? false : true) required)
+        input#customerName.form-control(type='text' name='customerName' value=(undefined === ad ? '' : ad.customer.customer_name) required)
       .form-row
         .form-group.col-md-6
           label(for='firstName') Customer First Name:
-          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(undefined === ad ? '' : ad.customer.first_name) readonly=(undefined === ad ? false : true))
+          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(undefined === ad ? '' : ad.customer.first_name))
         .form-group.col-md-6
           label(for='lastName') Customer Last Name:
-          input#lastName.form-control(type='text' placeholder='Last Name' name='lastName' value=(undefined === ad ? '' : ad.customer.last_name) readonly=(undefined === ad ? false : true))
+          input#lastName.form-control(type='text' placeholder='Last Name' name='lastName' value=(undefined === ad ? '' : ad.customer.last_name))
       .form-group
         label(for='email') Email:
-        input#email.form-control(type='email' placeholder='name@email.com' name='email' value=(undefined === ad ? '' : ad.customer.email) readonly=(undefined === ad ? false : true))
+        input#email.form-control(type='email' placeholder='name@email.com' name='email' value=(undefined === ad ? '' : ad.customer.email))
       .form-group
         label(for='phone') Phone:
-        input#phone.form-control(type='tel' name='phone' value=(undefined === ad ? '' : ad.customer.phone) readonly=(undefined === ad ? false : true))
+        input#phone.form-control(type='tel' name='phone' value=(undefined === ad ? '' : ad.customer.phone))
       .form-group
         label(for='address') Address:
-        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=value=(undefined === ad ? '' : ad.customer.address) readonly=(undefined === ad ? false : true))
+        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=value=(undefined === ad ? '' : ad.customer.address))
 
     .col-md-6.col-md-offset-3
       h2.m-b-2 Ad Info
