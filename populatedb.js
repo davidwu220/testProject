@@ -183,7 +183,7 @@ function createCategories(cb) {
             categoriesCreate('auto_trans', false, '汽車運輸', 'commercial', callback);
         },
         function(callback) {
-            categoriesCreate('acc_bank_insur_ivs', false, '財物保險', 'commercial', callback);
+            categoriesCreate('acc_bank_insur_ivs', false, '財務保險', 'commercial', callback);
         },
         function(callback) {
             categoriesCreate('att_tax', false, '法律諮詢', 'commercial', callback);
