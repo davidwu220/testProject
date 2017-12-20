@@ -25,7 +25,7 @@ class CarouselCell extends Component {
                                 playerVars: { origin: config.serverUrl }
                             }
                         }}
-                        volume={0.2}
+                        volume={0.6}
                         controls={true}
                         loop
                     />
