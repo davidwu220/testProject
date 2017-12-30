@@ -1,3 +1,4 @@
+var moment = require('moment');
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -80,6 +81,21 @@ AdSchema
     .virtual('customerName')
     .get(function () {
         return  this.first_name + ' ' + this.last_name;
+    });
+AdSchema
+    .virtual('status')
+    .get(function () {
+        if (moment() < moment(this.start_date, 'YYYY-MM-DD')) {
+            return 'Pending';
+        } else if (moment() >= moment(this.start_date, 'YYYY-MM-DD')) {
+            if (this.end_date === "" || (moment() <= moment(this.end_date, 'YYYY-MM-DD'))) {
+                return 'Showing';
+            } else if (this.end_date !== "" && moment() > moment(this.end_date, 'YYYY-MM-DD')) {
+                return 'Expired';
+            }
+        } else {
+            return 'Unknown';
+        }
     });
 
 //Export model

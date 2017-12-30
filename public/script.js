@@ -153,7 +153,7 @@ $('#deleteModal').on('show.bs.modal', function (event) {
         let imageHtml = "";
         if (image !== "") {
             imageHtml = "<div style='overflow: hidden';>" +
-                            "<a href='" + image + "' target='_blank'>" +
+                            "<a href='" + image + "' data-fancybox='ad-image' data-caption='Ad Image'>" +
                                 "<img src='" + image + "' style='max-height: 200px;' alt='Ad image' />" +
                             "</a>" + 
                         "</div>";
