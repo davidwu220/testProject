@@ -11,7 +11,8 @@
     "__comment": "Eventually will have to transpile all the code before pushing for production",
     "start": "babel-node server.js",
     "start-dev": "nodemon --exec babel-node server.js",
-    "bundle": "webpack -wd"
+    "bundle-dev": "webpack -wd --config webpack.dev.js",
+    "bundle": "webpack -p --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "nodemon": "1.12.1",
-    "webpack": "^2.4.1"
+    "uglifyjs-webpack-plugin": "1.1.6",
+    "webpack": "^2.4.1",
+    "webpack-merge": "4.1.1"
   }
 }
