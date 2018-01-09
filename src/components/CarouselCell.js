@@ -22,7 +22,7 @@ class CarouselCell extends Component {
                         onReady={this.props.playerReady}
                         config={{
                             youtube: {
-                                playerVars: { origin: config.serverUrl }
+                                playerVars: { origin: window.location.host }
                             }
                         }}
                         volume={0.7}
