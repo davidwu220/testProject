@@ -52,9 +52,7 @@ a {
 .aside {
   margin-top: 20px; }
   .aside * {
-    margin-bottom: 10px; }
-  .aside .static-aside-ad {
-    border-radius: 18px; }
+    margin-bottom: 20px; }
 
 .Menu {
   margin: 0px !important;
@@ -80,16 +78,6 @@ a {
 .carousel-cell-image {
   width: 100%;
   transition: opacity 0.4s; }
-
-.flickity-page-dots .dot.is-selected {
-  background: #06c8b8; }
-
-.flickity-viewport {
-  transition: height 0.2s; }
-
-.flickity-slider {
-  display: flex;
-  align-items: center; }
 
 .swiper-container.swiper-container-horizontal {
   margin: 20px 0 40px 0;
@@ -118,22 +106,6 @@ a {
     .swiper-container.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet-active {
       opacity: 1;
       background-color: #06c8b8; }
-
-.slideshow-leftbtn {
-  position: absolute;
-  z-index: 500;
-  font-size: 1.4em;
-  color: #a0a0a0;
-  left: 10px;
-  top: 5px; }
-
-.slideshow-rightbtn {
-  position: absolute;
-  z-index: 500;
-  font-size: 1.4em;
-  color: #a0a0a0;
-  top: 5px;
-  left: 145px; }
 
 .swiper-slide.video-wrap {
   position: relative;
@@ -390,7 +362,6 @@ span {
 nav {
   box-shadow: 0px 4px 8px -3px rgba(17, 17, 17, 0.4); }
 
-/* change the background color */
 .my-container {
   width: 100%;
   padding-right: 15px;
@@ -469,6 +440,12 @@ nav {
         height: 200px; }
   .swiper-wrapper .video-wrap {
     height: 300px; } }
+
+@media all and (max-width: 991px) {
+  .right-side {
+    display: block;
+    max-width: 300px;
+    margin: auto; } }
 
 @media all and (max-width: 1259px) {
   .page-header #postAd {
