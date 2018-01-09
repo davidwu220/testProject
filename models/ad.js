@@ -86,7 +86,7 @@ AdSchema
     .virtual('status')
     .get(function () {
         if (moment() < moment(this.start_date, 'YYYY-MM-DD')) {
-            return 'Pending';
+            return 'Scheduled';
         } else if (moment() >= moment(this.start_date, 'YYYY-MM-DD')) {
             if (this.end_date === "" || (moment() <= moment(this.end_date, 'YYYY-MM-DD'))) {
                 return 'Showing';
