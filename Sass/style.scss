@@ -4,7 +4,11 @@ body {
   
 a {
     cursor: pointer;
-    color: #00B7FF;
+    color: inherit;
+    &:hover {
+        color: inherit;
+        font-weight: bold;
+    }
 }
 
 .alert {
@@ -297,6 +301,7 @@ a {
         padding: 6px 12px;
         background-color: #b60f15;
         color: #fff;
+        font-size: 14px;
         text-align: center;
     }
 }

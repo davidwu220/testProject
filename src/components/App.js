@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import * as api from '../api';
-import Footer from "./Footer"
-import Header from "./Header";
 import RightSide from './RightSide';
 import Main from "./Home/Main";
 import Menu from './Menu';
@@ -225,7 +223,6 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header />
                 <Menu
                     onSearch={this.onSearch}
                     setPicker={this.setPicker}
@@ -253,7 +250,6 @@ class App extends Component {
                     <RightSide
                         rightSideAds={this.state.rightSideAds} />
                 </div>
-                <Footer />
             </div>
         );
     }

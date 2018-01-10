@@ -203,6 +203,18 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
         console.error(error));
 });
 
+server.get('/copyright', (req, res) => {
+    res.render('copyright');
+})
+
+server.get('/privacy', (req, res) => {
+    res.render('privacy');
+})
+
+server.get('/terms', (req, res) => {
+    res.render('terms');
+})
+
 // server.use(function (err, req, res, next) {
 //     console.error(err.stack);
 //     res.status(404).send('Something broke!');

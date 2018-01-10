@@ -3,7 +3,10 @@ body {
 
 a {
   cursor: pointer;
-  color: #00B7FF; }
+  color: inherit; }
+  a:hover {
+    color: inherit;
+    font-weight: bold; }
 
 .alert {
   position: absolute;
@@ -238,6 +241,7 @@ a {
   padding: 6px 12px;
   background-color: #b60f15;
   color: #fff;
+  font-size: 14px;
   text-align: center; }
 
 .left-side {
