@@ -57,6 +57,9 @@ a {
   .aside * {
     margin-bottom: 10px; }
 
+.right-side-item {
+  width: 300px; }
+
 .Menu {
   margin: 0px !important;
   z-index: 100;
