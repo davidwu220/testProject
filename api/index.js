@@ -138,6 +138,7 @@ router.get('/commercialAds/:cat?', (req, res) => {
                 }
             ]
         })
+        .sort({ _id: -1})
         .populate('category')
         .populate('tags')
         .exec((err, muAds) => {

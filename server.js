@@ -6,11 +6,14 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('express-flash-2');
 var multer = require('multer');
+var passport = require('passport');
+var PassportLocalStrategy = require('passport-local');
 
 import config from './config';
 import apiRouter from './api';
 import * as serverRender from './serverRender';
 var maintenance_controller = require('./controllers/maintenanceController');
+var auth_controller = require('./controllers/authController');
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
@@ -55,7 +58,49 @@ server.use(session({
 server.use(flash());
 server.use(express.static('public'));
 
+var User = require('./models/user');
 
+var authStrategy = new PassportLocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+}, function (email, password, done) {
+    User.authenticate(email, password, function(err, user) {
+        // success message
+
+        // error message
+        done(err, user, err ? { message: err.message } : null);
+    });
+});
+
+var authSerializer = function(user, done) {
+    done(null, user.id);
+};
+
+var authDeserializer = function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+};
+
+passport.use(authStrategy);
+passport.serializeUser(authSerializer);
+passport.deserializeUser(authDeserializer);
+
+server.use(passport.initialize());
+
+server.get('/new_user', (req, res) => {
+    res.render('new_user');
+});
+server.post('/new_user', auth_controller.user_create_post);
+
+server.get('/maintenance_login', (req, res) => {
+    res.render('login');
+});
+server.post('/maintenance_login', passport.authenticate('local', {
+    successRedirect: '/maintenance',
+    failureRedirect: '/maintenance_login',
+    failureFlash: true
+}));
 
 server.get('/maintenance:query?', maintenance_controller.maintenance_list);
 
@@ -99,7 +144,11 @@ server.use(
                     sliders[j] = temp;
                 }
 
-                slider_ads = sliders;
+                // push only 10 slides in to list to ensure performance
+                for (let i = 0; i < 10; i++) {
+                    slider_ads.push(sliders[i]);
+                }
+                //slider_ads = sliders;
 
                 next();
             })

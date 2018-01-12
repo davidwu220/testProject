@@ -64,7 +64,7 @@ class SwiperAds extends Component {
             },
             spaceBetween: 30,
             autoplay: {
-                delay: 12000,
+                delay: 18000,
                 disableOnInteraction: false
             }
         }

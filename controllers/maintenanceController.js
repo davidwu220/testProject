@@ -33,6 +33,9 @@ exports.maintenance_list = function(req, res) {
                     if (err) {
                         res.flash('error', 'Error Fetching list: ' + err);
                         res.render('maintenance', {
+                            flash: {
+                                error: 'Error fatching list: ' + err
+                            },
                             title: "list",
                             totalPages: 0,
                             ads: []

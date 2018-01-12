@@ -3,7 +3,7 @@ extends maintenance_layout
 block content
   if flash.error
     .alert.alert-danger.alert-dismissible.fade.show(role="alert")
-      p.alert-message !{flash.error}
+      .alert-message !{flash.error}
       button.close(type="button" data-dismiss="alert" aria-label="Close")
         span(aria-hidden='true') &times;
   if flash.success
