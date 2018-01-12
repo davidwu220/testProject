@@ -112,7 +112,7 @@ server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_pos
 
 server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
 
-let cls_cats, com_cats, slider_ads, aside_right;
+let cls_cats, com_cats, slider_ads = [], aside_right;
 
 server.use(
     (req, res, next) => {
