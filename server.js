@@ -145,10 +145,13 @@ server.use(
                 }
 
                 // push only 10 slides in to list to ensure performance
-                for (let i = 0; i < 10; i++) {
-                    slider_ads.push(sliders[i]);
+                if (sliders.length > 10) {
+                    for (let i = 0; i < 10; i++) {
+                        slider_ads.push(sliders[i]);
+                    }
+                } else {
+                    slider_ads = sliders;
                 }
-                //slider_ads = sliders;
 
                 next();
             })
