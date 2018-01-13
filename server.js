@@ -146,6 +146,7 @@ server.use(
 
                 // push only 10 slides in to list to ensure performance
                 if (sliders.length > 10) {
+                    slider_ads = [];
                     for (let i = 0; i < 10; i++) {
                         slider_ads.push(sliders[i]);
                     }
