@@ -20,10 +20,16 @@ html
       button.navbar-toggler(type="button" data-toggle="collapse" data-target="#maintenanceNav")
         span.navbar-toggler-icon
       #maintenanceNav.collapse.navbar-collapse
-        .navbar-nav
-          a.nav-link.nav-item(href="/maintenance" class=(title == "List" ? "active" : null)) Ad List
-          a.nav-link.nav-item(href="/maintenance/create" class=(title == "Create" ? "active" : null)) Create New Ad
-          a.nav-link.nav-item(href="/") Back to Main Site
+        ul.navbar-nav.d-flex
+          li.nav-item(class=(title == "List" ? "active" : null))
+            a.nav-link(href="/maintenance") Ad List
+          li.nav-item(class=(title == "Create" ? "active" : null))
+            a.nav-link(href="/maintenance/create") Create New Ad
+          li.nav-item
+            a.nav-link(href="/") Back to Main Site
+        ul.navbar-nav.ml-sm-auto.d-flex
+          li.nav-item
+            a.nav-link(href="/maintenance_logout") Logout
     .p-4(class=(title == "List" ? "container-fluid" : "container"))
       block content
 

@@ -7,7 +7,6 @@ var session = require('express-session');
 var flash = require('express-flash-2');
 var multer = require('multer');
 var passport = require('passport');
-var PassportLocalStrategy = require('passport-local');
 
 import config from './config';
 import apiRouter from './api';
@@ -53,40 +52,18 @@ server.use(bodyParser.urlencoded({
 server.use(cookieParser());
 server.use(session({
     secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized:true}));
+    resave: true,
+    saveUninitialized: true
+}));
 server.use(flash());
 server.use(express.static('public'));
-
-var User = require('./models/user');
-
-var authStrategy = new PassportLocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-}, function (email, password, done) {
-    User.authenticate(email, password, function(err, user) {
-        // success message
-
-        // error message
-        done(err, user, err ? { message: err.message } : null);
-    });
-});
-
-var authSerializer = function(user, done) {
-    done(null, user.id);
-};
-
-var authDeserializer = function(id, done) {
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-};
-
-passport.use(authStrategy);
-passport.serializeUser(authSerializer);
-passport.deserializeUser(authDeserializer);
-
 server.use(passport.initialize());
+server.use(passport.session());
+
+passport.use(auth_controller.authStrategy);
+passport.serializeUser(auth_controller.authSerializer);
+passport.deserializeUser(auth_controller.authDeserializer);
+
 
 server.get('/new_user', (req, res) => {
     res.render('new_user');
@@ -96,21 +73,39 @@ server.post('/new_user', auth_controller.user_create_post);
 server.get('/maintenance_login', (req, res) => {
     res.render('login');
 });
-server.post('/maintenance_login', passport.authenticate('local', {
-    successRedirect: '/maintenance',
-    failureRedirect: '/maintenance_login',
-    failureFlash: true
-}));
+// server.post('/maintenance_login', passport.authenticate('local', {
+//     successRedirect: '/maintenance',
+//     failureRedirect: '/maintenance_login',
+//     failureFlash: true
+// }));
 
-server.get('/maintenance:query?', maintenance_controller.maintenance_list);
+server.post('/maintenance_login', (req, res, next) => {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) { 
+            res.flash('error', 'Password incorrect.');
+            return res.redirect('/maintenance_login'); 
+        }
 
-server.get('/maintenance/create', maintenance_controller.maintenance_create_get);
-server.post('/maintenance/create', upload.single("image"), maintenance_controller.maintenance_create_post);
+        req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            res.flash('success', 'Logged in.');
+            return res.redirect('/maintenance');
+        });
+    })(req, res, next);
+});
 
-server.get('/maintenance/:id/edit', maintenance_controller.maintenance_edit_get);
-server.post('/maintenance/:id/edit', maintenance_controller.maintenance_edit_post);
+server.get('/maintenance_logout', auth_controller.logout);
+server.get('/maintenance:query?', auth_controller.restrict, maintenance_controller.maintenance_list);
 
-server.post('/maintenance/:id/delete', maintenance_controller.maintenance_delete_post);
+server.get('/maintenance/create', auth_controller.restrict, maintenance_controller.maintenance_create_get);
+server.post('/maintenance/create', auth_controller.restrict, upload.single("image"), maintenance_controller.maintenance_create_post);
+
+server.get('/maintenance/:id/edit', auth_controller.restrict, maintenance_controller.maintenance_edit_get);
+server.post('/maintenance/:id/edit', auth_controller.restrict, maintenance_controller.maintenance_edit_post);
+
+server.post('/maintenance/:id/delete', auth_controller.restrict, maintenance_controller.maintenance_delete_post);
+
 
 let cls_cats, com_cats, slider_ads, aside_right;
 

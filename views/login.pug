@@ -13,6 +13,11 @@ html
         link(rel='stylesheet', href='/signin_style.css')
     body
         .container
+            if flash.success
+                .alert.alert-success.alert-dismissible.fade.show(role="alert")
+                    .alert-message !{flash.success}
+                    button.close(type="button" data-dismiss="alert" aria-label="Close")
+                        span(aria-hidden='true') &times;
             if flash.error
                 .alert.alert-danger.alert-dismissible.fade.show(role="alert")
                     .alert-message !{flash.error}
