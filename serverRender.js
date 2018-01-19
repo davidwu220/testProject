@@ -57,3 +57,11 @@ export const serverRenderRightSide = () => (
         })
         .catch((err) => console.error(err))
 )
+
+export const serverRenderLeftSide = () => (
+    axios.get(`${config.serverUrl}/api/get_manual_uploads/aside/left`)
+        .then(res => {
+            return res.data;
+        })
+        .catch((err) => console.error(err))
+)

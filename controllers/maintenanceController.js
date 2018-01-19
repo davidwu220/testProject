@@ -337,7 +337,6 @@ exports.maintenance_edit_post = function(req, res) {
                 );
         }
     }, (err, results) => {
-        console.log("req.params.id is: ", req.params.id);
         if (err) {
             res.flash('error', "error finish editing ad post: " + err);
             res.redirect('/maintenance/' + req.params.id + '/edit');

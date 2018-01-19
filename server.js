@@ -96,6 +96,7 @@ server.post('/maintenance_login', (req, res, next) => {
 });
 
 server.get('/maintenance_logout', auth_controller.logout);
+
 server.get('/maintenance:query?', auth_controller.restrict, maintenance_controller.maintenance_list);
 
 server.get('/maintenance/create', auth_controller.restrict, maintenance_controller.maintenance_create_get);
@@ -107,7 +108,7 @@ server.post('/maintenance/:id/edit', auth_controller.restrict, maintenance_contr
 server.post('/maintenance/:id/delete', auth_controller.restrict, maintenance_controller.maintenance_delete_post);
 
 
-let cls_cats, com_cats, slider_ads, aside_right;
+let cls_cats, com_cats, slider_ads, aside_right, aside_left;
 
 server.use(
     (req, res, next) => {
@@ -139,15 +140,19 @@ server.use(
                     sliders[j] = temp;
                 }
 
-                // push only 10 slides in to list to ensure performance
-                if (sliders.length > 10) {
-                    slider_ads = [];
-                    for (let i = 0; i < 10; i++) {
-                        slider_ads.push(sliders[i]);
-                    }
-                } else {
-                    slider_ads = sliders;
-                }
+                // // push only 10 slides in to list to ensure performance
+                // if (sliders.length > 10) {
+                //     slider_ads = [];
+                //     for (let i = 0; i < 10; i++) {
+                //         slider_ads.push(sliders[i]);
+                //     }
+                // } else {
+                //     slider_ads = sliders;
+                // }
+
+
+                // revert back to unlimited
+                slider_ads = sliders;
 
                 next();
             })
@@ -155,6 +160,13 @@ server.use(
         serverRender.serverRenderRightSide()
             .then((rightSideAds) => {
                 aside_right = rightSideAds;
+
+                next();
+            })
+    }, (req, res, next) => {
+        serverRender.serverRenderLeftSide()
+            .then((leftSideAds) => {
+                aside_left = leftSideAds;
 
                 next();
             })
@@ -169,7 +181,8 @@ server.get('/' , (req, res) => {
         cls_cats,
         com_cats,
         slider_ads,
-        aside_right
+        aside_right,
+        aside_left
     });
 
 });
@@ -196,7 +209,8 @@ server.get('/classifiedAds/:cat?' , (req, res) => {
             cls_cats,
             com_cats,
             slider_ads,
-            aside_right
+            aside_right,
+            aside_left
         });
     })
     .catch((error) => 
@@ -218,7 +232,8 @@ server.get('/classifiedAds/all/page/:page' , (req, res) => {
             cls_cats,
             com_cats,
             slider_ads,
-            aside_right
+            aside_right,
+            aside_left
         });
     })
     .catch((error) => 
@@ -244,7 +259,8 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
                 cls_cats,
                 com_cats,
                 slider_ads,
-                aside_right
+                aside_right,
+                aside_left
             });
         })
         .catch((error) => 

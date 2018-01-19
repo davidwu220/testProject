@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as api from '../api';
 import RightSide from './RightSide';
+import LeftSide from './LeftSide';
 import Main from "./Home/Main";
 import Menu from './Menu';
 
@@ -35,7 +36,8 @@ class App extends Component {
         activeComMenu: window.initialCat,
         sliderAds: window.sliderAds,
         showSearchResult: false,
-        rightSideAds: window.rightSideAds
+        rightSideAds: window.rightSideAds,
+        leftSideAds: window.leftSideAds
     };
 
     componentDidMount() {
@@ -247,8 +249,13 @@ class App extends Component {
                         activeClasMenu={this.state.activeClasMenu}
                         activeComMenu={this.state.activeComMenu}
                         showSearchResult={this.state.showSearchResult} />
-                    <RightSide
-                        rightSideAds={this.state.rightSideAds} />
+                    { this.state.leftSideAds.length != 0 && 
+                        <LeftSide leftSideAds={this.state.leftSideAds} />
+                    }
+
+                    { this.state.rightSideAds.length != 0 && 
+                        <RightSide rightSideAds={this.state.rightSideAds} />
+                    }
                 </div>
             </div>
         );

@@ -15,6 +15,7 @@ a {
     position: absolute;
     top: 70px;
     right: 10px;
+    z-index: 100;
 }
 
 .alert .alert-message {
@@ -81,7 +82,7 @@ a {
     }
 }
 
-.right-side-item {
+.right-side-item, .left-side-item {
     width: 300px;
 }
 
@@ -312,10 +313,6 @@ a {
 
 .Main {
     //text-align: left;
-}
-
-.left-side {
-    background: gold;
 }
 
 .qr-image {
@@ -592,6 +589,11 @@ nav {
 
 @media all and (max-width: 991px) {
     .right-side {
+        display: block;
+        max-width: 300px;
+        margin: auto;
+    }
+    .left-side {
         display: block;
         max-width: 300px;
         margin: auto;

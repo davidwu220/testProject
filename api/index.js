@@ -78,11 +78,11 @@ router.get('/get_manual_uploads/slider', (req, res) => {
         });
 })
 
-router.get('/get_manual_uploads/aside/right', (req, res) => {
+router.get('/get_manual_uploads/aside/:leftRight', (req, res) => {
     Ad
     .find({
         uploaded_manually: true,
-        location: 'aside-right',
+        location: 'aside-' + req.params.leftRight,
         $and: [
             {
                 start_date: { $lte : moment().format('YYYY-MM-DD') }
@@ -100,10 +100,12 @@ router.get('/get_manual_uploads/aside/right', (req, res) => {
         title: 1
     }
     )
+    // TODO: add order property to side ads
+    //.sort('order')
     .populate('tags')
-    .exec((err, rightSideAds) => {
+    .exec((err, sideAds) => {
         if (err) console.log('error getting full manual upload list: ', err);
-        res.send(rightSideAds);
+        res.send(sideAds);
     });
 })
 
