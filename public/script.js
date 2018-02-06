@@ -5,6 +5,7 @@ let order_selec_sec = $('#order_selector_section');
 let order_selector = $('#order');
 let cat_selector_sec = $('#category_selector_section');
 let cat_selector = $('#category');
+let slideshow_radio = $('#location_SA')
 
 let media_radio = $('#media-format input:radio');
 let image_section = $('#image_section');
@@ -27,32 +28,21 @@ $(document).ready(() => {
     }
 
     // Only show category picker when adding commercial ad
-    // Only hide youtube field when adding commercial ad
     if (location_ca.is(':checked')) {
         // Show category selector and set it to be required
         cat_selector_sec.removeClass('hidden');
         cat_selector.prop('required', true);
-
-        // Set image media format checked
-        media_image.prop('checked', true);
-
-        // Set youtube media format unchecked and disable it
-        media_youtube.prop('checked', false);
-        media_youtube.prop('disabled', true);
-
-        // Show image section and set it to be required
-        image_section.removeClass('hidden');
-        image_selector.prop('required', true);
-
-        // Hide youtube section and not required
-        yt_section.addClass('hidden');
-        yt_s_selector.prop('required', false);
-        yt_f_selector.prop('required', false);
     } else {
         // Hide category selector and set not required
         cat_selector_sec.addClass('hidden');
         cat_selector.prop('required', false);
+    }
 
+    // Only allow youtube for slideshow ads
+    if (!slideshow_radio.is(':checked')) {
+        // Set youtube media format unchecked and disable it
+        media_youtube.prop('disabled', true);
+    } else {
         // Set youtube media format enabled
         media_youtube.prop('disabled', false);
     }
@@ -95,12 +85,18 @@ locations_radio.change(() => {
     }
 
     // Only show category picker when adding commercial ad
-    // Only hide youtube field when adding commercial ad
     if (location_ca.is(':checked')) {
         // Show category selector and set it to be required
         cat_selector_sec.removeClass('hidden');
         cat_selector.prop('required', true);
+    } else {
+        // Hide category selector and set not required
+        cat_selector_sec.addClass('hidden');
+        cat_selector.prop('required', false);
+    }
 
+    // Only allow youtube for slideshow ads
+    if (!slideshow_radio.is(':checked')) {
         // Set image media format checked
         media_image.prop('checked', true);
 
@@ -117,10 +113,6 @@ locations_radio.change(() => {
         yt_s_selector.prop('required', false);
         yt_f_selector.prop('required', false);
     } else {
-        // Hide category selector and set not required
-        cat_selector_sec.addClass('hidden');
-        cat_selector.prop('required', false);
-
         // Set youtube media format enabled
         media_youtube.prop('disabled', false);
     }
