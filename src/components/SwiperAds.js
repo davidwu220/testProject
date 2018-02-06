@@ -71,33 +71,41 @@ class SwiperAds extends Component {
         
         return (
             <Swiper {...params} ref={ node => { if(node) this.swiper = node.swiper } }>
-                {slides.map((slide, i) => (
-                    <div className="swiper-cell video-wrap" id={i} key={i}>
-                        <ReactPlayer
-                            config={{
-                                youtube: {
-                                    playerVars: { origin: config.serverUrl }
-                                }
-                            }}
-                            url={ slide.yt_short_link }
-                            playing={ this.state.shouldPlay === i }
-                            onReady={
-                                () => {
-                                    if(i === 0 && this.notMobile) {
-                                        this.setState({ shouldPlay: 0 });
+                {slides.map((slide, i) => {
+                    {return slide.media_format == 'youtube' ? (
+                        <div className="swiper-cell video-wrap" id={i} key={i}>
+                            <ReactPlayer
+                                config={{
+                                    youtube: {
+                                        playerVars: { origin: config.serverUrl }
+                                    }
+                                }}
+                                url={ slide.yt_short_link }
+                                playing={ this.state.shouldPlay === i }
+                                onReady={
+                                    () => {
+                                        if(i === 0 && this.notMobile) {
+                                            this.setState({ shouldPlay: 0 });
+                                        }
                                     }
                                 }
-                            }
-                            volume={ 0.2 }
-                            loop
-                        />
-                        <a
+                                volume={ 0.2 }
+                                loop
+                            />
+                            <a
                             className="video-wrap__overlay"
                             data-fancybox href={slide.yt_full_link}
                             data-fancybox="slider-group"
-                        ></a>
-                    </div>
-                ))}
+                            ></a>
+                        </div>
+                    ) : (
+                        <div className="swiper-cell">
+                            <a href={ slide.ad_link !== "" ? slide.ad_link : slide.image } data-fancybox={slide.ad_link !== "" ? null : "slider-group"} data-caption="Slider Image" target={slide.ad_link !== "" ? "_blank" : null}>
+                                <img className="swiper-cell-image" src={slide.image} alt="carousel slide" />
+                            </a>
+                        </div>
+                    )}
+                })}
             </Swiper>
         );
     }

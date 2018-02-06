@@ -88,10 +88,10 @@ locations_radio.change(() => {
     // Only show order selector when sideAd option is checked
     if (sideAd_radio.is(':checked')) {
         order_selec_sec.removeClass('hidden');
-        order_selec_sec.prop('required', true);
+        order_selector.prop('required', true);
     } else {
         order_selec_sec.addClass('hidden');
-        order_selec_sec.prop('required', false);
+        order_selector.prop('required', false);
     }
 
     // Only show category picker when adding commercial ad

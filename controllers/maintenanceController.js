@@ -287,6 +287,7 @@ exports.maintenance_edit_post = function(req, res) {
                 title: data.title,
                 description: data.description,
                 ad_link: data.link,
+                media_format: data.mediaFormat,
                 yt_short_link: data.ytShortLink,
                 yt_full_link: data.ytFullLink,
                 start_date: "",

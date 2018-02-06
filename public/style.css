@@ -87,7 +87,7 @@ a {
   transition: opacity 0.4s; }
 
 .swiper-container.swiper-container-horizontal {
-  margin: 20px 0 40px 0;
+  margin: 20px 0 20px 0;
   max-width: 867px; }
   .swiper-container.swiper-container-horizontal .swiper-pagination-bullets {
     position: absolute;
@@ -113,6 +113,13 @@ a {
     .swiper-container.swiper-container-horizontal .swiper-pagination-bullets .swiper-pagination-bullet-active {
       opacity: 1;
       background-color: #06c8b8; }
+
+.swiper-cell {
+  text-align: center; }
+  .swiper-cell .swiper-cell-image {
+    position: relative;
+    max-width: 100%;
+    height: 400px; }
 
 .swiper-slide.video-wrap {
   position: relative;
@@ -423,7 +430,7 @@ nav {
   .ad-item.ad-wrapper .ad-img img {
     width: 100%;
     height: auto; }
-  .swiper-wrapper .swiper-cell.video-wrap {
+  .swiper-wrapper .swiper-cell.video-wrap, .swiper-wrapper .swiper-cell-image {
     height: 200px; } }
 
 @media all and (max-width: 629px) {
