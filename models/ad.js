@@ -58,6 +58,7 @@ var AdSchema = new Schema({
     location: {
         type: String,
         enum: [
+            'top',
             'aside-right',
             'aside-left',
             'classified',

@@ -54,6 +54,35 @@ router.get('/get_manual_uploads', (req, res) => {
         });
 })
 
+router.get('/get_manual_uploads/top_ad', (req, res) => {
+    Ad
+    .findOne({
+        uploaded_manually: true,
+        location: 'top',
+        $and: [
+            {
+                start_date: { $lte : moment().format('YYYY-MM-DD') }
+            },
+            {
+                $or: [
+                    { end_date: { $gte : moment().format('YYYY-MM-DD') } },
+                    { end_date: "" }
+                ]
+            }
+        ]
+    }, {
+        ad_link: 1,
+        image: 1,
+        title: 1
+    }
+    )
+    .populate('tags')
+    .exec((err, sideAds) => {
+        if (err) console.log('error getting top ad: ', err);
+        res.send(sideAds);
+    });
+})
+
 router.get('/get_manual_uploads/slider', (req, res) => {
     Ad
         .find({
@@ -103,7 +132,7 @@ router.get('/get_manual_uploads/aside/:leftRight', (req, res) => {
     .sort('order')
     .populate('tags')
     .exec((err, sideAds) => {
-        if (err) console.log('error getting full manual upload list: ', err);
+        if (err) console.log('error getting left/right ads: ', err);
         res.send(sideAds);
     });
 })

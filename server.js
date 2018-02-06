@@ -108,7 +108,7 @@ server.post('/maintenance/:id/edit', auth_controller.restrict, maintenance_contr
 server.post('/maintenance/:id/delete', auth_controller.restrict, maintenance_controller.maintenance_delete_post);
 
 
-let cls_cats, com_cats, slider_ads, aside_right, aside_left;
+let cls_cats, com_cats, slider_ads, aside_right, aside_left, top_ad;
 
 server.use(
     (req, res, next) => {
@@ -157,6 +157,13 @@ server.use(
                 next();
             })
     }, (req, res, next) => {
+        serverRender.serverRenderTopAd()
+            .then((topAd) => {
+                top_ad = topAd;
+
+                next();
+            })
+    }, (req, res, next) => {
         serverRender.serverRenderRightSide()
             .then((rightSideAds) => {
                 aside_right = rightSideAds;
@@ -182,7 +189,8 @@ server.get('/' , (req, res) => {
         com_cats,
         slider_ads,
         aside_right,
-        aside_left
+        aside_left,
+        top_ad
     });
 
 });
@@ -210,7 +218,8 @@ server.get('/classifiedAds/:cat?' , (req, res) => {
             com_cats,
             slider_ads,
             aside_right,
-            aside_left
+            aside_left,
+            top_ad
         });
     })
     .catch((error) => 
@@ -233,7 +242,8 @@ server.get('/classifiedAds/all/page/:page' , (req, res) => {
             com_cats,
             slider_ads,
             aside_right,
-            aside_left
+            aside_left,
+            top_ad
         });
     })
     .catch((error) => 
@@ -260,7 +270,8 @@ server.get('/commercialAds/:cat?/:id?' , (req, res) => {
                 com_cats,
                 slider_ads,
                 aside_right,
-                aside_left
+                aside_left,
+                top_ad
             });
         })
         .catch((error) => 

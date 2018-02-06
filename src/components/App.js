@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import * as api from '../api';
+import Header from './Header';
 import RightSide from './RightSide';
 import LeftSide from './LeftSide';
 import Main from "./Home/Main";
@@ -37,7 +38,8 @@ class App extends Component {
         sliderAds: window.sliderAds,
         showSearchResult: false,
         rightSideAds: window.rightSideAds,
-        leftSideAds: window.leftSideAds
+        leftSideAds: window.leftSideAds,
+        topAd: window.topAd
     };
 
     componentDidMount() {
@@ -225,6 +227,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <Header topAd={this.state.topAd} />
                 <Menu
                     onSearch={this.onSearch}
                     setPicker={this.setPicker}

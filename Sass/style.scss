@@ -217,7 +217,7 @@ a {
     }
     #postAd {
         height: 90px;
-        width: auto;
+        width: 728px;
     }
 }
 
@@ -611,6 +611,7 @@ nav {
 @media all and (max-width: 1259px) {
     .page-header #postAd {
         height: 75px;
+        width: auto;
         margin: 1rem;
     }
     
