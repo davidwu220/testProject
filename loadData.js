@@ -8,12 +8,12 @@ import config from './config';
 var moment = require('moment');
 
 let today = moment().format('YYYYMMDD');
-let todayWithOffset = moment().subtract(1, 'day').format('YYYYMMDD');
+let tomorrow = moment().add(1, 'day');
 let counter = 0;
 let insertCount = 0;
 
 let extractPromise = new Promise ((resolve, reject) => {
-    extract('/home/singtao-ftp/ftp/files/' + today + '.zip', {dir: '/opt/singtao-ad/public/ads/' + today}, err => {
+    extract('/home/singtao-ftp/ftp/files/' + tomorrow + '.zip', {dir: '/opt/singtao-ad/public/ads/' + tomorrow}, err => {
         if (err) {
             reject(err);
         } else {
@@ -27,7 +27,7 @@ extractPromise.then(success => {
     MongoClient.connect(config.mongodbUri, (err, db) => {
         assert.equal(null, err);
     
-        let buf=fs.readFileSync('/opt/singtao-ad/public/ads/' + today + '/webclass.txt');
+        let buf=fs.readFileSync('/opt/singtao-ad/public/ads/' + tomorrow + '/webclass.txt');
       
         let insertPromist = new Promise ((resolve, reject) => {
             buf.toString().split("\n").forEach((line) => {
@@ -55,7 +55,7 @@ extractPromise.then(success => {
                     let textArray;
                     let title;
                     let descArray;
-                    textBuf = fs.readFileSync("/opt/singtao-ad/public/ads/" + today + "/" + webclassArr[0] + ".txt");
+                    textBuf = fs.readFileSync("/opt/singtao-ad/public/ads/" + tomorrow + "/" + webclassArr[0] + ".txt");
                     textArray = textBuf.toString().split(/\r|\n/).filter(text => text != '');
                     if (textArray[0] != '') {
                         title = textArray[0];
@@ -70,14 +70,14 @@ extractPromise.then(success => {
                     db.collection('categories').findOne({cat: cls}).then((cat) => {
                         db.collection('ads').insertOne({
                             ad_id,
-                            date_inserted: todayWithOffset,
+                            date_inserted: tomorrow,
                             cat: cat.cat,
                             cat_title_cn: cat.cat_title_cn,
                             cat_cn: cat.cat_cn,
                             type: cat.type,
                             title: title,
                             description: descArray,
-                            image: "/ads/" + today + "/" + ad_id + ".jpg",
+                            image: "/ads/" + tomorrow + "/" + ad_id + ".jpg",
                             locations: ["classified"],
                             tags: []
                         }).then(() => {
@@ -97,11 +97,10 @@ extractPromise.then(success => {
             db.collection('ads')
                 .updateOne(
                     { lastUpdate: { $exists: true } },
-                    { $set: { lastUpdate: todayWithOffset }},
+                    { $set: { lastUpdate: today }},
                     { upsert: true },
                     (err, result) => {
                         console.log('Last Update: ' + today);
-                        console.log('Last Update Offset: ' + todayWithOffset);
                         db.close();
                     }
                 )

@@ -80,12 +80,13 @@ exports.maintenance_create_get = function(req, res, next) {
 // Handle maintenance create on POST
 exports.maintenance_create_post = function(req, res) {
     let data = req.body;
-    console.log('posted request: ', data);
+
     let conf = {
         ad_id: data.adId,
         date_inserted: moment().format('YYYYMMDD'),
         uploaded_manually: true,
         location: data.location,
+        order: data.order,
         title: data.title,
         description: data.description,
         ad_link: data.link,
@@ -282,6 +283,7 @@ exports.maintenance_edit_post = function(req, res) {
         ad: (callback) => {
             // Update Ad with the new information
             let adConf = {
+                order: data.order,
                 title: data.title,
                 description: data.description,
                 ad_link: data.link,

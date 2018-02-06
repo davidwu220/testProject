@@ -100,27 +100,13 @@ router.get('/get_manual_uploads/aside/:leftRight', (req, res) => {
         title: 1
     }
     )
-    // TODO: add order property to side ads
-    //.sort('order')
+    .sort('order')
     .populate('tags')
     .exec((err, sideAds) => {
         if (err) console.log('error getting full manual upload list: ', err);
         res.send(sideAds);
     });
 })
-
-// need fixing
-// router.get('/get_manual_uploads/aside/left', (req, res) => {
-//     Ad
-//         .find({
-//             uploaded_manually: true
-//         })
-//         .populate('tags')
-//         .exec((err, muAds) => {
-//             if (err) console.log('error getting full manual upload list: ', err);
-//             res.send(muAds);
-//         });
-// })
 
 // Note: only return ads that are not expired
 router.get('/commercialAds/:cat?', (req, res) => {

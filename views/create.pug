@@ -22,30 +22,30 @@ block content
         label(for='customerId') Customer ID:
         | 
         span.text-danger *
-        input#customerId.form-control(type='text' name='customerId' value=(undefined === ad ? '' : ad.customer.customer_id) readonly=(undefined === ad ? false : true) required)
+        input#customerId.form-control(type='text' name='customerId' value=(ad === undefined ? '' : ad.customer.customer_id) readonly=(ad === undefined ? false : true) required)
       .form-group
         label(for='customerId') Customer Name:
         | 
         span.text-danger *
         | 
         small.text-muted Business name or personal name
-        input#customerName.form-control(type='text' name='customerName' value=(undefined === ad ? '' : ad.customer.customer_name) required)
+        input#customerName.form-control(type='text' name='customerName' value=(ad === undefined ? '' : ad.customer.customer_name) required)
       .form-row
         .form-group.col-md-6
           label(for='firstName') Customer First Name:
-          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(undefined === ad ? '' : ad.customer.first_name))
+          input#firstName.form-control(type='text' placeholder='First Name' name='firstName' value=(ad === undefined ? '' : ad.customer.first_name))
         .form-group.col-md-6
           label(for='lastName') Customer Last Name:
-          input#lastName.form-control(type='text' placeholder='Last Name' name='lastName' value=(undefined === ad ? '' : ad.customer.last_name))
+          input#lastName.form-control(type='text' placeholder='Last Name' name='lastName' value=(ad === undefined ? '' : ad.customer.last_name))
       .form-group
         label(for='email') Email:
-        input#email.form-control(type='email' placeholder='name@email.com' name='email' value=(undefined === ad ? '' : ad.customer.email))
+        input#email.form-control(type='email' placeholder='name@email.com' name='email' value=(ad === undefined ? '' : ad.customer.email))
       .form-group
         label(for='phone') Phone:
-        input#phone.form-control(type='tel' name='phone' value=(undefined === ad ? '' : ad.customer.phone))
+        input#phone.form-control(type='tel' name='phone' value=(ad === undefined ? '' : ad.customer.phone))
       .form-group
         label(for='address') Address:
-        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=value=(undefined === ad ? '' : ad.customer.address))
+        input#address.form-control(type='text' placeholder='123 Example Street' name='address' value=(ad === undefined ? '' : ad.customer.address))
 
     .col-md-6.col-md-offset-3
       h2.m-b-2 Ad Info
@@ -53,21 +53,21 @@ block content
         label(for='ad_id') Ad Id:
           | 
           span.text-danger *
-        input#ad_id.form-control(type='text' name='adId' value=(undefined === ad ? '' : ad.ad_id) readonly=(undefined === ad ? false : true) required)
+        input#ad_id.form-control(type='text' name='adId' value=(ad === undefined ? '' : ad.ad_id) readonly=(ad === undefined ? false : true) required)
       .form-group
         label(for='locations') Ad Location:
         | 
         span.text-danger *
         #locations
-          if (undefined === ad)
+          if (ad === undefined)
             .form-check.form-check-inline
               label.form-check-label
-                input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked)
-                | 右側廣告
-            .form-check.form-check-inline
-              label.form-check-label
-                input#location_AL.form-check-input(type='radio' name='location' value='aside-left')
+                input#location_AL.sideAd_radio.form-check-input(type='radio' name='location' value='aside-left')
                 | 左側廣告
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_AR.sideAd_radio.form-check-input(type='radio' name='location' value='aside-right' checked)
+                | 右側廣告
             .form-check.form-check-inline
               label.form-check-label
                 input#location_CA.form-check-input(type='radio' name='location' value='commercial')
@@ -79,25 +79,42 @@ block content
           else
             .form-check.form-check-inline
               label.form-check-label
-                input#location_AR.form-check-input(type='radio' name='location' value='aside-right' checked=(ad.location == 'aside-right' ? 'true' : null))
-                | 右側廣告
-            .form-check.form-check-inline
-              label.form-check-label
-                input#location_AL.form-check-input(type='radio' name='location' value='aside-left' checked=(ad.location == 'aside-left' ? 'true' : null))
+                input#location_AL.sideAd_radio.form-check-input(type='radio' name='location' value='aside-left' checked=(ad.location == 'aside-left'))
                 | 左側廣告
             .form-check.form-check-inline
               label.form-check-label
-                input#location_CA.form-check-input(type='radio' name='location' value='commercial' checked=(ad.location == 'commercial' ? 'true' : null))
+                input#location_AR.sideAd_radio.form-check-input(type='radio' name='location' value='aside-right' checked=(ad.location == 'aside-right'))
+                | 右側廣告
+            .form-check.form-check-inline
+              label.form-check-label
+                input#location_CA.form-check-input(type='radio' name='location' value='commercial' checked=(ad.location == 'commercial'))
                 | 商業廣告
             .form-check.form-check-inline
               label.form-check-label
-                input#location_SA.form-check-input(type='radio' name='location' value='slider' checked=(ad.location == 'slider' ? 'true' : null))
+                input#location_SA.form-check-input(type='radio' name='location' value='slider' checked=(ad.location == 'slider'))
                 | Slideshow 廣告
+      
+      #order_selector_section.form-group
+        label(for='order') Order:
+        |
+        span.text-danger *
+        select#order.form-control(name='order' required)
+          if (ad === undefined)
+            option(selected value='') Choose order...
+            - var n = 0;
+            while n < 15
+              option(value=++n)= n
+          else
+            option(value='') Choose order...
+            - var n = 0;
+            while n < 15
+              option(value=++n selected=(ad.order == n))= n
+
       #category_selector_section.form-group.hidden
         label(for='category') Category:
           | 
           span.text-danger *
-        if (undefined === ad)
+        if (ad === undefined)
           select#category.form-control(name='category')
             option(selected value="") Choose one...
             each c_ad in commercial_ads
@@ -111,14 +128,14 @@ block content
         label(for='title') Title:
           | 
           span.text-danger *
-        input#title.form-control(type='text' placeholder='Title' name='title' value=(undefined === ad ? '' : ad.title) required)
+        input#title.form-control(type='text' placeholder='Title' name='title' value=(ad === undefined ? '' : ad.title) required)
       .form-group
         label(for='description') Description:
         textarea#description.form-control(type='text' placeholder='Description' name='description' rows='3')
-          | #{undefined === ad ? '' : ad.description}
+          | #{ad === undefined ? '' : ad.description}
       .form-group
         label(for='link') External Link:
-        input#link.form-control(type='url' name='link' placeholder='http://example.com' value=(undefined === ad ? '' : ad.ad_link))
+        input#link.form-control(type='url' name='link' placeholder='http://example.com' value=(ad === undefined ? '' : ad.ad_link))
         small#linkHelpText.form-text.text-muted Make sure http:// or https:// is included.
       .form-row
         .form-group.col-md
@@ -127,16 +144,16 @@ block content
           span.text-danger *
           | 
           small.text-muted Defaults today
-          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(undefined === ad ? defaultStartDate : ad.start_date))
+          input#startDate.form-control(type='date' placeholder='dd/mm/yyyy' name='startDate' value=(ad === undefined ? defaultStartDate : ad.start_date))
         .form-group.col-md
           label(for='endDate') End Date:
-          input#endDate.form-control(type='date' placeholder='dd/mm/yyyy' name='endDate' value=(undefined === ad ? '' : ad.end_date))
+          input#endDate.form-control(type='date' placeholder='dd/mm/yyyy' name='endDate' value=(ad === undefined ? '' : ad.end_date))
       .form-group
         label(for='meida-format') Media Format:
         | 
         span.text-danger *
         #media-format
-          if (undefined === ad)
+          if (ad === undefined)
             .form-check.form-check-inline
               label.form-check-label
                 input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked)
@@ -148,11 +165,11 @@ block content
           else
             .form-check.form-check-inline
               label.form-check-label
-                input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked=(ad.media_format == 'image' ? 'true' : null))
+                input#media_image.form-check-input(type='radio' name='mediaFormat' value='image' checked=(ad.media_format == 'image'))
                 | Image
             .form-check.form-check-inline
               label.form-check-label
-                input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube' checked=(ad.media_format == 'youtube' ? 'true' : null))
+                input#media_youtube.form-check-input(type='radio' name='mediaFormat' value='youtube' checked=(ad.media_format == 'youtube'))
                 | YouTube Link
       #image_section.form-group
         label(for='image') Image:
@@ -179,11 +196,11 @@ block content
         label(for='ytShortLink') YouTube Short Link:
         | 
         span.text-danger *
-        input#ytShortLink.form-control.mb-3(type='url' name='ytShortLink' value=(undefined === ad ? '' : ad.yt_short_link))
+        input#ytShortLink.form-control.mb-3(type='url' name='ytShortLink' value=(ad === undefined ? '' : ad.yt_short_link))
         label(for='ytFullLink') YouTube Full Link:
         | 
         span.text-danger *
-        input#ytFullLink.form-control(type='url' name='ytFullLink' value=(undefined === ad ? '' : ad.yt_full_link))
+        input#ytFullLink.form-control(type='url' name='ytFullLink' value=(ad === undefined ? '' : ad.yt_full_link))
       .form-group
         label(for='tags') Tags:
         #tags

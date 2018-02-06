@@ -1,5 +1,8 @@
 let locations_radio = $("#locations input:radio");
 let location_ca = $('#location_CA');
+let sideAd_radio = $('.sideAd_radio');
+let order_selec_sec = $('#order_selector_section');
+let order_selector = $('#order');
 let cat_selector_sec = $('#category_selector_section');
 let cat_selector = $('#category');
 
@@ -14,6 +17,15 @@ let yt_f_selector = $('#ytFullLink');
 
 // show appropriate fields when edit page first load
 $(document).ready(() => {
+    // Only show order selector when sideAd option is checked
+    if (sideAd_radio.is(':checked')) {
+        order_selec_sec.removeClass('hidden');
+        order_selector.prop('required', true);
+    } else {
+        order_selec_sec.addClass('hidden');
+        order_selector.prop('required', false);
+    }
+
     // Only show category picker when adding commercial ad
     // Only hide youtube field when adding commercial ad
     if (location_ca.is(':checked')) {
@@ -73,6 +85,15 @@ $(document).ready(() => {
 })
 
 locations_radio.change(() => {
+    // Only show order selector when sideAd option is checked
+    if (sideAd_radio.is(':checked')) {
+        order_selec_sec.removeClass('hidden');
+        order_selec_sec.prop('required', true);
+    } else {
+        order_selec_sec.addClass('hidden');
+        order_selec_sec.prop('required', false);
+    }
+
     // Only show category picker when adding commercial ad
     // Only hide youtube field when adding commercial ad
     if (location_ca.is(':checked')) {

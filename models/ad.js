@@ -25,6 +25,9 @@ var AdSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     },
+    order: {
+        type: Number
+    },
     title: {
         type: String
     },
