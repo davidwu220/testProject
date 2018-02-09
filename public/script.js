@@ -1,20 +1,20 @@
-let locations_radio = $("#locations input:radio");
-let location_ca = $('#location_CA');
-let sideAd_radio = $('.sideAd_radio');
-let order_selec_sec = $('#order_selector_section');
-let order_selector = $('#order');
-let cat_selector_sec = $('#category_selector_section');
-let cat_selector = $('#category');
-let slideshow_radio = $('#location_SA')
+var locations_radio = $("#locations input:radio");
+var location_ca = $('#location_CA');
+var sideAd_radio = $('.sideAd_radio');
+var order_selec_sec = $('#order_selector_section');
+var order_selector = $('#order');
+var cat_selector_sec = $('#category_selector_section');
+var cat_selector = $('#category');
+var slideshow_radio = $('#location_SA')
 
-let media_radio = $('#media-format input:radio');
-let image_section = $('#image_section');
-let image_selector = $('#image');
-let media_image = $('#media_image');
-let media_youtube = $('#media_youtube');
-let yt_section = $('#ytLink_section');
-let yt_s_selector = $('#ytShortLink');
-let yt_f_selector = $('#ytFullLink');
+var media_radio = $('#media-format input:radio');
+var image_section = $('#image_section');
+var image_selector = $('#image');
+var media_image = $('#media_image');
+var media_youtube = $('#media_youtube');
+var yt_section = $('#ytLink_section');
+var yt_s_selector = $('#ytShortLink');
+var yt_f_selector = $('#ytFullLink');
 
 // show appropriate fields when edit page first load
 $(document).ready(() => {
@@ -148,22 +148,22 @@ media_radio.change(() => {
 
 
 $('#deleteModal').on('show.bs.modal', function (event) {
-    let button = $(event.relatedTarget);
-    let postTo = button.data('post-to');
-    let adId = button.data('ad-id');
-    let title = button.data('title');
-    let location = button.data('location');
-    let image = button.data('image');
-    let yt_short_link = button.data('yt_short_link') || '[ No Link ]';
-    let yt_full_link = button.data('yt_full_link') || '[ No Link ]';
+    var button = $(event.relatedTarget);
+    var postTo = button.data('post-to');
+    var adId = button.data('ad-id');
+    var title = button.data('title');
+    var location = button.data('location');
+    var image = button.data('image');
+    var yt_short_link = button.data('yt_short_link') || '[ No Link ]';
+    var yt_full_link = button.data('yt_full_link') || '[ No Link ]';
 
-    let modal = $(this);
+    var modal = $(this);
     modal.find('#deleteModalForm').attr('action', postTo);
     modal.find('#ad_id').val(adId);
     modal.find('#location').val(location);
     modal.find('#title').val(title);
     modal.find('#deleteModalImagePlaceHolder').html(() => {
-        let imageHtml = "";
+        var imageHtml = "";
         if (image !== "") {
             imageHtml = "<div style='overflow: hidden';>" +
                             "<a href='" + image + "' data-fancybox='ad-image' data-caption='Ad Image'>" +
