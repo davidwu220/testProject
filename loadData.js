@@ -97,7 +97,7 @@ extractPromise.then(success => {
             db.collection('ads')
                 .updateOne(
                     { lastUpdate: { $exists: true } },
-                    { $set: { lastUpdate: today }},
+                    { $set: { lastUpdate: tomorrow }},
                     { upsert: true },
                     (err, result) => {
                         console.log('Last Update: ' + today);
