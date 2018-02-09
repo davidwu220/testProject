@@ -2,7 +2,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: __dirname + '/public',
-        filename: 'temp-new-bundle.js'
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
