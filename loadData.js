@@ -8,7 +8,7 @@ import config from './config';
 var moment = require('moment');
 
 let today = moment().format('YYYYMMDD');
-let tomorrow = moment().add(1, 'day');
+let tomorrow = moment().add(1, 'day').format('YYYYMMDD');
 let counter = 0;
 let insertCount = 0;
 
