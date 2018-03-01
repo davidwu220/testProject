@@ -9,23 +9,10 @@ block content
         function recaptchaExpired() {
             $('#submitBtn').prop('disabled', true);
         }
-        function submitOnClick() {
-            $('#submitBtn').html('<i class="fas fa-sync fa-spin"></i> Submitting...');
+        function onSubmit(form) {
+            $('#submitBtn').html('<i class="fas fa-sync fa-spin mr-2"></i> Submitting...');
             $('#submitBtn').prop('disabled', true);
-            $('#submitBtn').css('z-index', '5');
-            $('body').addClass('cover');
-        }
-    
-    //- style starts here...
-    style.
-        .cover {
-            position:fixed;
-            top:0;
-            left:0;
-            background:rgba(0,0,0,0.6);
-            z-index:2;
-            width:100%;
-            height:100%;
+            return true;
         }
 
     if flash.error
@@ -48,7 +35,7 @@ block content
 
     h5 分類廣告投稿表格如下:
     .mb-3.text-danger * Required
-    form(method='POST' action='' enctype='application/x-www-form-urlencoded')
+    form(method='POST', action='', onsubmit="return onSubmit(this);", enctype='application/x-www-form-urlencoded')
         h4.mb-3 Ad Info.
         .mb-3
             label(for="ad-title") 大字 (最多四個字/格)
@@ -183,4 +170,4 @@ block content
 
         small.form-text.text-muted.mb-2 Please complete the reCAPTCHA challenge.
         .g-recaptcha.mb-4(data-callback="recaptchaSuccess" data-expired-callback="recaptchaExpired" data-sitekey="6LfmO0gUAAAAACHw5NWpW7TssoYZtV2NOkUxTkgd")
-        button#submitBtn.btn.btn-primary.btn-lg.btn-block(type="submit", onclick="submitOnclick()") Submit order
+        button#submitBtn.btn.btn-primary.btn-lg.btn-block(type="submit", disabled) Submit order

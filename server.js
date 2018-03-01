@@ -317,7 +317,7 @@ server.post('/order_form', (req, res) => {
 
 // catch all non-matched uri's
 server.use("*",function(req,res) {
-    res.status(404).send("Oops, 404 page not found.");
+    res.status(404).send("<h2>Oops, 404 page not found.</h4><p>Please double check if your URL is correct.</p>");
 })
 
 server.listen(config.port, config.host, () => {
