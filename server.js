@@ -303,16 +303,16 @@ server.post('/order_form', (req, res) => {
     for (let key in originalJSON) {
 		if (key !== "g-recaptcha-response" && originalJSON[key] !== "") {
             if (key === "ad_title" || key === "ad_desc") {
-                formattedHTML += key + " : <pre>" + originalJSON[key] + "</pre><br><hr>"; 
+                formattedHTML += key + " : <pre>" + originalJSON[key] + "</pre>"; 
             } else {
-                formattedHTML += key + " : " + originalJSON[key] + "<br><hr>";
+                formattedHTML += key + " : " + originalJSON[key] + "<br>";
             }
         }
     }
     
     sendmail({
         from: 'no-reply@singtao-ad-posting.singtaola.com',
-        to: 'david11629@gmail.com, david@wudavid.com',
+        to: 'marketing@singtaola.com',
         subject: 'New Ad Posting Request Form',
         html: '<div>' + formattedHTML + '</div>',
     }, function(err, reply) {
