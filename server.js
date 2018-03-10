@@ -8,7 +8,7 @@ var flash = require('express-flash-2');
 var multer = require('multer');
 var passport = require('passport');
 var moment = require('moment');
-var sendmail = require('sendmail')({silent: true});
+var sendmail = require('sendmail')({ silent: true });
 
 import config from './config';
 import apiRouter from './api';
@@ -297,17 +297,32 @@ server.get('/order_form', (req, res) => {
     });
 });
 server.post('/order_form', (req, res) => {
+    let formattedHTML = "";
+    let originalJSON = req.body;
+
+    for (let key in originalJSON) {
+		if (key !== "g-recaptcha-response" && originalJSON[key] !== "") {
+            if (key === "ad-title" || key === "ad-desc") {
+                formattedHTML += key + " : <pre>" + originalJSON[key] + "</pre><br><hr>"; 
+            } else {
+                formattedHTML += key + " : " + originalJSON[key] + "<br><hr>";
+            }
+        }
+    }
+    
     sendmail({
         from: 'no-reply@singtao-ad-posting.singtaola.com',
-        to: 'david@wudavid.com',
+        to: 'david11629@gmail.com, david@wudavid.com',
         subject: 'New Ad Posting Request Form',
-        html: '<pre>' + JSON.stringify(req.body, null, 4) + '</pre>',
+        html: '<div>' + formattedHTML + '</div>',
     }, function(err, reply) {
         if (err) {
             console.log(err && err.stack);
-            res.flash('error', 'Oops, something went worng.\nPlease try again later.');
             res.render('order_form', {
-                ad: data
+                flash: {
+                    error: 'Oops, something went worng.<br>Please try again later.'
+                },
+                ad: originalJSON
             });
         }
 
