@@ -302,7 +302,7 @@ server.post('/order_form', (req, res) => {
 
     for (let key in originalJSON) {
 		if (key !== "g-recaptcha-response" && originalJSON[key] !== "") {
-            if (key === "ad-title" || key === "ad-desc") {
+            if (key === "ad_title" || key === "ad_desc") {
                 formattedHTML += key + " : <pre>" + originalJSON[key] + "</pre><br><hr>"; 
             } else {
                 formattedHTML += key + " : " + originalJSON[key] + "<br><hr>";
